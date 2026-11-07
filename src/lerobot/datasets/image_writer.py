@@ -42,7 +42,10 @@ def safe_stop_image_writer(func):
             writer = getattr(dataset, "writer", None) if dataset else None
             if writer is not None and writer.image_writer is not None:
                 logger.warning("Waiting for image writer to terminate...")
-                writer.image_writer.stop()
+                try:
+                    writer.image_writer.stop()
+                except Exception:
+                    logger.exception("Image writer cleanup failed")
             raise
 
     return wrapper
