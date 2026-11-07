@@ -398,3 +398,17 @@ def test_main_process_time(tmp_path, img_tensor_factory):
         assert fpath.exists()
     finally:
         writer.stop()
+
+
+def test_queued_image_owns_its_pixels(tmp_path):
+    writer = AsyncImageWriter()
+    try:
+        data = np.full((4, 5, 3), 7, dtype=np.uint8)
+        with patch.object(writer.queue, "put") as put:
+            writer.save_image(data, tmp_path / "frame.png")
+        data.fill(0)
+        assert np.all(put.call_args.args[0][0] == 7)
+    finally:
+        writer.stop()
+    with pytest.raises(RuntimeError, match="stopped"):
+        writer.save_image(data, tmp_path / "late.png")

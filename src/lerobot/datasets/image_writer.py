@@ -106,7 +106,7 @@ def image_array_to_pil_image(image_array: np.ndarray, range_check: bool = True) 
         if range_check:
             max_ = image_array.max().item()
             min_ = image_array.min().item()
-            if max_ > 1.0 or min_ < 0.0:
+            if not 0.0 <= min_ <= max_ <= 1.0:
                 raise ValueError(
                     "The image data type is float, which requires values in the range [0.0, 1.0]. "
                     f"However, the provided range is [{min_}, {max_}]. Please adjust the range or "
@@ -240,10 +240,12 @@ class AsyncImageWriter:
     def save_image(
         self, image: torch.Tensor | np.ndarray | PIL.Image.Image, fpath: Path, compress_level: int = 1
     ) -> None:
+        if self._stopped:
+            raise RuntimeError("Cannot queue an image after the writer has stopped")
         if isinstance(image, torch.Tensor):
             # Convert tensor to numpy array to minimize main process time
-            image = image.cpu().numpy()
-        self.queue.put((image, fpath, compress_level))
+            image = image.detach().cpu().numpy()
+        self.queue.put((image.copy(), fpath, compress_level))
 
     def wait_until_done(self) -> None:
         self.queue.join()
