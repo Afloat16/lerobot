@@ -241,7 +241,9 @@ class ACTTemporalEnsembler:
         else:
             # self.ensembled_actions will have shape (batch_size, chunk_size - 1, action_dim). Compute
             # the online update for those entries.
-            update_weights = self.ensemble_update_weights[self.ensembled_actions_count].to(dtype=actions.dtype)
+            update_weights = self.ensemble_update_weights[self.ensembled_actions_count].to(
+                dtype=actions.dtype
+            )
             self.ensembled_actions.lerp_(actions[:, :-1], update_weights)
             self.ensembled_actions_count = torch.clamp(self.ensembled_actions_count + 1, max=self.chunk_size)
             # The last action, which has no prior online average, needs to get concatenated onto the end.
