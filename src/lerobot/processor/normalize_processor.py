@@ -344,8 +344,11 @@ class _NormalizationMixin:
         # For Accelerate compatibility: Ensure stats are on the same device and dtype as the input tensor
         if self._tensor_stats and key in self._tensor_stats:
             first_stat = next(iter(self._tensor_stats[key].values()))
-            if first_stat.device != tensor.device or first_stat.dtype != tensor.dtype:
-                self.to(device=tensor.device, dtype=tensor.dtype)
+            # Integer-valued inputs still need fractional statistics. Floating-point
+            # inputs keep the existing automatic precision adaptation.
+            stats_dtype = tensor.dtype if tensor.is_floating_point() else self.dtype
+            if first_stat.device != tensor.device or first_stat.dtype != stats_dtype:
+                self.to(device=tensor.device, dtype=stats_dtype)
 
         stats = self._tensor_stats[key]
 
@@ -378,7 +381,7 @@ class _NormalizationMixin:
             # to prevent division by zero. This consistently maps an input equal to
             # min_val to -1, ensuring a stable transformation.
             denom = torch.where(
-                denom == 0, torch.tensor(self.eps, device=tensor.device, dtype=tensor.dtype), denom
+                denom == 0, torch.tensor(self.eps, device=tensor.device, dtype=denom.dtype), denom
             )
             if inverse:
                 # Map from [-1, 1] back to [min, max]
@@ -397,7 +400,7 @@ class _NormalizationMixin:
             denom = q99 - q01
             # Avoid division by zero by adding epsilon when quantiles are identical
             denom = torch.where(
-                denom == 0, torch.tensor(self.eps, device=tensor.device, dtype=tensor.dtype), denom
+                denom == 0, torch.tensor(self.eps, device=tensor.device, dtype=denom.dtype), denom
             )
             if inverse:
                 return (tensor + 1.0) * denom / 2.0 + q01
@@ -414,7 +417,7 @@ class _NormalizationMixin:
             denom = q90 - q10
             # Avoid division by zero by adding epsilon when quantiles are identical
             denom = torch.where(
-                denom == 0, torch.tensor(self.eps, device=tensor.device, dtype=tensor.dtype), denom
+                denom == 0, torch.tensor(self.eps, device=tensor.device, dtype=denom.dtype), denom
             )
             if inverse:
                 return (tensor + 1.0) * denom / 2.0 + q10
