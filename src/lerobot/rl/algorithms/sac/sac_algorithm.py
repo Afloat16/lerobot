@@ -247,9 +247,14 @@ class SACAlgorithm(RLAlgorithm):
                 loss_actor = self._compute_loss_actor(fb)
                 self.optimizers["actor"].zero_grad()
                 loss_actor.backward()
-                actor_grad = torch.nn.utils.clip_grad_norm_(
-                    self.policy.actor.parameters(), max_norm=clip
-                ).item()
+                # Shared encoders belong to the critic optimizer. Their gradients
+                # must not change the clipping scale of the actor's update.
+                actor_parameters = [
+                    parameter
+                    for group in self.optimizers["actor"].param_groups
+                    for parameter in group["params"]
+                ]
+                actor_grad = torch.nn.utils.clip_grad_norm_(actor_parameters, max_norm=clip).item()
                 self.optimizers["actor"].step()
 
                 loss_temp = self._compute_loss_temperature(fb)
