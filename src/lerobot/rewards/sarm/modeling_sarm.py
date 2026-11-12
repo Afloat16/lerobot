@@ -516,7 +516,8 @@ class SARMRewardModel(PreTrainedRewardModel):
             return_stages: If True, also return stage predictions
             return_confidence: If True, also return stage confidence
             head_mode: Which head to use ("sparse" or "dense")
-            frame_index: Index of the target frame to extract (default: n_obs_steps).
+            frame_index: Index of the target frame to extract (default: the current frame
+                at the center of the bidirectional observation window).
 
         Returns:
             Rewards and optionally stage probs/confidence.
@@ -612,9 +613,10 @@ class SARMRewardModel(PreTrainedRewardModel):
                 subtask_names=self.config.dense_subtask_names,
             )
 
-        # Default frame index is n_obs_steps (last observation frame)
+        # The zero-delta frame is centered between past and future observations,
+        # matching SARMConfig.observation_delta_indices and the RA-BC caller.
         if frame_index is None:
-            frame_index = self.config.n_obs_steps
+            frame_index = self.config.n_obs_steps // 2
 
         # Prepare outputs (batch mode or no smoothing)
         if return_all_frames:
