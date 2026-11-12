@@ -211,8 +211,10 @@ class ACTTemporalEnsembler:
         ```
         """
         self.chunk_size = chunk_size
-        self.ensemble_weights = torch.exp(-temporal_ensemble_coeff * torch.arange(chunk_size))
-        self.ensemble_weights_cumsum = torch.cumsum(self.ensemble_weights, dim=0)
+        log_weights = -temporal_ensemble_coeff * torch.arange(chunk_size, dtype=torch.float64)
+        # The next prediction's normalized weight stays in [0, 1], even when
+        # unnormalized exponentials or cumulative weights would overflow.
+        self.ensemble_update_weights = (log_weights - torch.logcumsumexp(log_weights, dim=0)).exp().float()
         self.reset()
 
     def reset(self):
@@ -226,8 +228,7 @@ class ACTTemporalEnsembler:
         Takes a (batch, chunk_size, action_dim) sequence of actions, update the temporal ensemble for all
         time steps, and pop/return the next batch of actions in the sequence.
         """
-        self.ensemble_weights = self.ensemble_weights.to(device=actions.device)
-        self.ensemble_weights_cumsum = self.ensemble_weights_cumsum.to(device=actions.device)
+        self.ensemble_update_weights = self.ensemble_update_weights.to(device=actions.device)
         if self.ensembled_actions is None:
             # Initializes `self._ensembled_action` to the sequence of actions predicted during the first
             # time step of the episode.
@@ -240,9 +241,8 @@ class ACTTemporalEnsembler:
         else:
             # self.ensembled_actions will have shape (batch_size, chunk_size - 1, action_dim). Compute
             # the online update for those entries.
-            self.ensembled_actions *= self.ensemble_weights_cumsum[self.ensembled_actions_count - 1]
-            self.ensembled_actions += actions[:, :-1] * self.ensemble_weights[self.ensembled_actions_count]
-            self.ensembled_actions /= self.ensemble_weights_cumsum[self.ensembled_actions_count]
+            update_weights = self.ensemble_update_weights[self.ensembled_actions_count].to(dtype=actions.dtype)
+            self.ensembled_actions.lerp_(actions[:, :-1], update_weights)
             self.ensembled_actions_count = torch.clamp(self.ensembled_actions_count + 1, max=self.chunk_size)
             # The last action, which has no prior online average, needs to get concatenated onto the end.
             self.ensembled_actions = torch.cat([self.ensembled_actions, actions[:, -1:]], dim=1)
