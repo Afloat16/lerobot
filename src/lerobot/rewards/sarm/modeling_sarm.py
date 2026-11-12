@@ -677,6 +677,7 @@ class SARMRewardModel(PreTrainedRewardModel):
         Single training step for one annotation scheme.
 
         Implements 75%/25% GT/predicted stage conditioning.
+        Both losses are averaged over valid frames, excluding padding after each length.
 
         Args:
             img_emb: Image embeddings (B, N, T, D)
@@ -715,9 +716,11 @@ class SARMRewardModel(PreTrainedRewardModel):
         # Run subtask model with stage prior
         tau_pred = self.subtask_model(img_emb, lang_emb, state, lengths, stage_emb, scheme=scheme)
 
-        # Compute losses
-        stage_loss = F.cross_entropy(stage_pred.view(-1, num_classes), gt_stage.view(-1), reduction="mean")
-        subtask_loss = F.mse_loss(tau_pred, gt_tau, reduction="mean")
+        # Ignore unused rewind slots, just as the attention padding mask does. Taking
+        # the mean over valid frames also keeps the loss scale independent of padding.
+        valid = torch.arange(targets.shape[1], device=targets.device).unsqueeze(0) < lengths.unsqueeze(1)
+        stage_loss = F.cross_entropy(stage_pred[valid], gt_stage[valid], reduction="mean")
+        subtask_loss = F.mse_loss(tau_pred[valid], gt_tau[valid], reduction="mean")
 
         return {
             "stage_loss": stage_loss,
