@@ -48,6 +48,7 @@ class StageTransformer(nn.Module):
 
     Predicts which stage/subtask the current frame belongs to.
     Supports both sparse (high-level) and dense (fine-grained) annotation schemes.
+    Each frame attends to all streams at its own and earlier timesteps.
 
     Input streams: [vis_proj, lang_proj, state_proj] concatenated -> (B, N+2, T, D)
     Output: stage logits (B, T, num_classes)
@@ -158,17 +159,18 @@ class StageTransformer(nn.Module):
 
         # Flatten to tokens for Transformer
         x_tokens = x.view(B, (N + 2) * T, D)
-        L = x_tokens.size(1)  # noqa: N806
 
         # Create padding mask
         base_mask = torch.arange(T, device=device).expand(B, T) >= lengths.unsqueeze(1)  # (B, T)
         mask = base_mask.unsqueeze(1).expand(B, N + 2, T).reshape(B, (N + 2) * T)
 
-        # Create causal mask
-        causal_mask = torch.triu(torch.ones(L, L, device=device, dtype=torch.bool), diagonal=1)
+        # Tokens are stream-major, so token index does not represent time. Hide future
+        # frames across every stream while allowing all modalities at the current frame.
+        frame_indices = torch.arange(T, device=device).repeat(N + 2)
+        causal_mask = frame_indices.unsqueeze(0) > frame_indices.unsqueeze(1)
 
         # Encode
-        h = self.transformer(x_tokens, mask=causal_mask, src_key_padding_mask=mask, is_causal=True)
+        h = self.transformer(x_tokens, mask=causal_mask, src_key_padding_mask=mask, is_causal=False)
 
         # Reshape and fuse
         h = h.view(B, N + 2, T, D).permute(0, 2, 1, 3).reshape(B, T, (N + 2) * D)
@@ -185,6 +187,7 @@ class SubtaskTransformer(nn.Module):
 
     Predicts within-stage normalized progress (tau) conditioned on stage prior.
     The stage prior is a one-hot encoding passed from StageTransformer predictions.
+    Each frame attends to all streams at its own and earlier timesteps.
 
     Input streams: [vis_proj, lang_proj, state_proj, stage_emb] -> (B, N+3, T, D)
     Output: tau predictions (B, T) in [0, 1]
@@ -309,17 +312,18 @@ class SubtaskTransformer(nn.Module):
 
         # Flatten to tokens
         x_tokens = x.view(B, (N + 3) * T, D)
-        L = x_tokens.size(1)  # noqa: N806
 
         # Create padding mask
         base_mask = torch.arange(T, device=device).expand(B, T) >= lengths.unsqueeze(1)
         mask = base_mask.unsqueeze(1).expand(B, N + 3, T).reshape(B, (N + 3) * T)
 
-        # Create causal mask
-        causal_mask = torch.triu(torch.ones(L, L, device=device, dtype=torch.bool), diagonal=1)
+        # Tokens are stream-major; a triangular token mask would leak future frames
+        # from earlier streams. This mask is not PyTorch's triangular causal hint.
+        frame_indices = torch.arange(T, device=device).repeat(N + 3)
+        causal_mask = frame_indices.unsqueeze(0) > frame_indices.unsqueeze(1)
 
         # Encode
-        h = self.transformer(x_tokens, mask=causal_mask, src_key_padding_mask=mask, is_causal=True)
+        h = self.transformer(x_tokens, mask=causal_mask, src_key_padding_mask=mask, is_causal=False)
 
         # Reshape and fuse
         h = h.view(B, N + 3, T, D)
