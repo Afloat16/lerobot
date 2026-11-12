@@ -115,24 +115,23 @@ class RABCWeights(SampleWeighter):
 
         self.progress_lookup: dict[int, float] = {}
         self.episode_lookup: dict[int, int] = {}
+        self.episode_boundaries: dict[int, dict[str, int]] = {}
 
-        for _, row in self.df.iterrows():
-            global_idx = int(row["index"])
-            progress = row[self.progress_column]
-            episode_idx = int(row["episode_index"])
+        columns = self.df[["index", "episode_index", self.progress_column]]
+        for global_idx, episode_idx, progress in columns.itertuples(index=False, name=None):
+            global_idx = int(global_idx)
+            episode_idx = int(episode_idx)
 
             if not np.isnan(progress):
                 self.progress_lookup[global_idx] = float(progress)
             self.episode_lookup[global_idx] = episode_idx
-
-        # Build episode boundaries for delta computation
-        self.episode_boundaries: dict[int, dict[str, int]] = {}
-        for episode_idx in self.df["episode_index"].unique():
-            ep_df = self.df[self.df["episode_index"] == episode_idx]
-            self.episode_boundaries[int(episode_idx)] = {
-                "start": int(ep_df["index"].min()),
-                "end": int(ep_df["index"].max()) + 1,
-            }
+            # Accumulate boundaries in the same pass instead of rescanning all
+            # frames once per episode. Input rows need not be sorted.
+            bounds = self.episode_boundaries.setdefault(
+                episode_idx, {"start": global_idx, "end": global_idx + 1}
+            )
+            bounds["start"] = min(bounds["start"], global_idx)
+            bounds["end"] = max(bounds["end"], global_idx + 1)
 
         logging.info(f"Loaded {len(self.progress_lookup)} frame progress values")
         logging.info(f"Chunk size for delta computation: {chunk_size}")
