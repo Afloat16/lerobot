@@ -292,6 +292,7 @@ class GaussianActorObservationEncoder(nn.Module):
 
         This function takes pre-encoded image features from the cache and applies spatial embeddings and post-encoders.
         It also supports detaching the encoded features if specified.
+        Camera slots follow the configured feature order regardless of the cache mapping's insertion order.
 
         Args:
             cache (dict[str, Tensor]): The cached image features.
@@ -303,7 +304,8 @@ class GaussianActorObservationEncoder(nn.Module):
             Tensor: The encoded image features.
         """
         feats = []
-        for k, feat in cache.items():
+        for k in self.image_keys:
+            feat = cache[k]
             safe_key = k.replace(".", "_")
             x = self.spatial_embeddings[safe_key](feat)
             x = self.post_encoders[safe_key](x)
