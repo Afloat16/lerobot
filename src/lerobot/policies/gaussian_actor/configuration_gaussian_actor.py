@@ -19,7 +19,7 @@ from dataclasses import dataclass, field
 
 from lerobot.configs import NormalizationMode, PreTrainedConfig
 from lerobot.optim import MultiAdamConfig
-from lerobot.utils.constants import ACTION, OBS_IMAGE, OBS_STATE
+from lerobot.utils.constants import ACTION, OBS_ENV_STATE, OBS_IMAGE, OBS_STATE
 
 
 def is_image_feature(key: str) -> bool:
@@ -204,10 +204,12 @@ class GaussianActorConfig(PreTrainedConfig):
             )
         has_image = any(is_image_feature(key) for key in self.input_features)
         has_state = OBS_STATE in self.input_features
+        has_env_state = OBS_ENV_STATE in self.input_features
 
-        if not (has_state or has_image):
+        if not (has_state or has_env_state or has_image):
             raise ValueError(
-                "You must provide either 'observation.state' or an image observation (key starting with 'observation.image') in the input features"
+                "You must provide 'observation.state', 'observation.environment_state', or an image "
+                "observation (key starting with 'observation.image') in the input features"
             )
 
         if ACTION not in self.output_features:

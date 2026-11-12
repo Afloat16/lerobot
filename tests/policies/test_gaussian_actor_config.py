@@ -184,7 +184,7 @@ def test_validate_features_missing_observation():
         output_features={ACTION: PolicyFeature(type=FeatureType.ACTION, shape=(3,))},
     )
     with pytest.raises(
-        ValueError, match="You must provide either 'observation.state' or an image observation"
+        ValueError, match="You must provide 'observation.state', 'observation.environment_state', or an image"
     ):
         config.validate_features()
 
