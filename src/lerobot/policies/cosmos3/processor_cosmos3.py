@@ -121,7 +121,7 @@ def axis_angle_to_matrix(axis_angle: Tensor) -> Tensor:
 
 
 def matrix_to_axis_angle(matrix: Tensor) -> Tensor:
-    """Axis-angle vectors `[..., 3]` of rotation matrices `[..., 3, 3]` (in float64), for angles below pi."""
+    """Axis-angle vectors `[..., 3]` of rotation matrices `[..., 3, 3]` (in float64), including half turns."""
     m = matrix.double()
     skew = torch.stack(
         [m[..., 2, 1] - m[..., 1, 2], m[..., 0, 2] - m[..., 2, 0], m[..., 1, 0] - m[..., 0, 1]], -1
@@ -131,7 +131,17 @@ def matrix_to_axis_angle(matrix: Tensor) -> Tensor:
     angle = torch.atan2(sin_angle, cos_angle)
     # angle / sin(angle), 1 at the identity.
     scale = torch.where(sin_angle > 1e-8, angle / sin_angle.clamp(min=1e-8), torch.ones_like(angle))
-    return (skew * scale[..., None] / 2).to(matrix.dtype)
+    rotvec = skew * scale[..., None] / 2
+    # Near pi the skew part vanishes, but the symmetric part is
+    # (1 - cos(angle)) * axis * axis.T. Its largest column has a stable norm.
+    identity = torch.eye(3, dtype=m.dtype, device=m.device)
+    symmetric = (m + m.transpose(-1, -2)) / 2 - cos_angle[..., None, None] * identity
+    largest = symmetric.diagonal(dim1=-2, dim2=-1).argmax(dim=-1)
+    column = symmetric.gather(-1, largest[..., None, None].expand(*largest.shape, 3, 1)).squeeze(-1)
+    axis = F.normalize(column, dim=-1)
+    axis = torch.where((axis * skew).sum(dim=-1, keepdim=True) < 0, -axis, axis)
+    near_pi = (cos_angle < 0) & (sin_angle < 1e-4)
+    return torch.where(near_pi[..., None], axis * angle[..., None], rotvec).to(matrix.dtype)
 
 
 def matrix_to_rot6d(matrix: Tensor) -> Tensor:
