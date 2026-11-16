@@ -1,0 +1,685 @@
+
+2026-11-16T22:45:25.3522651Z tests/processor/test_render_messages_processor.py::test_render_messages_step_falls_back_per_sample_in_batched_language PASSED [ 74%]
+2026-11-16T22:45:25.3532685Z tests/processor/test_render_messages_processor.py::test_render_messages_step_rejects_mismatched_non_empty_language_batches PASSED [ 74%]
+2026-11-16T22:45:25.3543114Z tests/processor/test_render_messages_processor.py::test_render_messages_step_rejects_an_entirely_unrenderable_batch PASSED [ 74%]
+2026-11-16T22:45:25.3554004Z tests/processor/test_render_messages_processor.py::test_select_batch_indices_slices_numpy_action PASSED [ 74%]
+2026-11-16T22:45:25.3565144Z tests/processor/test_render_messages_processor.py::test_select_batch_indices_slices_robot_action_dict PASSED [ 74%]
+2026-11-16T22:45:25.3574679Z tests/processor/test_render_messages_processor.py::test_select_batch_indices_rejects_misaligned_list PASSED [ 74%]
+2026-11-16T22:45:25.3584207Z tests/processor/test_render_messages_processor.py::test_fallback_low_level_render_rejects_partially_missing_task_batch PASSED [ 74%]
+2026-11-16T22:45:25.3592653Z tests/processor/test_render_messages_processor.py::test_training_renderer_skips_runtime_queries PASSED [ 74%]
+2026-11-16T22:45:25.3606609Z tests/processor/test_render_messages_processor.py::test_training_filter_keeps_messages_observations_and_actions_aligned PASSED [ 74%]
+2026-11-16T22:45:25.3622502Z tests/processor/test_render_messages_processor.py::test_training_render_rotates_task_rephrasings_instead_of_pinning_the_dataset_task PASSED [ 74%]
+2026-11-16T22:45:25.3633618Z tests/processor/test_render_messages_processor.py::test_batched_training_render_uses_rephrasings_per_sample_and_the_task_otherwise PASSED [ 74%]
+2026-11-16T22:45:25.3644336Z tests/processor/test_render_messages_runtime.py::test_next_subtask_uses_the_training_recipe_prefix PASSED [ 74%]
+2026-11-16T22:45:25.3654730Z tests/processor/test_render_messages_runtime.py::test_next_subtask_tolerates_optional_runtime_bindings_that_are_absent PASSED [ 74%]
+2026-11-16T22:45:25.3665623Z tests/processor/test_render_messages_runtime.py::test_runtime_rendering_is_stateless_and_does_not_mutate_inputs PASSED [ 74%]
+2026-11-16T22:45:25.3678089Z tests/processor/test_render_messages_runtime.py::test_same_pipeline_handles_training_then_text_and_action_inference PASSED [ 74%]
+2026-11-16T22:45:25.3768999Z tests/remote_inference/test_server_startup.py::test_language_warmup_skips_only_unsupported_saved_subtask_prompt[missing_target] PASSED [ 75%]
+2026-11-16T22:45:25.3845924Z tests/remote_inference/test_server_startup.py::test_language_warmup_runs_supported_saved_subtask_prompt PASSED [ 75%]
+2026-11-16T22:45:25.4135583Z tests/remote_inference/test_text_input.py::test_oversized_generated_subtask_stops_sequencer_without_fault_and_resumes_fresh PASSED [ 75%]
+2026-11-16T22:45:25.4289263Z tests/remote_inference/test_text_input.py::test_vqa_answer_may_exceed_instruction_limit PASSED [ 75%]
+2026-11-16T22:45:25.4390984Z tests/remote_inference/test_text_input.py::test_oversized_operator_input_is_actionable_and_does_not_cancel_autosteer[vqa] PASSED [ 75%]
+2026-11-16T22:45:25.4494000Z tests/remote_inference/test_text_input.py::test_oversized_operator_input_is_actionable_and_does_not_cancel_autosteer[autosteer] PASSED [ 75%]
+2026-11-16T22:45:25.4570103Z tests/remote_inference/test_text_input.py::test_oversized_operator_input_is_actionable_and_does_not_cancel_autosteer[subtask] PASSED [ 75%]
+2026-11-16T22:45:25.4586627Z tests/rl/test_actor.py::test_establish_learner_connection_success SKIPPED [ 75%]
+2026-11-16T22:45:25.4600649Z tests/rl/test_actor.py::test_establish_learner_connection_failure SKIPPED [ 75%]
+2026-11-16T22:45:25.4614158Z tests/rl/test_actor.py::test_push_transitions_to_transport_queue SKIPPED [ 75%]
+2026-11-16T22:45:25.4623614Z tests/rl/test_actor.py::test_transitions_stream SKIPPED (grpcio not
+2026-11-16T22:45:25.4627823Z installed)                                                               [ 75%]
+2026-11-16T22:45:25.4637582Z tests/rl/test_actor.py::test_interactions_stream SKIPPED (grpcio not
+2026-11-16T22:45:25.4642261Z installed)                                                               [ 75%]
+2026-11-16T22:45:25.4671533Z tests/rl/test_data_mixer.py::test_online_only_mixer_sample PASSED        [ 75%]
+2026-11-16T22:45:25.4694818Z tests/rl/test_data_mixer.py::test_online_only_mixer_ratio_one PASSED     [ 75%]
+2026-11-16T22:45:25.4730367Z tests/rl/test_data_mixer.py::test_online_offline_mixer_sample PASSED     [ 75%]
+2026-11-16T22:45:25.4754905Z tests/rl/test_data_mixer.py::test_online_offline_mixer_iterator PASSED   [ 75%]
+2026-11-16T22:45:25.4764284Z tests/rl/test_queue.py::test_get_last_item_single_item PASSED            [ 75%]
+2026-11-16T22:45:25.4773013Z tests/rl/test_queue.py::test_get_last_item_multiple_items PASSED         [ 75%]
+2026-11-16T22:45:25.4788947Z tests/rl/test_queue.py::test_get_last_item_multiple_items_with_torch_queue PASSED [ 76%]
+2026-11-16T22:45:25.4799066Z tests/rl/test_queue.py::test_get_last_item_different_types PASSED        [ 76%]
+2026-11-16T22:45:25.5816476Z tests/rl/test_queue.py::test_get_last_item_maxsize_queue PASSED          [ 76%]
+2026-11-16T22:45:25.6833820Z tests/rl/test_queue.py::test_get_last_item_with_none_values PASSED       [ 76%]
+2026-11-16T22:45:25.7851376Z tests/rl/test_queue.py::test_get_last_item_blocking_timeout PASSED       [ 76%]
+2026-11-16T22:45:25.7860803Z tests/rl/test_queue.py::test_get_last_item_non_blocking_empty PASSED     [ 76%]
+2026-11-16T22:45:25.8879460Z tests/rl/test_queue.py::test_get_last_item_non_blocking_success PASSED   [ 76%]
+2026-11-16T22:45:25.8893057Z tests/rl/test_queue.py::test_get_last_item_blocking_waits_for_item PASSED [ 76%]
+2026-11-16T22:45:25.8916168Z tests/rl/test_sac_algorithm.py::test_sac_algorithm_config_registered PASSED [ 76%]
+2026-11-16T22:45:25.8932288Z tests/rl/test_sac_algorithm.py::test_sac_algorithm_config_from_policy_config PASSED [ 76%]
+2026-11-16T22:45:25.8947723Z tests/rl/test_sac_algorithm.py::test_training_stats_defaults PASSED      [ 76%]
+2026-11-16T22:45:25.9013449Z tests/rl/test_sac_algorithm.py::test_get_weights_returns_policy_state_dict PASSED [ 76%]
+2026-11-16T22:45:25.9103170Z tests/rl/test_sac_algorithm.py::test_get_weights_includes_discrete_critic_when_present PASSED [ 76%]
+2026-11-16T22:45:25.9162748Z tests/rl/test_sac_algorithm.py::test_get_weights_excludes_discrete_critic_when_absent PASSED [ 76%]
+2026-11-16T22:45:25.9237783Z tests/rl/test_sac_algorithm.py::test_get_weights_are_on_cpu PASSED       [ 76%]
+2026-11-16T22:45:25.9302909Z tests/rl/test_sac_algorithm.py::test_select_action_returns_correct_shape PASSED [ 76%]
+2026-11-16T22:45:25.9383509Z tests/rl/test_sac_algorithm.py::test_select_action_with_discrete_critic PASSED [ 76%]
+2026-11-16T22:45:25.9514355Z tests/rl/test_sac_algorithm.py::test_update_returns_training_stats PASSED [ 76%]
+2026-11-16T22:45:25.9642659Z tests/rl/test_sac_algorithm.py::test_update_populates_actor_and_temperature_losses PASSED [ 77%]
+2026-11-16T22:45:25.9830148Z tests/rl/test_sac_algorithm.py::test_update_skips_actor_at_non_update_steps[2] PASSED [ 77%]
+2026-11-16T22:45:26.0042934Z tests/rl/test_sac_algorithm.py::test_update_skips_actor_at_non_update_steps[3] PASSED [ 77%]
+2026-11-16T22:45:26.0224886Z tests/rl/test_sac_algorithm.py::test_update_increments_optimization_step PASSED [ 77%]
+2026-11-16T22:45:26.0386799Z tests/rl/test_sac_algorithm.py::test_update_with_discrete_critic PASSED  [ 77%]
+2026-11-16T22:45:26.0542410Z tests/rl/test_sac_algorithm.py::test_update_with_utd_ratio[2] PASSED     [ 77%]
+2026-11-16T22:45:26.0751352Z tests/rl/test_sac_algorithm.py::test_update_with_utd_ratio[4] PASSED     [ 77%]
+2026-11-16T22:45:26.0932807Z tests/rl/test_sac_algorithm.py::test_update_utd_ratio_pulls_utd_batches PASSED [ 77%]
+2026-11-16T22:45:26.1115009Z tests/rl/test_sac_algorithm.py::test_update_utd_ratio_3_critic_warmup_changes_weights PASSED [ 77%]
+2026-11-16T22:45:26.1174659Z tests/rl/test_sac_algorithm.py::test_get_observation_features_returns_none_without_frozen_encoder PASSED [ 77%]
+2026-11-16T22:45:26.1234007Z tests/rl/test_sac_algorithm.py::test_optimization_step_can_be_set_for_resume PASSED [ 77%]
+2026-11-16T22:45:26.1291374Z tests/rl/test_sac_algorithm.py::test_make_algorithm_returns_sac_for_sac_policy PASSED [ 77%]
+2026-11-16T22:45:26.1350248Z tests/rl/test_sac_algorithm.py::test_make_optimizers_creates_expected_keys PASSED [ 77%]
+2026-11-16T22:45:26.1407560Z tests/rl/test_sac_algorithm.py::test_actor_side_no_optimizers PASSED     [ 77%]
+2026-11-16T22:45:26.1464677Z tests/rl/test_sac_algorithm.py::test_make_algorithm_uses_sac_algorithm_defaults PASSED [ 77%]
+2026-11-16T22:45:26.1480600Z tests/rl/test_sac_algorithm.py::test_unknown_algorithm_name_raises_in_registry PASSED [ 77%]
+2026-11-16T22:45:26.1656177Z tests/rl/test_sac_algorithm.py::test_load_weights_round_trip PASSED      [ 77%]
+2026-11-16T22:45:26.1888755Z tests/rl/test_sac_algorithm.py::test_load_weights_round_trip_with_discrete_critic PASSED [ 77%]
+2026-11-16T22:45:26.1951060Z tests/rl/test_sac_algorithm.py::test_load_weights_ignores_missing_discrete_critic PASSED [ 78%]
+2026-11-16T22:45:26.2180694Z tests/rl/test_sac_algorithm.py::test_actor_side_weight_sync_with_discrete_critic PASSED [ 78%]
+2026-11-16T22:45:26.2197331Z tests/rl/test_sac_algorithm.py::test_training_stats_generic_losses PASSED [ 78%]
+2026-11-16T22:45:26.2254530Z tests/rl/test_sac_algorithm.py::test_make_algorithm_builds_sac PASSED    [ 78%]
+2026-11-16T22:45:26.2314088Z tests/rl/test_sac_algorithm.py::test_state_dict_contains_algorithm_owned_tensors PASSED [ 78%]
+2026-11-16T22:45:26.2390596Z tests/rl/test_sac_algorithm.py::test_state_dict_includes_discrete_critic_target_when_present PASSED [ 78%]
+2026-11-16T22:45:26.2719974Z tests/rl/test_sac_algorithm.py::test_load_state_dict_round_trip_restores_critics_and_log_alpha PASSED [ 78%]
+2026-11-16T22:45:26.2784484Z tests/rl/test_sac_algorithm.py::test_load_state_dict_preserves_log_alpha_parameter_identity PASSED [ 78%]
+2026-11-16T22:45:26.3035025Z tests/rl/test_sac_algorithm.py::test_save_pretrained_round_trip_via_disk PASSED [ 78%]
+2026-11-16T22:45:26.3045602Z tests/rl/test_trainer.py::test_trainer_lazy_iterator_lifecycle_and_reset PASSED [ 78%]
+2026-11-16T22:45:26.3055561Z tests/rl/test_trainer.py::test_trainer_set_data_mixer_resets_by_default PASSED [ 78%]
+2026-11-16T22:45:26.3065829Z tests/rl/test_trainer.py::test_algorithm_optimization_step_contract_defaults PASSED [ 78%]
+2026-11-16T22:45:26.3097106Z tests/robots/test_sim_robot.py::test_rollout_holds_a_sim_robot_with_its_own_hold PASSED [ 78%]
+2026-11-16T22:45:26.3111315Z tests/robots/test_sim_robot.py::test_rollout_runs_a_sim_robot_only_with_strategies_that_run_its_episodes PASSED [ 78%]
+2026-11-16T22:45:26.3655465Z tests/robots/test_sim_robot.py::test_sim_robot_records_scalar_state_actions_and_rgb PASSED [ 78%]
+2026-11-16T22:45:26.3669686Z tests/robots/test_sim_robot.py::test_rollout_rejects_checkpoint_schema_before_opening_environment SKIPPED [ 78%]
+2026-11-16T22:45:26.3695647Z tests/robots/test_sim_robot.py::test_rollout_checks_a_sim_robot_with_its_env_processors PASSED [ 78%]
+2026-11-16T22:45:26.3722021Z tests/robots/test_sim_robot.py::test_sim_robot_local_inference_engines[sync] PASSED [ 78%]
+2026-11-16T22:45:26.3905550Z tests/robots/test_sim_robot.py::test_sim_robot_local_inference_engines[rtc] PASSED [ 78%]
+2026-11-16T22:45:26.3919047Z tests/robots/test_sim_robot.py::test_sim_robot_remote_inference_engine SKIPPED [ 79%]
+2026-11-16T22:45:26.7690078Z tests/robots/test_sim_robot.py::test_recorded_sim_episodes_can_train_and_reload_a_policy[local] PASSED [ 79%]
+2026-11-16T22:45:26.7716581Z tests/robots/test_sim_robot.py::test_recorded_sim_episodes_can_train_and_reload_a_policy[served] SKIPPED [ 79%]
+2026-11-16T22:45:26.7758745Z tests/robots/test_unitree_g1.py::TestPositionHold::test_token_controller_is_holdable PASSED [ 79%]
+2026-11-16T22:45:26.7802732Z tests/robots/test_unitree_g1.py::TestPositionHold::test_locomotion_controller_is_not_holdable PASSED [ 79%]
+2026-11-16T22:45:26.7840119Z tests/robots/test_unitree_g1.py::TestPositionHold::test_raw_joint_control_is_not_holdable PASSED [ 79%]
+2026-11-16T22:45:26.7887078Z tests/robots/test_unitree_g1.py::TestPositionHold::test_hold_before_first_command_replays_the_echoed_token PASSED [ 79%]
+2026-11-16T22:45:26.8376743Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_operation_type_resolves_correct_class[delete_episodes-DeleteEpisodesConfig] PASSED [ 79%]
+2026-11-16T22:45:26.8436553Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_operation_type_resolves_correct_class[split-SplitConfig] PASSED [ 79%]
+2026-11-16T22:45:26.8496026Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_operation_type_resolves_correct_class[merge-MergeConfig] PASSED [ 79%]
+2026-11-16T22:45:26.8555326Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_operation_type_resolves_correct_class[remove_feature-RemoveFeatureConfig] PASSED [ 79%]
+2026-11-16T22:45:26.8615676Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_operation_type_resolves_correct_class[modify_tasks-ModifyTasksConfig] PASSED [ 79%]
+2026-11-16T22:45:26.8679160Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_operation_type_resolves_correct_class[convert_image_to_video-ConvertImageToVideoConfig] PASSED [ 79%]
+2026-11-16T22:45:26.8738773Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_operation_type_resolves_correct_class[info-InfoConfig] PASSED [ 79%]
+2026-11-16T22:45:26.8797643Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_merge_requires_new_repo_id PASSED [ 79%]
+2026-11-16T22:45:26.8856569Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_merge_concatenate_flag_defaults_true[concatenate_videos] PASSED [ 79%]
+2026-11-16T22:45:26.8915127Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_merge_concatenate_flag_defaults_true[concatenate_data] PASSED [ 79%]
+2026-11-16T22:45:26.8974857Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_merge_concatenate_flag_can_be_disabled[concatenate_videos] PASSED [ 79%]
+2026-11-16T22:45:26.9033614Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_merge_concatenate_flag_can_be_disabled[concatenate_data] PASSED [ 80%]
+2026-11-16T22:45:26.9091526Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_non_merge_requires_repo_id PASSED [ 80%]
+2026-11-16T22:45:26.9151175Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_get_choice_name_roundtrips[delete_episodes-DeleteEpisodesConfig] PASSED [ 80%]
+2026-11-16T22:45:26.9210914Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_get_choice_name_roundtrips[split-SplitConfig] PASSED [ 80%]
+2026-11-16T22:45:26.9270649Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_get_choice_name_roundtrips[merge-MergeConfig] PASSED [ 80%]
+2026-11-16T22:45:26.9329987Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_get_choice_name_roundtrips[remove_feature-RemoveFeatureConfig] PASSED [ 80%]
+2026-11-16T22:45:26.9401058Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_get_choice_name_roundtrips[modify_tasks-ModifyTasksConfig] PASSED [ 80%]
+2026-11-16T22:45:26.9460887Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_get_choice_name_roundtrips[convert_image_to_video-ConvertImageToVideoConfig] PASSED [ 80%]
+2026-11-16T22:45:26.9519719Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_get_choice_name_roundtrips[info-InfoConfig] PASSED [ 80%]
+2026-11-16T22:45:26.9579194Z tests/scripts/test_edit_dataset_parsing.py::TestOperationTypeParsing::test_modify_tasks_replacements_args_parse PASSED [ 80%]
+2026-11-16T22:45:26.9637676Z tests/scripts/test_edit_dataset_parsing.py::TestDepthEncoderParsing::test_reencode_has_default_depth_encoder PASSED [ 80%]
+2026-11-16T22:45:26.9699494Z tests/scripts/test_edit_dataset_parsing.py::TestDepthEncoderParsing::test_reencode_parses_depth_encoder_overrides PASSED [ 80%]
+2026-11-16T22:45:26.9760718Z tests/scripts/test_edit_dataset_parsing.py::TestDepthEncoderParsing::test_convert_image_to_video_parses_depth_encoder_overrides PASSED [ 80%]
+2026-11-16T22:45:26.9826534Z tests/scripts/test_lerobot_annotate.py::test_push_to_hub_tags_uploaded_dataset_revision PASSED [ 80%]
+2026-11-16T22:45:26.9905214Z tests/scripts/test_lerobot_eval.py::test_rollout_starts_each_episode_with_fresh_processor_state[flux3] PASSED [ 80%]
+2026-11-16T22:45:26.9950233Z tests/scripts/test_lerobot_eval.py::test_rollout_starts_each_episode_with_fresh_processor_state[independent] PASSED [ 80%]
+2026-11-16T22:45:26.9993951Z tests/scripts/test_lerobot_eval.py::test_rollout_starts_each_episode_with_fresh_processor_state[stateless] PASSED [ 80%]
+2026-11-16T22:45:27.0019870Z tests/scripts/test_lerobot_eval.py::test_rollout_reports_what_the_environment_measures PASSED [ 80%]
+2026-11-16T22:45:27.0047802Z tests/scripts/test_lerobot_eval.py::test_rollout_ends_at_the_step_cap_below_the_env_limit PASSED [ 81%]
+2026-11-16T22:45:27.0059364Z tests/scripts/test_lerobot_eval.py::test_eval_consent_is_the_env_own PASSED [ 81%]
+2026-11-16T22:45:27.0079182Z tests/scripts/test_lerobot_eval_summary.py::test_per_task_entries_carry_counts_and_interval PASSED [ 81%]
+2026-11-16T22:45:27.0095544Z tests/scripts/test_lerobot_eval_summary.py::test_per_group_aggregate_pools_its_tasks PASSED [ 81%]
+2026-11-16T22:45:27.0112175Z tests/scripts/test_lerobot_eval_summary.py::test_overall_aggregate_pools_every_task PASSED [ 81%]
+2026-11-16T22:45:27.0129798Z tests/scripts/test_lerobot_eval_summary.py::test_existing_keys_are_untouched PASSED [ 81%]
+2026-11-16T22:45:27.0142257Z tests/scripts/test_lerobot_train_batch_preprocessing.py::test_preprocess_dataset_batch_normalizes_and_renames_before_processor PASSED [ 81%]
+2026-11-16T22:45:27.0161573Z tests/scripts/test_lerobot_train_overflow_gating.py::test_skipped_update_does_not_advance_policy_state PASSED [ 81%]
+2026-11-16T22:45:27.0177467Z tests/scripts/test_lerobot_train_overflow_gating.py::test_applied_update_advances_policy_state PASSED [ 81%]
+2026-11-16T22:45:27.0193212Z tests/scripts/test_lerobot_train_overflow_gating.py::test_scheduler_keeps_its_micro_batch_cadence[True] PASSED [ 81%]
+2026-11-16T22:45:27.0209196Z tests/scripts/test_lerobot_train_overflow_gating.py::test_scheduler_keeps_its_micro_batch_cadence[False] PASSED [ 81%]
+2026-11-16T22:45:27.0229736Z tests/scripts/test_lerobot_train_overflow_gating.py::test_skipped_update_keeps_the_inf_norm_out_of_the_metrics PASSED [ 81%]
+2026-11-16T22:45:27.0239620Z tests/scripts/test_train_remote_dispatch.py::test_remote_target_detected_space_separated PASSED [ 81%]
+2026-11-16T22:45:27.0249293Z tests/scripts/test_train_remote_dispatch.py::test_remote_target_detected_equals PASSED [ 81%]
+2026-11-16T22:45:27.0258495Z tests/scripts/test_train_remote_dispatch.py::test_local_string_is_not_remote PASSED [ 81%]
+2026-11-16T22:45:27.0267810Z tests/scripts/test_train_remote_dispatch.py::test_no_target_is_not_remote PASSED [ 81%]
+2026-11-16T22:45:27.6650660Z tests/scripts/test_train_remote_dispatch.py::test_train_dispatches_to_submit_when_remote PASSED [ 81%]
+2026-11-16T22:45:27.6659889Z tests/test_interactive_rollout.py::test_parse_command PASSED             [ 81%]
+2026-11-16T22:45:27.6669425Z tests/test_interactive_rollout.py::test_linked_event_local_and_parent_flags PASSED [ 82%]
+2026-11-16T22:45:27.7184043Z tests/test_interactive_rollout.py::test_linked_event_wait PASSED         [ 82%]
+2026-11-16T22:45:27.7196557Z tests/test_interactive_rollout.py::test_controller_requires_linked_event PASSED [ 82%]
+2026-11-16T22:45:27.7268016Z tests/test_interactive_rollout.py::test_controller_rejects_one_shot_strategies PASSED [ 82%]
+2026-11-16T22:45:27.8014471Z tests/test_interactive_rollout.py::test_controller_start_reset_stop_flow_and_events PASSED [ 82%]
+2026-11-16T22:45:27.8714831Z tests/test_interactive_rollout.py::test_controller_last_command_wins_over_a_pending_start PASSED [ 82%]
+2026-11-16T22:45:27.9286816Z tests/test_interactive_rollout.py::test_controller_is_one_shot_and_refuses_commands_after_stop PASSED [ 82%]
+2026-11-16T22:45:27.9392085Z tests/test_interactive_rollout.py::test_controller_strategy_failure_reaches_the_failure_surface PASSED [ 82%]
+2026-11-16T22:45:28.1486677Z tests/test_interactive_rollout.py::test_interactive_cli_strategy_failure_exits_nonzero_after_teardown PASSED [ 82%]
+2026-11-16T22:45:28.1595943Z tests/test_interactive_rollout.py::test_segment_end_hold_failure_is_terminal_and_preserves_original_error[False] PASSED [ 82%]
+2026-11-16T22:45:28.1670771Z tests/test_interactive_rollout.py::test_segment_end_hold_failure_is_terminal_and_preserves_original_error[True] PASSED [ 82%]
+2026-11-16T22:45:28.1787143Z tests/test_interactive_rollout.py::test_controller_failed_return_move_emits_reset_failed PASSED [ 82%]
+2026-11-16T22:45:28.1862201Z tests/test_interactive_rollout.py::test_controller_engine_failure_emits_event PASSED [ 82%]
+2026-11-16T22:45:28.3935661Z tests/test_interactive_rollout.py::test_controller_segment_ended_event_on_natural_end PASSED [ 82%]
+2026-11-16T22:45:28.6686719Z tests/test_interactive_rollout.py::test_session_flow_over_the_command_stream PASSED [ 82%]
+2026-11-16T22:45:28.8774809Z tests/test_interactive_rollout.py::test_session_unknown_input_does_not_start PASSED [ 82%]
+2026-11-16T22:45:28.8850265Z tests/test_interactive_rollout.py::test_session_eof_stops_session PASSED [ 82%]
+2026-11-16T22:45:29.0945992Z tests/test_interactive_rollout.py::test_session_mutes_logs_below_error_and_restores_on_exit PASSED [ 82%]
+2026-11-16T22:45:29.2984866Z tests/test_interactive_rollout.py::test_session_drives_real_base_strategy_and_answers_vqa PASSED [ 82%]
+2026-11-16T22:45:29.5072600Z tests/test_interactive_rollout.py::test_session_subtask_sets_and_reports_task PASSED [ 83%]
+2026-11-16T22:45:29.5091659Z tests/test_interactive_rollout.py::test_sync_engine_uses_new_task_and_flushes_precomputed_actions PASSED [ 83%]
+2026-11-16T22:45:29.5121494Z tests/test_interactive_rollout.py::test_sync_engine_vqa_drops_precomputed_actions PASSED [ 83%]
+2026-11-16T22:45:29.5131001Z tests/test_interactive_rollout.py::test_drop_queued_actions_clears_the_queues_dict_convention PASSED [ 83%]
+2026-11-16T22:45:29.5140330Z tests/test_interactive_rollout.py::test_count_queued_actions_reads_both_queue_conventions PASSED [ 83%]
+2026-11-16T22:45:29.5436748Z tests/test_interactive_rollout.py::test_sentry_run_is_restartable_and_finalizes_only_in_teardown PASSED [ 83%]
+2026-11-16T22:45:29.5728055Z tests/test_interactive_rollout.py::test_sentry_labels_frames_with_dispatched_action_task PASSED [ 83%]
+2026-11-16T22:45:29.5770906Z tests/test_interactive_rollout.py::test_sentry_tail_save_failure_poisons_dataset_and_reraises PASSED [ 83%]
+2026-11-16T22:45:29.5791406Z tests/test_interactive_rollout.py::test_sentry_queued_push_rechecks_poison_before_uploading PASSED [ 83%]
+2026-11-16T22:45:29.5809975Z tests/test_interactive_rollout.py::test_sentry_empty_tail_segment_skips_the_save PASSED [ 83%]
+2026-11-16T22:45:29.5823242Z tests/test_interactive_rollout.py::test_engine_query_channel_holds_one_question_and_answers_it_once PASSED [ 83%]
+2026-11-16T22:45:29.5842489Z tests/test_interactive_rollout.py::test_engine_query_failure_becomes_an_error_answer PASSED [ 83%]
+2026-11-16T22:45:29.5859221Z tests/test_interactive_rollout.py::test_engine_rejects_invalid_generate_text_output[None] PASSED [ 83%]
+2026-11-16T22:45:29.5875393Z tests/test_interactive_rollout.py::test_engine_rejects_invalid_generate_text_output[42] PASSED [ 83%]
+2026-11-16T22:45:29.5891509Z tests/test_interactive_rollout.py::test_engine_rejects_invalid_generate_text_output[] PASSED [ 83%]
+2026-11-16T22:45:29.5907736Z tests/test_interactive_rollout.py::test_engine_rejects_invalid_generate_text_output[   ] PASSED [ 83%]
+2026-11-16T22:45:29.5928056Z tests/test_interactive_rollout.py::test_engine_undelivered_answers_queue_up_instead_of_being_overwritten PASSED [ 83%]
+2026-11-16T22:45:29.5937369Z tests/test_interactive_rollout.py::test_query_reaches_the_preprocessor_as_complementary_data PASSED [ 83%]
+2026-11-16T22:45:29.6105630Z tests/test_interactive_rollout.py::test_controller_ask_answers_via_event PASSED [ 84%]
+2026-11-16T22:45:29.6273829Z tests/test_interactive_rollout.py::test_controller_segment_end_drops_stale_subtask_answer_and_reports_the_pending_question PASSED [ 84%]
+2026-11-16T22:45:29.6687138Z tests/test_interactive_rollout.py::test_segment_end_reports_claimed_vqa_once_before_its_worker_returns[False] PASSED [ 84%]
+2026-11-16T22:45:29.6917175Z tests/test_interactive_rollout.py::test_segment_end_reports_claimed_vqa_once_before_its_worker_returns[True] PASSED [ 84%]
+2026-11-16T22:45:29.6937048Z tests/test_interactive_rollout.py::test_engine_autosteer_interval_is_measured_from_when_a_subtask_lands PASSED [ 84%]
+2026-11-16T22:45:29.6957520Z tests/test_interactive_rollout.py::test_engine_autosteer_stops_and_reports_on_failure PASSED [ 84%]
+2026-11-16T22:45:29.6971758Z tests/test_interactive_rollout.py::test_engine_autosteer_does_not_double_queue_while_generation_is_in_flight PASSED [ 84%]
+2026-11-16T22:45:29.6986618Z tests/test_interactive_rollout.py::test_engine_discards_subtask_generated_after_sequencer_stopped[autosteer_off] PASSED [ 84%]
+2026-11-16T22:45:29.7001114Z tests/test_interactive_rollout.py::test_engine_discards_subtask_generated_after_sequencer_stopped[subtask_takeover] PASSED [ 84%]
+2026-11-16T22:45:29.7029395Z tests/test_interactive_rollout.py::test_engine_discards_subtask_generated_after_sequencer_stopped[stale_turn_failure] PASSED [ 84%]
+2026-11-16T22:45:29.7708785Z tests/test_interactive_rollout.py::test_controller_autosteer_stopped_by_reset_set_task_and_segment_end PASSED [ 84%]
+2026-11-16T22:45:29.9792597Z tests/test_interactive_rollout.py::test_session_autosteer_reports_status_and_hands_control_back PASSED [ 84%]
+2026-11-16T22:45:30.0014142Z tests/test_interactive_rollout.py::test_rtc_engine_dispatched_task_tracks_chunk_provenance_across_set_task[False] PASSED [ 84%]
+2026-11-16T22:45:30.0336041Z tests/test_interactive_rollout.py::test_rtc_engine_dispatched_task_tracks_chunk_provenance_across_set_task[True] PASSED [ 84%]
+2026-11-16T22:45:30.0711476Z tests/test_interactive_rollout.py::test_rtc_engine_reset_discards_chunk_from_inflight_inference PASSED [ 84%]
+2026-11-16T22:45:30.0927934Z tests/test_interactive_rollout.py::test_rtc_engine_answers_vqa_on_rtc_thread_delivered_by_control_pump PASSED [ 84%]
+2026-11-16T22:45:30.0938955Z tests/test_interactive_rollout.py::test_rtc_engine_get_action_faults_on_missing_provenance PASSED [ 84%]
+2026-11-16T22:45:30.1052110Z tests/test_interactive_rollout.py::test_rtc_engine_refuses_restart_while_running_and_after_stop PASSED [ 84%]
+2026-11-16T22:45:30.1321506Z tests/test_interactive_rollout.py::test_rtc_reset_runs_on_policy_worker_after_inflight_call_finishes PASSED [ 85%]
+2026-11-16T22:45:30.1331681Z tests/test_interactive_rollout.py::test_rtc_observation_slot_owns_buffers_and_keeps_capture_time PASSED [ 85%]
+2026-11-16T22:45:30.1343122Z tests/test_interactive_rollout.py::test_rtc_invalidation_reports_an_unclaimed_question_once[pause] PASSED [ 85%]
+2026-11-16T22:45:30.1354166Z tests/test_interactive_rollout.py::test_rtc_invalidation_reports_an_unclaimed_question_once[reset] PASSED [ 85%]
+2026-11-16T22:45:30.1571540Z tests/test_interactive_rollout.py::test_rtc_invalidation_during_text_reports_cancellation_without_stale_motion[pause] PASSED [ 85%]
+2026-11-16T22:45:30.1788834Z tests/test_interactive_rollout.py::test_rtc_invalidation_during_text_reports_cancellation_without_stale_motion[reset] PASSED [ 85%]
+2026-11-16T22:45:30.2005690Z tests/test_interactive_rollout.py::test_rtc_invalidation_during_text_reports_cancellation_without_stale_motion[task] PASSED [ 85%]
+2026-11-16T22:45:30.2128659Z tests/test_interactive_rollout.py::test_hung_compile_warmup_faults_then_reaches_control_thread_hold PASSED [ 85%]
+2026-11-16T22:45:30.2142498Z tests/test_interactive_rollout.py::test_interactive_rejects_keyboard_bound_strategies_and_allows_sentry PASSED [ 85%]
+2026-11-16T22:45:30.2152427Z tests/test_interactive_rollout.py::test_autosteer_interval_bounds PASSED [ 85%]
+2026-11-16T22:45:30.2185828Z tests/test_interactive_rollout.py::test_engine_external_text_backend_answers_off_the_control_thread PASSED [ 85%]
+2026-11-16T22:45:30.2253217Z tests/test_interactive_rollout.py::test_external_planner_discards_stale_results_and_serializes_requests[False-takeover] PASSED [ 85%]
+2026-11-16T22:45:30.2319550Z tests/test_interactive_rollout.py::test_external_planner_discards_stale_results_and_serializes_requests[False-reset] PASSED [ 85%]
+2026-11-16T22:45:30.2395283Z tests/test_interactive_rollout.py::test_external_planner_discards_stale_results_and_serializes_requests[False-stop] PASSED [ 85%]
+2026-11-16T22:45:30.2462545Z tests/test_interactive_rollout.py::test_external_planner_discards_stale_results_and_serializes_requests[False-same_goal] PASSED [ 85%]
+2026-11-16T22:45:30.2528705Z tests/test_interactive_rollout.py::test_external_planner_discards_stale_results_and_serializes_requests[False-segment_end] PASSED [ 85%]
+2026-11-16T22:45:30.2654737Z tests/test_interactive_rollout.py::test_external_planner_discards_stale_results_and_serializes_requests[True-takeover] PASSED [ 85%]
+2026-11-16T22:45:30.2773366Z tests/test_interactive_rollout.py::test_external_planner_discards_stale_results_and_serializes_requests[True-reset] PASSED [ 85%]
+2026-11-16T22:45:30.2900058Z tests/test_interactive_rollout.py::test_external_planner_discards_stale_results_and_serializes_requests[True-stop] PASSED [ 86%]
+2026-11-16T22:45:30.3018458Z tests/test_interactive_rollout.py::test_external_planner_discards_stale_results_and_serializes_requests[True-same_goal] PASSED [ 86%]
+2026-11-16T22:45:30.3136036Z tests/test_interactive_rollout.py::test_external_planner_discards_stale_results_and_serializes_requests[True-segment_end] PASSED [ 86%]
+2026-11-16T22:45:30.3154440Z tests/test_interactive_rollout.py::test_vlm_planner_reuses_recipe_and_validates_explicit_constraints PASSED [ 86%]
+2026-11-16T22:45:30.3233712Z tests/test_interactive_rollout.py::test_external_planner_history_tracks_applied_commands_and_images[0] PASSED [ 86%]
+2026-11-16T22:45:30.3321932Z tests/test_interactive_rollout.py::test_external_planner_history_tracks_applied_commands_and_images[2] PASSED [ 86%]
+2026-11-16T22:45:30.3331432Z tests/test_interactive_rollout.py::test_planner_rejects_negative_history PASSED [ 86%]
+2026-11-16T22:45:30.3348002Z tests/test_interactive_rollout.py::test_external_planner_repeat_holds_without_resending PASSED [ 86%]
+2026-11-16T22:45:30.3360203Z tests/test_interactive_rollout.py::test_vlm_planner_in_progress_verdict_holds_current_instruction PASSED [ 86%]
+2026-11-16T22:45:30.3374606Z tests/test_interactive_rollout.py::test_vlm_planner_matches_allowed_instruction_loosely PASSED [ 86%]
+2026-11-16T22:45:30.3394366Z tests/test_interactive_rollout.py::test_vlm_planner_logs_each_exchange PASSED [ 86%]
+2026-11-16T22:45:30.3436356Z tests/test_interactive_rollout.py::test_training_vocabulary_reads_dataset_tasks PASSED [ 86%]
+2026-11-16T22:45:30.3450911Z tests/test_interactive_rollout.py::test_vlm_planner_replays_past_assessments_and_drops_them_with_history PASSED [ 86%]
+2026-11-16T22:45:30.3467752Z tests/test_interactive_rollout.py::test_planner_hold_pauses_backend_until_first_reply PASSED [ 86%]
+2026-11-16T22:45:30.3481744Z tests/test_interactive_rollout.py::test_planner_hold_is_forgotten_when_the_run_context_ends PASSED [ 86%]
+2026-11-16T22:45:30.3498256Z tests/test_interactive_rollout.py::test_planner_hold_opens_even_when_first_reply_holds PASSED [ 86%]
+2026-11-16T22:45:30.3568453Z tests/test_interactive_rollout.py::test_planner_failure_on_first_turn_lifts_the_hold PASSED [ 86%]
+2026-11-16T22:45:30.3581548Z tests/test_interactive_rollout.py::test_sync_engine_holds_dispatch_while_planner_has_not_spoken PASSED [ 86%]
+2026-11-16T22:45:30.3752208Z tests/test_interactive_rollout.py::test_external_planner_pauses_rtc_until_first_reply PASSED [ 86%]
+2026-11-16T22:45:30.3769199Z tests/test_interactive_rollout.py::test_planner_completion_is_status_not_error_or_robot_instruction PASSED [ 87%]
+2026-11-16T22:45:30.3784508Z tests/test_interactive_rollout.py::test_cancelled_planner_completion_is_not_published PASSED [ 87%]
+2026-11-16T22:45:30.3858313Z tests/test_interactive_rollout.py::test_external_vqa_in_flight_at_segment_end_is_reported_once PASSED [ 87%]
+2026-11-16T22:45:30.4026498Z tests/test_interactive_rollout.py::test_controller_ends_segment_when_planner_completes PASSED [ 87%]
+2026-11-16T22:45:30.4043210Z tests/test_interactive_rollout.py::test_external_planner_detail_reaches_the_answer PASSED [ 87%]
+2026-11-16T22:45:30.4055653Z tests/test_interactive_rollout.py::test_vlm_planner_first_turn_does_not_present_the_goal_as_current_instruction PASSED [ 87%]
+2026-11-16T22:45:30.4080138Z tests/test_recording_inference_pause.py::test_save_longer_than_freshness_budget_resumes_only_fresh_motion PASSED [ 87%]
+2026-11-16T22:45:30.4099133Z tests/test_recording_inference_pause.py::test_recording_save_never_overrides_a_stop_or_operator_transition[shutdown] PASSED [ 87%]
+2026-11-16T22:45:30.4117615Z tests/test_recording_inference_pause.py::test_recording_save_never_overrides_a_stop_or_operator_transition[fault] PASSED [ 87%]
+2026-11-16T22:45:30.4144480Z tests/test_recording_inference_pause.py::test_recording_save_never_overrides_a_stop_or_operator_transition[pause] PASSED [ 87%]
+2026-11-16T22:45:30.4162247Z tests/test_recording_inference_pause.py::test_recording_save_never_overrides_a_stop_or_operator_transition[takeover] PASSED [ 87%]
+2026-11-16T22:45:30.4180624Z tests/test_recording_inference_pause.py::test_recording_save_never_overrides_a_stop_or_operator_transition[stop] PASSED [ 87%]
+2026-11-16T22:45:30.4198728Z tests/test_recording_inference_pause.py::test_recording_save_never_overrides_a_stop_or_operator_transition[queued_pause] PASSED [ 87%]
+2026-11-16T22:45:30.4216065Z tests/test_recording_inference_pause.py::test_recording_save_does_not_resume_an_already_paused_engine PASSED [ 87%]
+2026-11-16T22:45:30.4234356Z tests/test_recording_inference_pause.py::test_save_error_keeps_async_inference_paused PASSED [ 87%]
+2026-11-16T22:45:30.4249876Z tests/test_recording_inference_pause.py::test_sync_recording_save_keeps_existing_behavior PASSED [ 87%]
+2026-11-16T22:45:30.4302631Z tests/test_recording_inference_pause.py::test_continuous_rotation_applies_pause_before_saving[sentry] PASSED [ 87%]
+2026-11-16T22:45:30.4349986Z tests/test_recording_inference_pause.py::test_continuous_rotation_applies_pause_before_saving[dagger] PASSED [ 87%]
+2026-11-16T22:45:30.4579655Z tests/test_recording_inference_pause.py::test_highlight_toggle_invalidates_motion_before_blocking_recording_work[complete-drain] PASSED [ 88%]
+2026-11-16T22:45:30.4805807Z tests/test_recording_inference_pause.py::test_highlight_toggle_invalidates_motion_before_blocking_recording_work[complete-save] PASSED [ 88%]
+2026-11-16T22:45:30.4903247Z tests/test_recording_inference_pause.py::test_highlight_toggle_invalidates_motion_before_blocking_recording_work[shutdown-drain] PASSED [ 88%]
+2026-11-16T22:45:30.5007916Z tests/test_recording_inference_pause.py::test_highlight_toggle_invalidates_motion_before_blocking_recording_work[shutdown-save] PASSED [ 88%]
+2026-11-16T22:45:30.5085822Z tests/test_recording_inference_pause.py::test_highlight_toggle_invalidates_motion_before_blocking_recording_work[error-drain] PASSED [ 88%]
+2026-11-16T22:45:30.5164319Z tests/test_recording_inference_pause.py::test_highlight_toggle_invalidates_motion_before_blocking_recording_work[error-save] PASSED [ 88%]
+2026-11-16T22:45:30.5176565Z tests/test_remote_rollout.py::test_hold_clears_interpolation_on_a_tick_without_a_queue_pull PASSED [ 88%]
+2026-11-16T22:45:30.5187093Z tests/test_remote_rollout.py::test_permission_revoked_during_pull_cannot_dispatch_returned_action PASSED [ 88%]
+2026-11-16T22:45:30.5200597Z tests/test_remote_rollout.py::test_terminal_fault_teardown_honors_configured_return[True] PASSED [ 88%]
+2026-11-16T22:45:30.5211731Z tests/test_remote_rollout.py::test_terminal_fault_teardown_honors_configured_return[False] PASSED [ 88%]
+2026-11-16T22:45:30.5227217Z tests/test_remote_rollout.py::test_hardware_io_failure_prevents_teardown_motion[send_action] PASSED [ 88%]
+2026-11-16T22:45:30.5240880Z tests/test_remote_rollout.py::test_hardware_io_failure_prevents_teardown_motion[hold] PASSED [ 88%]
+2026-11-16T22:45:30.5253660Z tests/test_remote_rollout.py::test_command_failure_is_latched_and_does_not_treat_interrupt_as_io_failure PASSED [ 88%]
+2026-11-16T22:45:30.5273048Z tests/test_remote_rollout.py::test_teardown_hold_failure_still_stops_engine_and_disconnects PASSED [ 88%]
+2026-11-16T22:45:30.5286854Z tests/test_remote_rollout.py::test_engine_stop_failure_still_runs_local_shutdown PASSED [ 88%]
+2026-11-16T22:45:30.5302954Z tests/test_remote_rollout.py::test_return_move_io_failure_aborts_and_disconnects[read] PASSED [ 88%]
+2026-11-16T22:45:30.5316217Z tests/test_remote_rollout.py::test_return_move_io_failure_aborts_and_disconnects[write] PASSED [ 88%]
+2026-11-16T22:45:30.5328037Z tests/test_remote_rollout.py::test_robot_disconnect_failure_does_not_skip_teleoperator_cleanup PASSED [ 88%]
+2026-11-16T22:45:30.5340771Z tests/test_remote_rollout.py::test_return_move_rejects_nonfinite_positions_before_sending[nan-observed] PASSED [ 89%]
+2026-11-16T22:45:30.5353220Z tests/test_remote_rollout.py::test_return_move_rejects_nonfinite_positions_before_sending[inf-initial] PASSED [ 89%]
+2026-11-16T22:45:30.5365475Z tests/test_remote_rollout.py::test_return_move_requires_all_target_joints PASSED [ 89%]
+2026-11-16T22:45:30.5380092Z tests/test_remote_rollout.py::test_terminal_fault_shutdown_orders_hold_stop_home_disconnect PASSED [ 89%]
+2026-11-16T22:45:30.5390424Z tests/test_remote_rollout.py::test_hold_before_first_command_retains_initial_measured_pose_and_rejects_velocity_modes PASSED [ 89%]
+2026-11-16T22:45:30.5400774Z tests/test_remote_rollout.py::test_hold_retains_actual_clipped_target_and_gripper_instead_of_new_measurements PASSED [ 89%]
+2026-11-16T22:45:30.5410892Z tests/test_remote_rollout.py::test_repeated_hold_retains_each_driver_returned_target PASSED [ 89%]
+2026-11-16T22:45:30.5422250Z tests/test_remote_rollout.py::test_first_hold_requires_complete_finite_measured_positions[None] PASSED [ 89%]
+2026-11-16T22:45:30.5432989Z tests/test_remote_rollout.py::test_first_hold_requires_complete_finite_measured_positions[observation1] PASSED [ 89%]
+2026-11-16T22:45:30.5443906Z tests/test_remote_rollout.py::test_first_hold_requires_complete_finite_measured_positions[observation2] PASSED [ 89%]
+2026-11-16T22:45:30.5455260Z tests/test_remote_rollout.py::test_hold_never_substitutes_requested_action_for_invalid_driver_return[None-send_action] PASSED [ 89%]
+2026-11-16T22:45:30.5466457Z tests/test_remote_rollout.py::test_hold_never_substitutes_requested_action_for_invalid_driver_return[bad_return1-hold] PASSED [ 89%]
+2026-11-16T22:45:30.5478104Z tests/test_remote_rollout.py::test_hold_never_substitutes_requested_action_for_invalid_driver_return[bad_return2-send_action] PASSED [ 89%]
+2026-11-16T22:45:30.5488110Z tests/test_remote_rollout.py::test_same_text_autosteer_restart_discards_previous_intent PASSED [ 89%]
+2026-11-16T22:45:30.5497913Z tests/test_remote_rollout.py::test_vqa_after_stopping_autosteer_captures_current_intent PASSED [ 89%]
+2026-11-16T22:45:30.5509176Z tests/test_remote_rollout.py::test_remote_rollout_config_requires_no_local_policy PASSED [ 89%]
+2026-11-16T22:45:30.5520131Z tests/test_remote_rollout.py::test_remote_budgets_reject_nonfinite_values[refill_seconds] PASSED [ 89%]
+2026-11-16T22:45:30.5530552Z tests/test_remote_rollout.py::test_remote_budgets_reject_nonfinite_values[action_timeout_s] PASSED [ 89%]
+2026-11-16T22:45:30.5541845Z tests/test_remote_rollout.py::test_remote_budgets_reject_nonfinite_values[max_observation_age_s] PASSED [ 90%]
+2026-11-16T22:45:30.5551380Z tests/test_rollout.py::test_rollout_top_level_imports PASSED             [ 90%]
+2026-11-16T22:45:30.5560814Z tests/test_rollout.py::test_inference_submodule_imports PASSED           [ 90%]
+2026-11-16T22:45:30.5570086Z tests/test_rollout.py::test_strategies_submodule_imports PASSED          [ 90%]
+2026-11-16T22:45:30.5579859Z tests/test_rollout.py::test_strategy_config_types PASSED                 [ 90%]
+2026-11-16T22:45:30.5590122Z tests/test_rollout.py::test_dagger_config_invalid_input_device PASSED    [ 90%]
+2026-11-16T22:45:30.5599463Z tests/test_rollout.py::test_dagger_config_defaults PASSED                [ 90%]
+2026-11-16T22:45:30.5608978Z tests/test_rollout.py::test_inference_config_types PASSED                [ 90%]
+2026-11-16T22:45:30.5618545Z tests/test_rollout.py::test_trained_rtc_retries_chunk_when_measured_delay_exceeds_conditioning PASSED [ 90%]
+2026-11-16T22:45:30.5627971Z tests/test_rollout.py::test_trained_rtc_bootstraps_first_overlap_with_checkpoint_capacity PASSED [ 90%]
+2026-11-16T22:45:30.5637641Z tests/test_rollout.py::test_trained_rtc_discards_chunk_measured_above_checkpoint_support PASSED [ 90%]
+2026-11-16T22:45:30.5646937Z tests/test_rollout.py::test_trained_rtc_clamps_prefix_to_checkpoint_and_queue PASSED [ 90%]
+2026-11-16T22:45:30.5658583Z tests/test_rollout.py::test_trained_rtc_rollout_requires_capacity_for_max_delay[3-4-execution_horizon] PASSED [ 90%]
+2026-11-16T22:45:30.5669719Z tests/test_rollout.py::test_trained_rtc_rollout_requires_capacity_for_max_delay[4-3-queue_threshold] PASSED [ 90%]
+2026-11-16T22:45:30.5681138Z tests/test_rollout.py::test_trained_rtc_rollout_requires_capacity_for_max_delay[17-20-at most] PASSED [ 90%]
+2026-11-16T22:45:30.5690591Z tests/test_rollout.py::test_trained_rtc_rollout_accepts_valid_capacity PASSED [ 90%]
+2026-11-16T22:45:30.5699861Z tests/test_rollout.py::test_sentry_config_defaults PASSED                [ 90%]
+2026-11-16T22:45:30.5710666Z tests/test_rollout.py::test_rollout_config_passes_policy_pretrained_revision PASSED [ 90%]
+2026-11-16T22:45:30.5721701Z tests/test_rollout.py::test_rollout_config_rejects_a_multiplier_below_one[0] PASSED [ 91%]
+2026-11-16T22:45:30.5732015Z tests/test_rollout.py::test_rollout_config_rejects_a_multiplier_below_one[-1] PASSED [ 91%]
+2026-11-16T22:45:30.5742705Z tests/test_rollout.py::test_build_rollout_context_rejects_missing_policy PASSED [ 91%]
+2026-11-16T22:45:30.5761798Z tests/test_rollout.py::test_build_rollout_context_uses_resolved_device[cuda-cpu] PASSED [ 91%]
+2026-11-16T22:45:30.5780539Z tests/test_rollout.py::test_build_rollout_context_uses_resolved_device[mps-cpu] PASSED [ 91%]
+2026-11-16T22:45:30.5796664Z tests/test_rollout.py::test_build_rollout_context_uses_resolved_device[cpu-cpu] PASSED [ 91%]
+2026-11-16T22:45:30.5812232Z tests/test_rollout.py::test_build_rollout_context_uses_resolved_device[cpu-None] PASSED [ 91%]
+2026-11-16T22:45:30.5820699Z tests/test_rollout.py::test_build_rollout_context_uses_resolved_device[cpu-cuda] SKIPPED [ 91%]
+2026-11-16T22:45:30.5844953Z tests/test_rollout.py::test_local_setup_failure_releases_hardware_and_dataset[engine] PASSED [ 91%]
+2026-11-16T22:45:30.5868814Z tests/test_rollout.py::test_local_setup_failure_releases_hardware_and_dataset[observation] PASSED [ 91%]
+2026-11-16T22:45:30.5881344Z tests/test_rollout.py::test_load_pretrained_policy_passes_revision PASSED [ 91%]
+2026-11-16T22:45:30.5894949Z tests/test_rollout.py::test_load_pretrained_policy_use_peft_on_base_model_loads_base PASSED [ 91%]
+2026-11-16T22:45:30.5910724Z tests/test_rollout.py::test_load_pretrained_peft_policy_keeps_adapter_and_base_revisions_separate PASSED [ 91%]
+2026-11-16T22:45:30.5920564Z tests/test_rollout.py::test_ring_buffer_append_and_eviction PASSED       [ 91%]
+2026-11-16T22:45:30.5930008Z tests/test_rollout.py::test_ring_buffer_drain PASSED                     [ 91%]
+2026-11-16T22:45:30.5939544Z tests/test_rollout.py::test_ring_buffer_clear PASSED                     [ 91%]
+2026-11-16T22:45:30.5949183Z tests/test_rollout.py::test_ring_buffer_tensor_bytes PASSED              [ 91%]
+2026-11-16T22:45:30.5959414Z tests/test_rollout.py::test_thread_safe_robot_delegates PASSED           [ 91%]
+2026-11-16T22:45:30.5969360Z tests/test_rollout.py::test_thread_safe_robot_properties PASSED          [ 91%]
+2026-11-16T22:45:30.5979141Z tests/test_rollout.py::test_create_strategy_dispatches PASSED            [ 92%]
+2026-11-16T22:45:30.5994556Z tests/test_rollout.py::test_create_strategy_unknown_raises PASSED        [ 92%]
+2026-11-16T22:45:30.6013544Z tests/test_rollout.py::test_rollout_config_enforces_strategy_declarations PASSED [ 92%]
+2026-11-16T22:45:30.6024660Z tests/test_rollout.py::test_resumed_dataset_must_record_at_fps PASSED    [ 92%]
+2026-11-16T22:45:30.6040265Z tests/test_rollout.py::test_setup_defaults_to_starting_the_engine PASSED [ 92%]
+2026-11-16T22:45:30.6060668Z tests/test_rollout.py::test_create_inference_engine_sync PASSED          [ 92%]
+2026-11-16T22:45:30.6073523Z tests/test_rollout.py::test_create_inference_engine_remote_explains_session_construction PASSED [ 92%]
+2026-11-16T22:45:30.6085982Z tests/test_rollout.py::test_align_to_checkpoint_order_reorders_motors_and_preserves_cameras PASSED [ 92%]
+2026-11-16T22:45:30.6097606Z tests/test_rollout.py::test_align_to_checkpoint_order_aligns_the_action_side_by_the_same_rule PASSED [ 92%]
+2026-11-16T22:45:30.6108311Z tests/test_rollout.py::test_align_to_checkpoint_order_is_noop_without_an_exact_name_match[None-state] PASSED [ 92%]
+2026-11-16T22:45:30.6119108Z tests/test_rollout.py::test_align_to_checkpoint_order_is_noop_without_an_exact_name_match[None-action] PASSED [ 92%]
+2026-11-16T22:45:30.6129657Z tests/test_rollout.py::test_align_to_checkpoint_order_is_noop_without_an_exact_name_match[policy_action_names1-state] PASSED [ 92%]
+2026-11-16T22:45:30.6140266Z tests/test_rollout.py::test_align_to_checkpoint_order_is_noop_without_an_exact_name_match[policy_action_names1-action] PASSED [ 92%]
+2026-11-16T22:45:30.6150836Z tests/test_rollout.py::test_align_to_checkpoint_order_is_noop_without_an_exact_name_match[policy_action_names2-state] PASSED [ 92%]
+2026-11-16T22:45:30.6161410Z tests/test_rollout.py::test_align_to_checkpoint_order_is_noop_without_an_exact_name_match[policy_action_names2-action] PASSED [ 92%]
+2026-11-16T22:45:30.6171907Z tests/test_rollout.py::test_align_to_checkpoint_order_is_noop_without_an_exact_name_match[policy_action_names3-state] PASSED [ 92%]
+2026-11-16T22:45:30.6182276Z tests/test_rollout.py::test_align_to_checkpoint_order_is_noop_without_an_exact_name_match[policy_action_names3-action] PASSED [ 92%]
+2026-11-16T22:45:30.6192450Z tests/test_rollout.py::test_assert_state_matches_action_order_rejects_a_permutation PASSED [ 92%]
+2026-11-16T22:45:30.6203059Z tests/test_rollout.py::test_assert_state_matches_action_order_allows_non_permutations[state_names0-ordered_action_keys0] PASSED [ 93%]
+2026-11-16T22:45:30.6213631Z tests/test_rollout.py::test_assert_state_matches_action_order_allows_non_permutations[state_names1-ordered_action_keys1] PASSED [ 93%]
+2026-11-16T22:45:30.6223931Z tests/test_rollout.py::test_assert_state_matches_action_order_allows_non_permutations[state_names2-ordered_action_keys2] PASSED [ 93%]
+2026-11-16T22:45:30.6233399Z tests/test_rollout.py::test_assert_state_matches_action_order_tolerates_missing_state PASSED [ 93%]
+2026-11-16T22:45:30.6243498Z tests/test_rollout.py::test_estimate_max_episode_seconds_no_video PASSED [ 93%]
+2026-11-16T22:45:30.6252527Z tests/test_rollout.py::test_estimate_max_episode_seconds_with_video PASSED [ 93%]
+2026-11-16T22:45:30.6265879Z tests/test_rollout.py::test_safe_push_to_hub PASSED                      [ 93%]
+2026-11-16T22:45:30.6275424Z tests/test_rollout.py::test_dagger_full_transition_cycle PASSED          [ 93%]
+2026-11-16T22:45:30.6284869Z tests/test_rollout.py::test_dagger_invalid_transition_ignored PASSED     [ 93%]
+2026-11-16T22:45:30.6294020Z tests/test_rollout.py::test_dagger_events_reset PASSED                   [ 93%]
+2026-11-16T22:45:30.6303096Z tests/test_rollout.py::test_rollout_context_fields PASSED                [ 93%]
+2026-11-16T22:45:30.6325549Z tests/test_rollout.py::test_handle_warmup_paces_then_flushes_and_exempts_the_reprimed_group PASSED [ 93%]
+2026-11-16T22:45:30.6551578Z tests/test_rollout.py::test_sentry_records_once_per_interpolation_cycle PASSED [ 93%]
+2026-11-16T22:45:30.6783157Z tests/test_rollout.py::test_sentry_runs_inference_once_per_cycle_and_reuses_processed_observation PASSED [ 93%]
+2026-11-16T22:45:30.7008206Z tests/test_rollout.py::test_sentry_records_every_tick_at_default_multiplier PASSED [ 93%]
+2026-11-16T22:45:30.7233046Z tests/test_rollout.py::test_highlight_buffers_once_per_interpolation_cycle PASSED [ 93%]
+2026-11-16T22:45:30.7463150Z tests/test_rollout.py::test_highlight_save_toggle_starts_and_ends_live_recording PASSED [ 93%]
+2026-11-16T22:45:30.7682223Z tests/test_rollout.py::test_episodic_records_once_per_interpolation_cycle PASSED [ 93%]
+2026-11-16T22:45:30.7803513Z tests/test_rollout.py::test_episodic_episode_ends_with_the_sim_episode PASSED [ 94%]
+2026-11-16T22:45:30.8030552Z tests/test_rollout.py::test_dagger_continuous_records_once_per_interpolation_cycle PASSED [ 94%]
+2026-11-16T22:45:30.8513963Z tests/test_rollout.py::test_dagger_records_policy_actions_after_a_correction_of_any_length[1] PASSED [ 94%]
+2026-11-16T22:45:30.9041355Z tests/test_rollout.py::test_dagger_records_policy_actions_after_a_correction_of_any_length[2] PASSED [ 94%]
+2026-11-16T22:45:30.9584132Z tests/test_rollout.py::test_dagger_records_policy_actions_after_a_correction_of_any_length[3] PASSED [ 94%]
+2026-11-16T22:45:30.9811774Z tests/test_rollout.py::test_dagger_correction_frames_keep_the_cycle_cadence_and_are_tagged PASSED [ 94%]
+2026-11-16T22:45:31.0039875Z tests/test_rollout.py::test_base_strategy_reports_the_run_summary_when_the_loop_ends PASSED [ 94%]
+2026-11-16T22:45:31.0112023Z tests/test_rollout.py::test_base_strategy_reports_the_run_summary_even_when_the_loop_raises PASSED [ 94%]
+2026-11-16T22:45:31.0338482Z tests/test_rollout.py::test_starved_engine_is_counted_through_the_real_dispatch_path PASSED [ 94%]
+2026-11-16T22:45:31.0562454Z tests/test_rollout.py::test_base_strategy_starts_the_next_sim_episode_with_fresh_policy_state PASSED [ 94%]
+2026-11-16T22:45:31.0615523Z tests/test_rollout.py::test_episodic_run_reports_a_summary_per_episode_and_for_the_run PASSED [ 94%]
+2026-11-16T22:45:31.0640696Z tests/test_rollout.py::test_sync_relative_holds_anchor_across_chunk PASSED [ 94%]
+2026-11-16T22:45:31.0653234Z tests/test_rollout.py::test_sync_engine_without_a_relative_step_binds_nothing PASSED [ 94%]
+2026-11-16T22:45:31.0669550Z tests/test_rollout.py::test_sync_engine_returns_the_prediction_with_the_action PASSED [ 94%]
+2026-11-16T22:45:31.0690339Z tests/test_rollout.py::test_send_next_action_returns_the_step_with_the_prediction PASSED [ 94%]
+2026-11-16T22:45:31.0700482Z tests/test_rollout.py::test_log_telemetry_passes_the_step_only_with_display_data PASSED [ 94%]
+2026-11-16T22:45:31.0723195Z tests/test_rollout.py::test_periodic_logs_use_interval_metrics_and_omit_unavailable_measurements PASSED [ 94%]
+2026-11-16T22:45:31.0743168Z tests/test_rollout.py::test_disabled_and_interactive_skip_measurements[False-0] PASSED [ 94%]
+2026-11-16T22:45:31.0768450Z tests/test_rollout.py::test_disabled_and_interactive_skip_measurements[True-5] PASSED [ 95%]
+2026-11-16T22:45:31.0781603Z tests/test_rollout.py::test_sync_latency_excludes_precomputed_actions PASSED [ 95%]
+2026-11-16T22:45:31.0791219Z tests/test_rollout_action_ordering.py::test_orders_are_a_pure_block_swap PASSED [ 95%]
+2026-11-16T22:45:31.0810218Z tests/test_rollout_action_ordering.py::test_sync_anchor_provenance_per_variant[pre_rebase] PASSED [ 95%]
+2026-11-16T22:45:31.0829089Z tests/test_rollout_action_ordering.py::test_sync_anchor_provenance_per_variant[post_rebase_unfixed] PASSED [ 95%]
+2026-11-16T22:45:31.0848286Z tests/test_rollout_action_ordering.py::test_sync_anchor_provenance_per_variant[drop_remap] PASSED [ 95%]
+2026-11-16T22:45:31.0866901Z tests/test_rollout_action_ordering.py::test_sync_anchor_provenance_per_variant[head] PASSED [ 95%]
+2026-11-16T22:45:31.0885246Z tests/test_rollout_action_ordering.py::test_sync_anchor_provenance_per_variant[revert_4416_only] PASSED [ 95%]
+2026-11-16T22:45:31.0902402Z tests/test_rollout_action_ordering.py::test_sync_anchor_provenance_per_variant[revert_everything] PASSED [ 95%]
+2026-11-16T22:45:31.0918966Z tests/test_rollout_action_ordering.py::test_sync_head_wiring_is_fully_correct PASSED [ 95%]
+2026-11-16T22:45:31.0935310Z tests/test_rollout_action_ordering.py::test_sync_grippers_swap_with_each_other_but_never_run_away PASSED [ 95%]
+2026-11-16T22:45:31.0964378Z tests/test_rollout_action_ordering.py::test_sync_anchor_is_pinned_across_a_chunk PASSED [ 95%]
+2026-11-16T22:45:31.0980449Z tests/test_rollout_action_ordering.py::test_rtc_anchor_provenance_per_variant[pre_rebase] PASSED [ 95%]
+2026-11-16T22:45:31.0996001Z tests/test_rollout_action_ordering.py::test_rtc_anchor_provenance_per_variant[post_rebase_unfixed] PASSED [ 95%]
+2026-11-16T22:45:31.1010889Z tests/test_rollout_action_ordering.py::test_rtc_anchor_provenance_per_variant[drop_remap] PASSED [ 95%]
+2026-11-16T22:45:31.1026326Z tests/test_rollout_action_ordering.py::test_rtc_anchor_provenance_per_variant[head] PASSED [ 95%]
+2026-11-16T22:45:31.1041045Z tests/test_rollout_action_ordering.py::test_rtc_anchor_provenance_per_variant[revert_4416_only] PASSED [ 95%]
+2026-11-16T22:45:31.1055828Z tests/test_rollout_action_ordering.py::test_rtc_anchor_provenance_per_variant[revert_everything] PASSED [ 95%]
+2026-11-16T22:45:31.1074683Z tests/test_rollout_action_ordering.py::test_rtc_and_sync_agree_on_the_shipped_wiring PASSED [ 95%]
+2026-11-16T22:45:31.1099968Z tests/test_rollout_action_ordering.py::test_sync_task_change_resets_the_postprocessor PASSED [ 96%]
+2026-11-16T22:45:31.1218619Z tests/test_streaming_sync_cache.py::test_forged_scalar_sync_count_recreates_real_video_cache_before_lookup PASSED [ 96%]
+2026-11-16T22:45:31.1284219Z tests/test_streaming_sync_cache.py::test_duplicate_sync_entries_keep_dense_storage_and_exact_archive_values PASSED [ 96%]
+2026-11-16T22:45:31.1310845Z tests/training/test_ema.py::test_ema_averages_trainable_parameters_in_float32 PASSED [ 96%]
+2026-11-16T22:45:31.1324319Z tests/training/test_ema.py::test_ema_decay_schedules PASSED              [ 96%]
+2026-11-16T22:45:31.1345202Z tests/training/test_ema.py::test_train_with_ema_checkpoint_and_resume SKIPPED [ 96%]
+2026-11-16T22:45:31.1352859Z tests/training/test_multi_gpu.py::TestMultiGPUTraining::test_basic_multi_gpu_training SKIPPED [ 96%]
+2026-11-16T22:45:31.1360376Z tests/training/test_multi_gpu.py::TestMultiGPUTraining::test_checkpoint_saving_multi_gpu SKIPPED [ 96%]
+2026-11-16T22:45:31.1368783Z tests/training/test_multi_gpu.py::TestMultiGPUTraining::test_fsdp_optimizer_save_and_resume SKIPPED [ 96%]
+2026-11-16T22:45:31.1379221Z tests/utils/test_collate.py::test_lerobot_collate_preserves_messages_and_raw_language PASSED [ 96%]
+2026-11-16T22:45:31.1390140Z tests/utils/test_collate.py::test_lerobot_collate_passes_through_standard_batch PASSED [ 96%]
+2026-11-16T22:45:31.1400336Z tests/utils/test_collate.py::test_lerobot_collate_drops_none_samples PASSED [ 96%]
+2026-11-16T22:45:31.1412392Z tests/utils/test_process.py::test_setup_process_handlers_event_with_threads PASSED [ 96%]
+2026-11-16T22:45:31.1427759Z tests/utils/test_process.py::test_setup_process_handlers_event_with_processes PASSED [ 96%]
+2026-11-16T22:45:31.1439359Z tests/utils/test_process.py::test_signal_handler_sets_event[2-True] PASSED [ 96%]
+2026-11-16T22:45:31.1453089Z tests/utils/test_process.py::test_signal_handler_sets_event[2-False] PASSED [ 96%]
+2026-11-16T22:45:31.1464391Z tests/utils/test_process.py::test_signal_handler_sets_event[15-True] PASSED [ 96%]
+2026-11-16T22:45:31.1478272Z tests/utils/test_process.py::test_signal_handler_sets_event[15-False] PASSED [ 96%]
+2026-11-16T22:45:31.1489376Z tests/utils/test_process.py::test_signal_handler_sets_event[1-True] PASSED [ 97%]
+2026-11-16T22:45:31.1503072Z tests/utils/test_process.py::test_signal_handler_sets_event[1-False] PASSED [ 97%]
+2026-11-16T22:45:31.1514353Z tests/utils/test_process.py::test_signal_handler_sets_event[3-True] PASSED [ 97%]
+2026-11-16T22:45:31.1528387Z tests/utils/test_process.py::test_signal_handler_sets_event[3-False] PASSED [ 97%]
+2026-11-16T22:45:31.3554184Z tests/utils/test_process.py::test_force_shutdown_on_second_signal[True] PASSED [ 97%]
+2026-11-16T22:45:31.5585321Z tests/utils/test_process.py::test_force_shutdown_on_second_signal[False] PASSED [ 97%]
+2026-11-16T22:45:31.5603682Z tests/utils/test_replay_buffer.py::test_empty_buffer_sample_raises_error PASSED [ 97%]
+2026-11-16T22:45:31.5613523Z tests/utils/test_replay_buffer.py::test_zero_capacity_buffer_raises_error PASSED [ 97%]
+2026-11-16T22:45:31.5633166Z tests/utils/test_replay_buffer.py::test_add_transition PASSED            [ 97%]
+2026-11-16T22:45:31.5651636Z tests/utils/test_replay_buffer.py::test_add_over_capacity PASSED         [ 97%]
+2026-11-16T22:45:31.5666237Z tests/utils/test_replay_buffer.py::test_sample_from_empty_buffer PASSED  [ 97%]
+2026-11-16T22:45:31.5689215Z tests/utils/test_replay_buffer.py::test_sample_with_1_transition PASSED  [ 97%]
+2026-11-16T22:45:31.5709248Z tests/utils/test_replay_buffer.py::test_sample_with_batch_bigger_than_buffer_size PASSED [ 97%]
+2026-11-16T22:45:31.5732423Z tests/utils/test_replay_buffer.py::test_sample_batch PASSED              [ 97%]
+2026-11-16T22:45:31.5748134Z tests/utils/test_replay_buffer.py::test_to_lerobot_dataset_with_empty_buffer PASSED [ 97%]
+2026-11-16T22:45:31.6662450Z tests/utils/test_replay_buffer.py::test_to_lerobot_dataset PASSED        [ 97%]
+2026-11-16T22:45:31.7558787Z tests/utils/test_replay_buffer.py::test_from_lerobot_dataset PASSED      [ 97%]
+2026-11-16T22:45:31.7600207Z tests/utils/test_replay_buffer.py::test_buffer_sample_alignment PASSED   [ 97%]
+2026-11-16T22:45:31.7626711Z tests/utils/test_replay_buffer.py::test_memory_optimization PASSED       [ 98%]
+2026-11-16T22:45:31.7644767Z tests/utils/test_replay_buffer.py::test_check_image_augmentations_with_drq_and_dummy_image_augmentation_function PASSED [ 98%]
+2026-11-16T22:45:48.2850701Z tests/utils/test_replay_buffer.py::test_check_image_augmentations_with_drq_and_default_image_augmentation_function PASSED [ 98%]
+2026-11-16T22:45:48.2863769Z tests/utils/test_replay_buffer.py::test_random_crop_vectorized_basic PASSED [ 98%]
+2026-11-16T22:45:48.2875657Z tests/utils/test_replay_buffer.py::test_random_crop_vectorized_invalid_size PASSED [ 98%]
+2026-11-16T22:45:49.5362009Z tests/utils/test_replay_buffer.py::test_async_iterator_shapes_basic PASSED [ 98%]
+2026-11-16T22:45:49.5491783Z tests/utils/test_replay_buffer.py::test_async_iterator_multiple_iterations PASSED [ 98%]
+2026-11-16T22:45:49.5501631Z tests/utils/test_sample_weighting.py::test_config_default_values PASSED  [ 98%]
+2026-11-16T22:45:49.5511168Z tests/utils/test_sample_weighting.py::test_config_custom_values PASSED   [ 98%]
+2026-11-16T22:45:49.5520441Z tests/utils/test_sample_weighting.py::test_config_uniform_type PASSED    [ 98%]
+2026-11-16T22:45:49.5529994Z tests/utils/test_sample_weighting.py::test_uniform_weighter_inherits_from_sample_weighter PASSED [ 98%]
+2026-11-16T22:45:49.5541538Z tests/utils/test_sample_weighting.py::test_uniform_weighter_compute_batch_weights_with_action_key PASSED [ 98%]
+2026-11-16T22:45:49.5551459Z tests/utils/test_sample_weighting.py::test_uniform_weighter_compute_batch_weights_with_index_key PASSED [ 98%]
+2026-11-16T22:45:49.5561644Z tests/utils/test_sample_weighting.py::test_uniform_weighter_compute_batch_weights_no_tensor_keys PASSED [ 98%]
+2026-11-16T22:45:49.5572082Z tests/utils/test_sample_weighting.py::test_uniform_weighter_compute_batch_weights_empty_batch_raises PASSED [ 98%]
+2026-11-16T22:45:49.5582481Z tests/utils/test_sample_weighting.py::test_uniform_weighter_compute_batch_weights_scans_all_keys PASSED [ 98%]
+2026-11-16T22:45:49.5593607Z tests/utils/test_sample_weighting.py::test_uniform_weighter_compute_batch_weights_on_cuda SKIPPED [ 98%]
+2026-11-16T22:45:49.5602646Z tests/utils/test_sample_weighting.py::test_uniform_weighter_get_stats PASSED [ 98%]
+2026-11-16T22:45:49.5612221Z tests/utils/test_sample_weighting.py::test_factory_returns_none_for_none_config PASSED [ 99%]
+2026-11-16T22:45:49.5621826Z tests/utils/test_sample_weighting.py::test_factory_creates_uniform_weighter PASSED [ 99%]
+2026-11-16T22:45:49.5632620Z tests/utils/test_sample_weighting.py::test_factory_raises_for_unknown_type PASSED [ 99%]
+2026-11-16T22:45:49.5666595Z tests/utils/test_sample_weighting.py::test_factory_rabc_requires_chunk_size PASSED [ 99%]
+2026-11-16T22:45:49.5677687Z tests/utils/test_sample_weighting.py::test_factory_rabc_requires_progress_path_or_dataset_info PASSED [ 99%]
+2026-11-16T22:45:49.5735691Z tests/utils/test_sample_weighting.py::test_factory_rabc_auto_detects_from_dataset_root PASSED [ 99%]
+2026-11-16T22:45:49.6515998Z tests/utils/test_sample_weighting.py::test_factory_rabc_auto_detects_from_repo_id PASSED [ 99%]
+2026-11-16T22:45:49.6573774Z tests/utils/test_sample_weighting.py::test_rabc_weights_is_sample_weighter PASSED [ 99%]
+2026-11-16T22:45:49.6619783Z tests/utils/test_sample_weighting.py::test_rabc_compute_batch_weights PASSED [ 99%]
+2026-11-16T22:45:49.6661925Z tests/utils/test_sample_weighting.py::test_rabc_get_stats PASSED         [ 99%]
+2026-11-16T22:45:49.6702881Z tests/utils/test_sample_weighting.py::test_factory_creates_rabc_weighter PASSED [ 99%]
+2026-11-16T22:45:49.6745301Z tests/utils/test_sample_weighting.py::test_rabc_weights_normalization PASSED [ 99%]
+2026-11-16T22:45:49.6766692Z tests/utils/test_train_utils.py::test_dataloaders_filter_boundaries_without_consuming_policy_rng[12-2-3-3] PASSED [ 99%]
+2026-11-16T22:45:49.6786638Z tests/utils/test_train_utils.py::test_dataloaders_filter_boundaries_without_consuming_policy_rng[64-0-32-0] PASSED [ 99%]
+2026-11-16T22:45:49.6798803Z tests/utils/test_train_utils.py::test_streaming_dataloader_uses_num_workers_capped_by_rank_episodes[0-0] PASSED [ 99%]
+2026-11-16T22:45:49.6811671Z tests/utils/test_train_utils.py::test_streaming_dataloader_uses_num_workers_capped_by_rank_episodes[1-1] PASSED [ 99%]
+2026-11-16T22:45:49.6823636Z tests/utils/test_train_utils.py::test_streaming_dataloader_uses_num_workers_capped_by_rank_episodes[4-4] PASSED [ 99%]
+2026-11-16T22:45:49.6838455Z tests/utils/test_train_utils.py::test_streaming_dataloader_uses_num_workers_capped_by_rank_episodes[16-8] PASSED [ 99%]
+2026-11-16T22:45:50.4841530Z tests/utils/test_train_utils.py::test_streaming_dataloader_receives_the_trainers_data_parallel_rank PASSED [100%]
+2026-11-16T22:45:50.4846121Z 
+2026-11-16T22:45:50.4846515Z =============================== warnings summary ===============================
+2026-11-16T22:45:50.4847173Z tests/annotations/test_writer.py::test_annotation_metadata_sync_allows_non_streaming_load
+2026-11-16T22:45:50.4847753Z tests/annotations/test_writer.py::test_annotation_metadata_sync_allows_non_streaming_load
+2026-11-16T22:45:50.4848589Z   /home/runner/work/lerobot/lerobot/tests/annotations/test_writer.py:341: DeprecationWarning: Accessing DatasetInfo with dict-style syntax info['features'] is deprecated. Use attribute access info.features instead.
+2026-11-16T22:45:50.4849332Z     assert synced["features"][key] == feature
+2026-11-16T22:45:50.4849499Z 
+2026-11-16T22:45:50.4850021Z tests/annotations/test_writer.py::test_annotation_metadata_sync_allows_non_streaming_load
+2026-11-16T22:45:50.4850819Z   /home/runner/work/lerobot/lerobot/tests/annotations/test_writer.py:343: DeprecationWarning: Accessing DatasetInfo with dict-style syntax info['features'] is deprecated. Use attribute access info.features instead.
+2026-11-16T22:45:50.4851529Z     hf_features = get_hf_features_from_features(synced["features"])
+2026-11-16T22:45:50.4851733Z 
+2026-11-16T22:45:50.4851831Z tests/datasets/test_dataset_tools.py: 6 warnings
+2026-11-16T22:45:50.4852084Z tests/datasets/test_image_writer.py: 14 warnings
+2026-11-16T22:45:50.4852360Z tests/datasets/test_streaming_production.py: 13 warnings
+2026-11-16T22:45:50.4852658Z tests/datasets/test_streaming_workers.py: 62 warnings
+2026-11-16T22:45:50.4853622Z   /home/runner/work/_temp/uv-python-dir/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=4952) is multi-threaded, use of fork() may lead to deadlocks in the child.
+2026-11-16T22:45:50.4854364Z     self.pid = os.fork()
+2026-11-16T22:45:50.4854485Z 
+2026-11-16T22:45:50.4854589Z tests/datasets/test_image_transforms.py: 38 warnings
+2026-11-16T22:45:50.4856017Z   /home/runner/work/lerobot/lerobot/.venv/lib/python3.12/site-packages/torchvision/io/image.py:33: DeprecationWarning: The image decoding and encoding capabilities of TorchVision are deprecated since torchvision 0.29 and will be removed in a future release. They are superseded by the more complete decoders and encoders of TorchCodec (from torchcodec 0.16). Please see https://meta-pytorch.org/torchcodec/0.16/generated_examples/migration/torchvision_migration.html on how to migrate your code.
+2026-11-16T22:45:50.4857427Z     warnings.warn(_DEPRECATION_MSG, DeprecationWarning)
+2026-11-16T22:45:50.4857602Z 
+2026-11-16T22:45:50.4857737Z tests/datasets/test_image_writer.py::test_write_image_image
+2026-11-16T22:45:50.4858254Z tests/datasets/test_image_writer.py::test_write_image_image
+2026-11-16T22:45:50.4858940Z   /home/runner/work/lerobot/lerobot/tests/datasets/test_image_writer.py:146: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+2026-11-16T22:45:50.4859635Z     assert list(saved_image.getdata()) == list(image_pil.getdata())
+2026-11-16T22:45:50.4859844Z 
+2026-11-16T22:45:50.4859963Z tests/datasets/test_image_writer.py::test_save_image_pil
+2026-11-16T22:45:50.4860257Z tests/datasets/test_image_writer.py::test_save_image_pil
+2026-11-16T22:45:50.4860910Z   /home/runner/work/lerobot/lerobot/tests/datasets/test_image_writer.py:229: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+2026-11-16T22:45:50.4861575Z     assert list(saved_image.getdata()) == list(image_pil.getdata())
+2026-11-16T22:45:50.4861779Z 
+2026-11-16T22:45:50.4861939Z tests/datasets/test_image_writer.py::test_save_image_pil_multiprocessing
+2026-11-16T22:45:50.4862315Z tests/datasets/test_image_writer.py::test_save_image_pil_multiprocessing
+2026-11-16T22:45:50.4863087Z   /home/runner/work/lerobot/lerobot/tests/datasets/test_image_writer.py:243: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+2026-11-16T22:45:50.4864097Z     assert list(saved_image.getdata()) == list(image_pil.getdata())
+2026-11-16T22:45:50.4864344Z 
+2026-11-16T22:45:50.4864612Z tests/datasets/test_language.py::test_lerobot_dataset_passes_language_columns_through
+2026-11-16T22:45:50.4865437Z   /home/runner/work/lerobot/lerobot/tests/datasets/test_language.py:165: DeprecationWarning: Accessing DatasetInfo with dict-style syntax info['features'] is deprecated. Use attribute access info.features instead.
+2026-11-16T22:45:50.4866162Z     info["features"].update(language_feature_info())
+2026-11-16T22:45:50.4866378Z 
+2026-11-16T22:45:50.4866925Z tests/utils/test_train_utils.py::test_streaming_dataloader_uses_num_workers_capped_by_rank_episodes[16-8]
+2026-11-16T22:45:50.4869798Z   /home/runner/work/lerobot/lerobot/.venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py:431: UserWarning: This DataLoader will create 8 worker processes in total. Our suggested max number of worker in current system is 4, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+2026-11-16T22:45:50.4871077Z     self.check_worker_number_rationality()
+2026-11-16T22:45:50.4871321Z 
+2026-11-16T22:45:50.4871632Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-11-16T22:45:50.4872160Z = 1764 passed, 132 skipped, 2956 deselected, 144 warnings in 175.42s (0:02:55) =
+2026-11-16T22:45:52.6486373Z ##[group]Run uv sync --locked --extra test --extra dataset --extra hardware
+2026-11-16T22:45:52.6488231Z [36;1muv sync --locked --extra test --extra dataset --extra hardware[0m
+2026-11-16T22:45:52.6774504Z shell: /usr/bin/bash -e {0}
+2026-11-16T22:45:52.6774727Z env:
+2026-11-16T22:45:52.6774892Z   UV_VERSION: 0.11.30
+2026-11-16T22:45:52.6775081Z   PYTHON_VERSION: 3.12
+2026-11-16T22:45:52.6775262Z   MUJOCO_GL: egl
+2026-11-16T22:45:52.6775442Z   HF_HOME: /mnt/cache/.cache/huggingface
+2026-11-16T22:45:52.6775702Z   HF_LEROBOT_HOME: /mnt/cache/.cache/huggingface/lerobot
+2026-11-16T22:45:52.6775951Z   HF_USER_TOKEN: 
+2026-11-16T22:45:52.6776192Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-11-16T22:45:52.6776487Z   UV_PYTHON: 3.12
+2026-11-16T22:45:52.6776695Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-16T22:45:52.6776945Z ##[endgroup]
+2026-11-16T22:45:52.7226847Z Resolved 351 packages in 1ms
+2026-11-16T22:45:52.7942826Z    Building evdev==2.0.0
+2026-11-16T22:45:54.2591582Z       Built evdev==2.0.0
+2026-11-16T22:45:54.2720790Z Prepared 7 packages in 1.54s
+2026-11-16T22:45:54.3384965Z Installed 7 packages in 65ms
+2026-11-16T22:45:54.3385351Z  + deepdiff==8.6.2
+2026-11-16T22:45:54.3385612Z  + evdev==2.0.0
+2026-11-16T22:45:54.3385884Z  + orderly-set==5.5.0
+2026-11-16T22:45:54.3386150Z  + pynput==1.8.2
+2026-11-16T22:45:54.3386390Z  + pyserial==3.5
+2026-11-16T22:45:54.3386631Z  + python-xlib==0.33
+2026-11-16T22:45:54.3386880Z  + six==1.17.0
+2026-11-16T22:45:54.3715369Z ##[group]Run uv run pytest tests -vv --maxfail=10 -m hardware
+2026-11-16T22:45:54.3715950Z [36;1muv run pytest tests -vv --maxfail=10 -m hardware[0m
+2026-11-16T22:45:54.3760609Z shell: /usr/bin/bash -e {0}
+2026-11-16T22:45:54.3760817Z env:
+2026-11-16T22:45:54.3760982Z   UV_VERSION: 0.11.30
+2026-11-16T22:45:54.3761160Z   PYTHON_VERSION: 3.12
+2026-11-16T22:45:54.3761336Z   MUJOCO_GL: egl
+2026-11-16T22:45:54.3761522Z   HF_HOME: /mnt/cache/.cache/huggingface
+2026-11-16T22:45:54.3761790Z   HF_LEROBOT_HOME: /mnt/cache/.cache/huggingface/lerobot
+2026-11-16T22:45:54.3762050Z   HF_USER_TOKEN: 
+2026-11-16T22:45:54.3762273Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-11-16T22:45:54.3762531Z   UV_PYTHON: 3.12
+2026-11-16T22:45:54.3762726Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-16T22:45:54.3762966Z ##[endgroup]
+2026-11-16T22:45:57.3507852Z ============================= test session starts ==============================
+2026-11-16T22:45:57.3508768Z platform linux -- Python 3.12.13, pytest-9.2.0, pluggy-1.7.0 -- /home/runner/work/lerobot/lerobot/.venv/bin/python
+2026-11-16T22:45:57.3509421Z cachedir: .pytest_cache
+2026-11-16T22:45:57.3509745Z rootdir: /home/runner/work/lerobot/lerobot
+2026-11-16T22:45:57.3510135Z configfile: pyproject.toml
+2026-11-16T22:45:57.3510587Z plugins: mock-serial-0.0.1, cov-7.1.0, anyio-4.16.0, timeout-2.4.0
+2026-11-16T22:46:00.5590563Z collecting ... collected 4786 items / 4779 deselected / 72 skipped / 7 selected
+2026-11-16T22:46:00.5591044Z 
+2026-11-16T22:46:00.5591177Z Testing with DEVICE='cpu'
+2026-11-16T22:46:00.5591407Z 
+2026-11-16T22:46:00.5611993Z tests/test_control_robot.py::test_calibrate PASSED                       [ 14%]
+2026-11-16T22:46:00.6644522Z tests/test_control_robot.py::test_teleoperate PASSED                     [ 28%]
+2026-11-16T22:46:00.9367418Z tests/test_control_robot.py::test_record_and_resume PASSED               [ 42%]
+2026-11-16T22:46:01.1898840Z tests/test_control_robot.py::test_record_and_replay PASSED               [ 57%]
+2026-11-16T22:46:01.5252842Z tests/test_control_robot.py::test_record_reports_a_cadence_summary_per_episode_and_for_the_run PASSED [ 71%]
+2026-11-16T22:46:01.8711061Z tests/test_control_robot.py::test_record_forwards_compressed_images_setting_to_reset_phase PASSED [ 85%]
+2026-11-16T22:46:02.5854801Z tests/test_control_robot.py::test_record_loop_without_a_teleoperator_paces_and_terminates PASSED [100%]
+2026-11-16T22:46:02.5855294Z 
+2026-11-16T22:46:02.5855518Z ================ 7 passed, 72 skipped, 4779 deselected in 4.63s ================
+2026-11-16T22:46:04.1792753Z ##[group]Run uv sync --locked --extra test --extra viz
+2026-11-16T22:46:04.1793091Z [36;1muv sync --locked --extra test --extra viz[0m
+2026-11-16T22:46:04.1838845Z shell: /usr/bin/bash -e {0}
+2026-11-16T22:46:04.1839066Z env:
+2026-11-16T22:46:04.1839233Z   UV_VERSION: 0.11.30
+2026-11-16T22:46:04.1839424Z   PYTHON_VERSION: 3.12
+2026-11-16T22:46:04.1839609Z   MUJOCO_GL: egl
+2026-11-16T22:46:04.1839806Z   HF_HOME: /mnt/cache/.cache/huggingface
+2026-11-16T22:46:04.1840069Z   HF_LEROBOT_HOME: /mnt/cache/.cache/huggingface/lerobot
+2026-11-16T22:46:04.1840323Z   HF_USER_TOKEN: 
+2026-11-16T22:46:04.1840558Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-11-16T22:46:04.1840843Z   UV_PYTHON: 3.12
+2026-11-16T22:46:04.1841046Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-16T22:46:04.1841286Z ##[endgroup]
+2026-11-16T22:46:04.2311425Z Resolved 351 packages in 1ms
+2026-11-16T22:46:04.3010432Z Downloading rerun-sdk (133.1MiB)
+2026-11-16T22:46:04.3011214Z Downloading foxglove-sdk (18.3MiB)
+2026-11-16T22:46:04.6568739Z  Downloaded foxglove-sdk
+2026-11-16T22:46:05.5409334Z  Downloaded rerun-sdk
+2026-11-16T22:46:05.5410828Z Prepared 3 packages in 1.30s
+2026-11-16T22:46:05.6549673Z Uninstalled 18 packages in 113ms
+2026-11-16T22:46:05.6635626Z Installed 3 packages in 8ms
+2026-11-16T22:46:05.6635991Z  - av==15.1.0
+2026-11-16T22:46:05.6636245Z  - datasets==5.2.0
+2026-11-16T22:46:05.6636505Z  - deepdiff==8.6.2
+2026-11-16T22:46:05.6636752Z  - dill==0.4.1
+2026-11-16T22:46:05.6636990Z  - evdev==2.0.0
+2026-11-16T22:46:05.6637485Z  + foxglove-sdk==0.25.3
+2026-11-16T22:46:05.6637797Z  - jsonlines==4.0.0
+2026-11-16T22:46:05.6638116Z  - multiprocess==0.70.19
+2026-11-16T22:46:05.6638517Z  - orderly-set==5.5.0
+2026-11-16T22:46:05.6638921Z  - pandas==2.3.3
+2026-11-16T22:46:05.6639308Z  + psutil==7.2.2
+2026-11-16T22:46:05.6639734Z  - pynput==1.8.2
+2026-11-16T22:46:05.6640043Z  - pyserial==3.5
+2026-11-16T22:46:05.6640467Z  - python-dateutil==4.0.0
+2026-11-16T22:46:05.6640822Z  - python-xlib==0.33
+2026-11-16T22:46:05.6641178Z  - pytz==2026.6
+2026-11-16T22:46:05.6641512Z  + rerun-sdk==0.33.1
+2026-11-16T22:46:05.6641902Z  - six==1.17.0
+2026-11-16T22:46:05.6642428Z  - torchcodec==0.17.0+cpu
+2026-11-16T22:46:05.6642759Z  - tzdata==2026.6
+2026-11-16T22:46:05.6642990Z  - xxhash==4.1.0
+2026-11-16T22:46:05.6715476Z ##[group]Run uv run pytest tests -vv --maxfail=10 -m viz
+2026-11-16T22:46:05.6715821Z [36;1muv run pytest tests -vv --maxfail=10 -m viz[0m
+2026-11-16T22:46:05.6760898Z shell: /usr/bin/bash -e {0}
+2026-11-16T22:46:05.6761114Z env:
+2026-11-16T22:46:05.6761277Z   UV_VERSION: 0.11.30
+2026-11-16T22:46:05.6761472Z   PYTHON_VERSION: 3.12
+2026-11-16T22:46:05.6761654Z   MUJOCO_GL: egl
+2026-11-16T22:46:05.6761842Z   HF_HOME: /mnt/cache/.cache/huggingface
+2026-11-16T22:46:05.6762111Z   HF_LEROBOT_HOME: /mnt/cache/.cache/huggingface/lerobot
+2026-11-16T22:46:05.6762362Z   HF_USER_TOKEN: 
+2026-11-16T22:46:05.6762594Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-11-16T22:46:05.6762874Z   UV_PYTHON: 3.12
+2026-11-16T22:46:05.6763080Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-16T22:46:05.6763416Z ##[endgroup]
+2026-11-16T22:46:08.0319608Z ============================= test session starts ==============================
+2026-11-16T22:46:08.0320632Z platform linux -- Python 3.12.13, pytest-9.2.0, pluggy-1.7.0 -- /home/runner/work/lerobot/lerobot/.venv/bin/python
+2026-11-16T22:46:08.0321329Z cachedir: .pytest_cache
+2026-11-16T22:46:08.0321672Z rootdir: /home/runner/work/lerobot/lerobot
+2026-11-16T22:46:08.0322038Z configfile: pyproject.toml
+2026-11-16T22:46:08.0322425Z plugins: mock-serial-0.0.1, cov-7.1.0, anyio-4.16.0, timeout-2.4.0
+2026-11-16T22:46:10.8741420Z collecting ... collected 3045 items / 3036 deselected / 152 skipped / 9 selected
+2026-11-16T22:46:10.8741861Z 
+2026-11-16T22:46:10.8741987Z Testing with DEVICE='cpu'
+2026-11-16T22:46:10.8742177Z 
+2026-11-16T22:46:10.8803773Z tests/utils/test_rerun_visualization.py::test_log_rerun_data_envtransition_scalars_and_image PASSED [ 11%]
+2026-11-16T22:46:10.8819115Z tests/utils/test_rerun_visualization.py::test_log_rerun_data_plain_list_ordering_and_prefixes PASSED [ 22%]
+2026-11-16T22:46:10.8832628Z tests/utils/test_rerun_visualization.py::test_log_rerun_data_kwargs_only PASSED [ 33%]
+2026-11-16T22:46:10.8846184Z tests/utils/test_rerun_visualization.py::test_log_rerun_data_blueprint_sent_only_once PASSED [ 44%]
+2026-11-16T22:46:10.8860419Z tests/utils/test_rerun_visualization.py::test_log_rerun_prediction_named_after_what_it_predicts PASSED [ 55%]
+2026-11-16T22:46:10.8876463Z tests/utils/test_rerun_visualization.py::test_log_rerun_shows_the_first_env_of_a_batched_prediction PASSED [ 66%]
+2026-11-16T22:46:10.8890454Z tests/utils/test_rerun_visualization.py::test_log_rerun_predicted_boxes_draw_over_their_camera PASSED [ 77%]
+2026-11-16T22:46:10.8904448Z tests/utils/test_rerun_visualization.py::test_log_rerun_predicted_boxes_without_camera_are_skipped PASSED [ 88%]
+2026-11-16T22:46:11.4025504Z tests/utils/test_rerun_visualization.py::test_log_rerun_blueprint_grows_with_a_late_prediction PASSED [100%]
+2026-11-16T22:46:11.4026307Z 
+2026-11-16T22:46:11.4026465Z =============== 9 passed, 152 skipped, 3036 deselected in 2.87s ================
+2026-11-16T22:46:12.7477065Z Post job cleanup.
+2026-11-16T22:46:12.8363898Z UV_CACHE_DIR is already set to /home/runner/work/_temp/setup-uv-cache
+2026-11-16T22:46:12.8399400Z UV_PYTHON_INSTALL_DIR is already set to /home/runner/work/_temp/uv-python-dir
+2026-11-16T22:46:12.8407556Z Pruning cache...
+2026-11-16T22:46:12.8419804Z [command]/opt/hostedtoolcache/uv/0.11.30/x86_64/uv cache prune --ci --force
+2026-11-16T22:46:12.8604456Z Pruning cache at: /home/runner/work/_temp/setup-uv-cache
+2026-11-16T22:46:13.6615462Z Removed 30758 files (6.2GiB)
+2026-11-16T22:46:13.6642342Z Including uv cache path: /home/runner/work/_temp/setup-uv-cache
+2026-11-16T22:46:13.6766716Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/lerobot/lerobot --files-from manifest.txt --use-compress-program zstdmt
+2026-11-16T22:46:13.8846208Z ##[warning]Failed to save: Unable to reserve cache with key setup-uv-2-x86_64-unknown-linux-gnu-ubuntu-26.04-3.12-pruned-d368fa439ce275621f47a1fddb39e65ede7f5291b16000c52cfb373b4f740504, another job may be creating this cache.
+2026-11-16T22:46:13.8855381Z uv cache saved with key: setup-uv-2-x86_64-unknown-linux-gnu-ubuntu-26.04-3.12-pruned-d368fa439ce275621f47a1fddb39e65ede7f5291b16000c52cfb373b4f740504
+2026-11-16T22:46:13.9973903Z Post job cleanup.
+2026-11-16T22:46:14.0668407Z [command]/usr/bin/git version
+2026-11-16T22:46:14.0736891Z git version 2.56.1
+2026-11-16T22:46:14.0764052Z Temporarily overriding HOME='/home/runner/work/_temp/54294975-62a6-4e9a-a37c-52b1b37cf099' before making global git config changes
+2026-11-16T22:46:14.0765143Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-16T22:46:14.0767688Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lerobot/lerobot
+2026-11-16T22:46:14.0798097Z Removing SSH command configuration
+2026-11-16T22:46:14.0803248Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-16T22:46:14.0841651Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-16T22:46:14.1107192Z Removing HTTP extra header
+2026-11-16T22:46:14.1112099Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-16T22:46:14.1144115Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-16T22:46:14.1392861Z Removing includeIf entries pointing to credentials config files
+2026-11-16T22:46:14.1399116Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-16T22:46:14.1429071Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-16T22:46:14.1783903Z Cleaning up orphan processes

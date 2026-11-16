@@ -1,0 +1,55 @@
+{
+  "head": "7dd35f28dd6d6e0fd94da353597eecb51c6ca14d",
+  "fast": {
+    "id": 43972209997,
+    "status": "completed",
+    "conclusion": "success",
+    "job_id": 133667000658,
+    "url": "https://github.com/Afloat16/lerobot/actions/runs/43972209997",
+    "tiers": [
+      {
+        "tier": "base",
+        "passed": 2569,
+        "skipped": 541,
+        "deselected": 64
+      },
+      {
+        "tier": "dataset",
+        "passed": 1764,
+        "skipped": 132,
+        "deselected": 2956
+      },
+      {
+        "tier": "hardware",
+        "passed": 7,
+        "skipped": 72,
+        "deselected": 4779
+      },
+      {
+        "tier": "viz",
+        "passed": 9,
+        "skipped": 152,
+        "deselected": 3036
+      }
+    ],
+    "new_regressions": 7
+  },
+  "quality": {
+    "id": 43972209869,
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/Afloat16/lerobot/actions/runs/43972209869",
+    "jobs": [
+      {
+        "id": 133667001761,
+        "name": "pre-commit",
+        "conclusion": "success"
+      },
+      {
+        "id": 133667002071,
+        "name": "doctests",
+        "conclusion": "success"
+      }
+    ]
+  }
+}

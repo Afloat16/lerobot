@@ -23,14 +23,14 @@ A fresh-process measurement using NumPy 2.2.6, 800,000 valid starts, 32-step chu
 
 All ten output fields were identical for that measurement. Input-column storage still scales with dataset size. These are memory measurements; no training or throughput improvement is claimed.
 
-The broader local selection also hit 13 existing external-dataset fixture errors because `socksio` was missing for the configured SOCKS proxy. They are not counted as passes. The complete existing fork dependency-tier workflow is running on exact head `7dd35f28dd6d6e0fd94da353597eecb51c6ca14d`; [Fast Tests](https://github.com/Afloat16/lerobot/actions/runs/43972209997). [Quality](https://github.com/Afloat16/lerobot/actions/runs/43972209869) has passed both pre-commit and doctests.
+The broader local selection also hit 13 existing external-dataset fixture errors because `socksio` was missing for the configured SOCKS proxy. They are not counted as passes. The existing [fork Fast Tests workflow](https://github.com/Afloat16/lerobot/actions/runs/43972209997) passed on exact head `7dd35f28dd6d6e0fd94da353597eecb51c6ca14d`: base 2,569 passed / 541 skipped; dataset 1,764 passed / 132 skipped (including all seven new cases); hardware 7 passed / 72 skipped; visualization 9 passed / 152 skipped. [Quality](https://github.com/Afloat16/lerobot/actions/runs/43972209869) also passed both pre-commit and doctests. These are fork checks; no upstream PR has been created.
 
 ## Checklist
 
 - [x] Linting/formatting: fork pre-commit and doctests passed.
 - [ ] All tests pass locally: 60 passed; 13 existing dataset fixtures were blocked as described above.
 - [x] Documentation updated: inline explanation of the retained-result bound.
-- [ ] CI is green: full fork Fast Tests are pending; upstream checks do not exist yet.
+- [x] Fork CI is green: all four dependency tiers, pre-commit, and doctests passed; upstream checks do not exist yet.
 - [ ] Community Review: the review of #4692 is prepared, but the API submission was blocked and it has not been posted.
 
 AI assistance: ChatGPT assisted with implementation and regression tests.

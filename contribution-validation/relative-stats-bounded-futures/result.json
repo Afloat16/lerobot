@@ -1,7 +1,7 @@
 {
   "repository": "huggingface/lerobot",
   "base": "7910c20a75834ad3fa6a9792df4d44a614d1bba6",
-  "status": "native_verified_fork_ci_pending",
+  "status": "code_and_ci_verified_community_review_unposted",
   "upstream_pr": null,
   "new_upstream_pr_count": 0,
   "regressions": {
@@ -183,12 +183,63 @@
   "internal_pr": {
     "number": 4,
     "url": "https://github.com/Afloat16/lerobot/pull/4",
-    "state": "open",
-    "counts_as_upstream": false
+    "state": "closed",
+    "counts_as_upstream": false,
+    "merged": false
   },
   "fork_ci": {
-    "fast_tests": 43972209997,
-    "quality": 43972209869,
-    "status": "in_progress_at_observation"
+    "head": "7dd35f28dd6d6e0fd94da353597eecb51c6ca14d",
+    "fast": {
+      "id": 43972209997,
+      "status": "completed",
+      "conclusion": "success",
+      "job_id": 133667000658,
+      "url": "https://github.com/Afloat16/lerobot/actions/runs/43972209997",
+      "tiers": [
+        {
+          "tier": "base",
+          "passed": 2569,
+          "skipped": 541,
+          "deselected": 64
+        },
+        {
+          "tier": "dataset",
+          "passed": 1764,
+          "skipped": 132,
+          "deselected": 2956
+        },
+        {
+          "tier": "hardware",
+          "passed": 7,
+          "skipped": 72,
+          "deselected": 4779
+        },
+        {
+          "tier": "viz",
+          "passed": 9,
+          "skipped": 152,
+          "deselected": 3036
+        }
+      ],
+      "new_regressions": 7
+    },
+    "quality": {
+      "id": 43972209869,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Afloat16/lerobot/actions/runs/43972209869",
+      "jobs": [
+        {
+          "id": 133667001761,
+          "name": "pre-commit",
+          "conclusion": "success"
+        },
+        {
+          "id": 133667002071,
+          "name": "doctests",
+          "conclusion": "success"
+        }
+      ]
+    }
   }
 }

@@ -1,0 +1,9 @@
+{
+  "parts": [
+    "fast-tests-log-part-1.txt",
+    "fast-tests-log-part-2.txt",
+    "fast-tests-log-part-3.txt"
+  ],
+  "combine": "Concatenate in numeric order with no added separators",
+  "characters": 781565
+}
