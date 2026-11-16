@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Sequence
+from itertools import islice
 
 import numpy as np
 
@@ -775,10 +776,10 @@ def compute_relative_action_stats(
     running_stats = RunningQuantileStats()
 
     if num_workers > 1:
-        from concurrent.futures import ThreadPoolExecutor, as_completed
+        from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 
         with ThreadPoolExecutor(max_workers=num_workers) as pool:
-            futures = [
+            futures = (
                 pool.submit(
                     _compute_relative_chunk_batch,
                     batch,
@@ -788,9 +789,16 @@ def compute_relative_action_stats(
                     relative_mask,
                 )
                 for batch in batches
-            ]
-            for future in as_completed(futures):
-                running_stats.update(future.result())
+            )
+            # Completed futures retain their arrays, so limit the outstanding expanded batches.
+            pending = set(islice(futures, num_workers))
+            while pending:
+                completed, pending = wait(pending, return_when=FIRST_COMPLETED)
+                while completed:
+                    future = completed.pop()
+                    running_stats.update(future.result())
+                    del future
+                    pending.update(islice(futures, 1))
     else:
         for batch in batches:
             running_stats.update(
