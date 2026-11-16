@@ -1,0 +1,26 @@
+{
+  "repository": "huggingface/lerobot",
+  "new_upstream_pr_count": 0,
+  "candidate": "TDMPC multi-action warm-start offset",
+  "base": "7910c20a75834ad3fa6a9792df4d44a614d1bba6",
+  "baseline_head": "d3cc74a5a95e39beac7baa8411050e3c2395e0ed",
+  "baseline_branch": "validation/tdmpc-warm-start-20261116",
+  "internal_pr": "https://github.com/Afloat16/lerobot/pull/1",
+  "baseline_run": "https://github.com/Afloat16/lerobot/actions/runs/43961818735",
+  "baseline_status": "in_progress_not_yet_verified",
+  "history_audit_status": "scheduled_in_same_existing_workflow_not_yet_verified",
+  "production_change": "not_written",
+  "community_review": {
+    "pr": 4692,
+    "author": "wwwcccan",
+    "head": "7d7dad58f3aca5a4ad8a085c2bcbe65242660327",
+    "status": "not_posted_integration_403",
+    "review_file": "contribution-validation/tdmpc-warm-start/community-review-4692.md"
+  },
+  "excluded_duplicate_candidates": [
+    4692,
+    4703
+  ],
+  "upstream_creation_status": "not_attempted",
+  "maintainer_can_modify": false
+}

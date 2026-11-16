@@ -1,0 +1,17 @@
+{
+  "repo": "huggingface/lerobot",
+  "pr": 4692,
+  "head": "7d7dad58f3aca5a4ad8a085c2bcbe65242660327",
+  "action": "COMMENT",
+  "review": "Reviewed the four-file diff at 7d7dad58f3aca5a4ad8a085c2bcbe65242660327 and traced the prepared-loader path against Accelerate 1.14.0. Keeping the complete sampler until BatchSamplerShard has applied its even-batch padding addresses the changed-prefix issue. Setting the temporary skipped loader's epoch, then advancing the original loader to epoch + 1, also matters because the two loaders have separate iteration counters.\n\nOne integration gap to address when rebasing onto current main (7910c20a75834ad3fa6a9792df4d44a614d1bba6): the new regression module has no dependency-tier mark. Current tests/conftest.py assigns unmarked tests to base, and Fast Tests selects each tier with -m base/dataset/hardware/viz. The base install does not include datasets, so this module is skipped by its importorskip(\"datasets\"); the dataset tier will not select unmarked/base tests. In addition, the dataset extra alone does not install Accelerate, so adding only pytestmark = pytest.mark.dataset would still leave the second importorskip unsatisfied.\n\nPlease arrange an actual CPU test lane that installs both dataset and Accelerate and selects this module, following the current tier conventions, then verify that all 35 cases are collected and executed there. This is a CI-coverage observation from the source and workflow configuration, rather than a rerun of the reported local 69-test/Gloo results.",
+  "status": "not_posted_integration_403",
+  "attempt": {
+    "error": "GitHub API error 403: {\"message\":\"Resource not accessible by integration\",\"documentation_url\":\"https://docs.github.com/rest/pulls/reviews#create-a-review-for-a-pull-request\",\"status\":\"403\"}",
+    "error_code": "FORBIDDEN",
+    "error_data": {
+      "message": "Resource not accessible by integration",
+      "documentation_url": "https://docs.github.com/rest/pulls/reviews#create-a-review-for-a-pull-request",
+      "status": "403"
+    }
+  }
+}
