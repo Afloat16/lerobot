@@ -1,0 +1,12 @@
+ERROR:lerobot.datasets.video_utils:Encoder thread error: [Errno 542398533] Generic error in an external library: 'avcodec_open2(libx264)'
+{
+  "returned_without_manual_queue_drain": false,
+  "errors": [
+    {
+      "type": "RuntimeError",
+      "message": "Encoder thread for camera failed: [Errno 542398533] Generic error in an external library: 'avcodec_open2(libx264)'"
+    }
+  ],
+  "actual_encoder_worker_exited": true,
+  "pyav_version": "15.1.0"
+}

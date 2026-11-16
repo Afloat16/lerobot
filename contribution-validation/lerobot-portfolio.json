@@ -15,5 +15,14 @@
       "status": "code_and_ci_verified_community_review_unposted",
       "ready_path": "contribution-validation/relative-stats-bounded-futures/ready.json"
     }
+  ],
+  "excluded": [
+    {
+      "title": "Streaming encoder finish on a full queue after worker failure",
+      "decision": "excluded_historical_equivalent",
+      "equivalent_pr": "https://github.com/huggingface/lerobot/pull/4462",
+      "evidence_path": "contribution-validation/excluded/streaming-finish/decision.json",
+      "new_upstream_pr_count": 0
+    }
   ]
 }

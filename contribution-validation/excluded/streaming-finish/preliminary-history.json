@@ -1,0 +1,240 @@
+{
+  "source_blobs": 339,
+  "paths": [
+    "lerobot/common/datasets/video_utils.py",
+    "src/lerobot/datasets/video_utils.py"
+  ],
+  "variants": {
+    "6e876694bec51ca71038f827a18bd0d41cf41a7f3e41fa19f40e647dc197deee": {
+      "source": "    def finish_episode(self) -> dict[str, tuple[Path, dict | None]]:\n        \"\"\"Finish encoding the current episode.\n\n        Sends sentinel values, waits for encoder threads to complete,\n        and collects results.\n\n        Returns:\n            Dict mapping video_key to (mp4_path, stats_dict_or_None)\n        \"\"\"\n        if not self._episode_active:\n            raise RuntimeError(\"No active episode to finish.\")\n\n        results = {}\n\n        # Report dropped frames\n        for video_key, count in self._dropped_frames.items():\n            if count > 0:\n                logger.warning(f\"Episode finished with {count} dropped frame(s) for {video_key}.\")\n\n        # Send sentinel to all queues\n        for video_key in self._frame_queues:\n            self._frame_queues[video_key].put(None)\n\n        # Wait for all threads and collect results\n        for video_key in self._threads:\n            self._threads[video_key].join(timeout=120)\n            if self._threads[video_key].is_alive():\n                logger.error(f\"Encoder thread for {video_key} did not finish in time\")\n                self._stop_events[video_key].set()\n                self._threads[video_key].join(timeout=5)\n                results[video_key] = (self._video_paths[video_key], None)\n                continue\n\n            try:\n                status, data = self._result_queues[video_key].get(timeout=5)\n                if status == \"error\":\n                    raise RuntimeError(f\"Encoder thread for {video_key} failed: {data}\")\n                results[video_key] = (self._video_paths[video_key], data)\n            except queue.Empty:\n                logger.error(f\"No result from encoder thread for {video_key}\")\n                results[video_key] = (self._video_paths[video_key], None)\n\n        self._cleanup()\n        self._episode_active = False\n        return results",
+      "blobs": [
+        "00ff09ee7830e812c549813acb57f7276a1974a3",
+        "03e1c707d720da24bd82669e547d05f1a61c1dc9",
+        "063df1a2429775b45d5c1d2f71a1dbe300efcc8f",
+        "0e1679c9da2c1a88a98ac74d9c093d69eeedb925",
+        "0e930b5f391218d4ee346111a7cc5134c992bcb4",
+        "1060213f569154a1ea19c2a82290f60621640248",
+        "141c2eb642ffe6b6aa3a2389c385fdb7f85c3972",
+        "158e68cdb2cbd5b4857e16fc6b2b95f3e07e2e00",
+        "1590c45512054d8cc69897089a3f9c65e3161b5d",
+        "15ed2342aa645f7b9b002641cac141f5418608de",
+        "17c4c6c70f282b086e1b80eb03ae4bfcf4747e6a",
+        "1a5639103467af2193c208dafdc9d42424905393",
+        "1ed1b909cb5702d23537412abafb468c50c0ebfb",
+        "209490db7de142b14b4159c0267604d7948e7f4e",
+        "244c7d8c3a6439b7ef8e999eaa9ffac9e4c72408",
+        "2664c7ca0723174c64291f6ceeb1a7afec3b00b1",
+        "26d53e2080e7fa0796f9cde8eb26a8e8b97246bd",
+        "296c041ecf3e25a6e8a74ab67e5386a1105d927f",
+        "2ab11f9e1cbc2c0dcc3495006f3658535c8b9f74",
+        "2badab3940937b14adf4c21bf8fa64e8e9b4be2f",
+        "2be13dbac3f006b3f5daea8aeb84304c21b40b4f",
+        "2ee8e7d67c4884d81deeb1b8dbc8a9fe5832d71e",
+        "30530010c4239fb0bd174afbeb73296606a42967",
+        "30fda72d1244290e92ce94c3f2d41cf47716f448",
+        "310c64eb56cf336ca57229360f5fe2bf281f4bbe",
+        "33b9ffe00cb11e37c9d75468628f87dec0dd7b0b",
+        "3405b2ed4b92258ba1f09599e6a8bf3917f014d2",
+        "345eac436a25c89f2accae9e64cc580a48097ebe",
+        "34afead804eb78d76dcf4cd95b9f953e1c27927a",
+        "35cfc1092b75d7daa51f20655cb7b9f855e6ac32",
+        "36bb3d04c1825ad066e22a7849a1ffe6df932f20",
+        "3aca1d08500111b14a2e749b6e39980457233526",
+        "4183385f6a376b763fa74f2e0ba388986252ac35",
+        "45be916a4a74125d25559772abcf6cb1de38aac1",
+        "4966ab819709079c1dc6a3cb70fecf73c15de4b8",
+        "4a59a27bd34efa1b4e071ffc296f37f7160cf7df",
+        "4bdefc006e1adb63b2f2280605c097fa2fb6e1d1",
+        "4f39e7679a582fbfbb0d146a886db805acb6694b",
+        "5017c6d0ff183970fb90188d9192d65cdc0a5613",
+        "512dc6d9b62baf3579474a269ac57d6d732cb843",
+        "529da1924aafa887c0ee7d2cc9b5263e3e119a3d",
+        "59c8c7d3e771c8d4e8cbcbc0a4a842ecfb111a1b",
+        "5b103e516b3abb7aa9e24aabfda14e0d41d40b0e",
+        "5bebd8cf1fbe74b4736d2e7dc1ef10b303e03663",
+        "5d705ca72adfd1c004cbbba7dafa2bd6fe52a497",
+        "5f2d88f54f26676de3f026e843f6f9ea5a3a42b4",
+        "61060961390398ebe443d15dfbe0254ab80777b9",
+        "6128671e13bb9149393bc2cb65bc99788f0801d1",
+        "6607b27d5f0f9b8e2a05db269beefda5ff717951",
+        "67472a00374f8610e1a0bb8d73dbe068b7679bd0",
+        "67749c3d937e4b2d9b52c9a1c83f1c9268c7fcfe",
+        "6f8c54f4a7611dea48eb6d3ebfde3e75c8d43df6",
+        "761a26e21a47b0e07fec1606abc7559632dd4cf4",
+        "78bc89c8f5940cea4631c404e5cb7759d83e523d",
+        "79937b11d5f5f720d1141bbf3b083be77c24b474",
+        "7d2b3958792c8bcdf682d1c5ffdd53853056dc4b",
+        "7ef097d8893dc398686aaa7f8bdd6e2430027578",
+        "821c51f266103d74551af5a315cddbc1726cece0",
+        "8303dbaea21ad07e1f7021cc92a789ee41f36792",
+        "844eac561e60f200ba8add4a1292c3ac46dddddc",
+        "84ab56e08312b80aa6036df0138d8a6a9ffe578c",
+        "89431ead007aa65c8486db467c1252bb7284d1ab",
+        "8ba9c856e62e484454d415882b48b3662f69c2f7",
+        "8d1d66b9bc724118d1c936b503d5876ff2cc966b",
+        "8e121726cf960a8732df1886a2d7b2db05c2445c",
+        "8f5004df6d5385ae32521d70c88609611543c4d6",
+        "8f77ca610b6d4d5527cf6b0fbf5085f7be7a076e",
+        "9142c93647d69be7390cda33713d6e985ef799ec",
+        "943c82d38f1b2895491d1121bf22bd080863c843",
+        "944428f4c44774b8b04111dd3ab5328a927363b3",
+        "9745098c576bf47879144a47f958db6edd387c85",
+        "978dcfc89ca9ed283d49ef79aa2dc9981eee23bb",
+        "990bcd276cb52323319514a1e7cc805928428155",
+        "99122381acc0ea66ada37cb484487ccb6061786d",
+        "9aaa88f0091e1234dbd42616d59415e5e75e182d",
+        "9e9d452e79aacf6e5943085961cdff57e75f6c76",
+        "a07d8d4bd439f5b9f4ff844087e051b60819e3cc",
+        "a56015d4ff63097072ceceb69dea5294844578e9",
+        "a908da22c7cd0ee5f598943e9eb3e8714342ed89",
+        "aa72d52e8e2966ccf9fed133103fc73ac44d60a8",
+        "abe71969be6d1c409b39752a9ad15215ff8ecebf",
+        "af0eb7450209637edd49dd960edab993a2024d14",
+        "b11db9b155913aaedabd60847b52ae3acebe641c",
+        "b13f3dd00878b8215d53defa25a52b9c76857703",
+        "b2404a3988f0f08bb4b0682ad393565a56540ae9",
+        "babecce1a75d3b27ff274031b1f4f1ecba9dff6c",
+        "bba9b090c0f5e9fb5b5cfc2bb84d04bc23cdc9a3",
+        "bc66f4179635adf1614a748c3eaf643d13a35ee8",
+        "bd47a504fe5229de2a645a090a2ba8b2f02904f0",
+        "c02af0da73548b8dd8f0e63b0bdf54b0fb0922cb",
+        "c087f361f49f8711ebd46621ac3c8a9c759ead01",
+        "c0b26c85613253b596243d84eb778a457b33cfe8",
+        "c0b8ebd1db72c0176b7e783a449811168df7fe6c",
+        "c4d5f2e607d7843e06c48ec9b5df1dd08b332b3c",
+        "c8fe1f28a3043d05abca03078b5d1ca27ba5b70e",
+        "ca07410b7f54d6c3c5478e2189a46c497448ec41",
+        "ca90fba453cf35efdfbd88899b9cc6f365389c5d",
+        "cabe592d0f006f132135abb63732fc8a39f9b929",
+        "d456905920a0e355023e4094da6c6fa4b0b62553",
+        "d5be59dd650bbff82deadd6d46bf96168b644cfb",
+        "da1be142e74ef4c8135ad999dc82d511cb8fcbac",
+        "da58c8aa838e0a54d1738ec900d4d46f63733e6e",
+        "da5905831f3b982bde1a4a4b4569a90fbb0cfa29",
+        "db079d6822db8de27891d6320f5b75f367102a09",
+        "db7e00ab4fb6b7cbcc8b6eaa8a851b1c47659142",
+        "dbfdc74a482741747f5276094c1b7e4902f0f154",
+        "dde707bd3362285d05a61f0c30aa6b34ab544f75",
+        "de2ddb7bbf61dd995cb1727b6faa5dd2750cc816",
+        "e3ab200e25d6197e5805f56282dcf20c16ae6975",
+        "e465b79b43fc926acdb55c8ff6ff686ac0bedcc5",
+        "e53e4dc4a625273e8327511bbe2d5feda6a707ff",
+        "e823a406c9b740c3a7b5a0a2b391e3beb726368a",
+        "e9792b891d1c5129b1830e31c20d6fe203abfd42",
+        "eb0730f0e54777b4675e019ffa6f022175cfb298",
+        "ece2ae76399d33781c85fa776752f792594ba563",
+        "eda00fd5c4506d57028c6c80857a2a2856b67087",
+        "ee801e0521c4a26d178082a1dfbd8dc0e9b2fdb0",
+        "ef3005dd850e004b33b3275c48eb2adcd777c4ae",
+        "ef8651e8a43c5e7f818f1d51c0b05c8c71a23ea5",
+        "f2a07b634ad6cafce9309c81b5d06c5006dc86eb",
+        "f2dcd5f56a6213bd029f86489990b095bfa378ae",
+        "f6fa6569034baa7f90a6c428843bf87a5a7c9ba2",
+        "fe64d166e41fbb4d0e0f6c8cd5f4501ede0aae3c"
+      ],
+      "paths": [
+        "src/lerobot/datasets/video_utils.py"
+      ]
+    },
+    "51d406f42bf1a5673c016f36de99f1be11125fd94c91dbbb70dbf3438bcf1731": {
+      "source": "    def finish_episode(self) -> dict[str, tuple[Path, dict | None]]:\n        \"\"\"Finish encoding the current episode.\n\n        Sends sentinel values, waits for encoder threads to complete,\n        and collects results.\n\n        Returns:\n            Dict mapping video_key to (mp4_path, stats_dict_or_None)\n        \"\"\"\n        if not self._episode_active:\n            raise RuntimeError(\"No active episode to finish.\")\n\n        results = {}\n\n        # Send sentinel to all queues\n        for video_key in self._frame_queues:\n            self._frame_queues[video_key].put(None)\n\n        # Wait for all threads and collect results\n        for video_key in self._threads:\n            self._threads[video_key].join(timeout=120)\n            if self._threads[video_key].is_alive():\n                logging.error(f\"Encoder thread for {video_key} did not finish in time\")\n                self._stop_events[video_key].set()\n                self._threads[video_key].join(timeout=5)\n                results[video_key] = (self._video_paths[video_key], None)\n                continue\n\n            try:\n                status, data = self._result_queues[video_key].get(timeout=5)\n                if status == \"error\":\n                    raise RuntimeError(f\"Encoder thread for {video_key} failed: {data}\")\n                results[video_key] = (self._video_paths[video_key], data)\n            except queue.Empty:\n                logging.error(f\"No result from encoder thread for {video_key}\")\n                results[video_key] = (self._video_paths[video_key], None)\n\n        self._cleanup()\n        self._episode_active = False\n        return results",
+      "blobs": [
+        "027090c206f6d058d220e492968d4dbd9949ff2b",
+        "506ee74cb9e5b0a2a2e2d75298ea27202e531df1",
+        "5f3057214304dc2643d4e3c3bd540ab54ce41bcd",
+        "6630e438fd8881359cec4b5ba7638734a0d6c9cf"
+      ],
+      "paths": [
+        "src/lerobot/datasets/video_utils.py"
+      ]
+    },
+    "fade1b3effcb5fb6e2b56eca548e3af25509819b83d181ef676facc03f63ab52": {
+      "source": "    def finish_episode(self) -> dict[str, tuple[Path, dict | None]]:\n        \"\"\"Finish encoding the current episode.\n\n        Sends sentinel values, waits for encoder threads to complete,\n        and collects results.\n\n        Returns:\n            Dict mapping video_key to (mp4_path, stats_dict_or_None)\n        \"\"\"\n        if not self._episode_active:\n            raise RuntimeError(\"No active episode to finish.\")\n\n        results: dict[str, tuple[Path, dict | None]] = {}\n\n        # Report dropped frames\n        for video_key, count in self._dropped_frames.items():\n            if count > 0:\n                logger.warning(f\"Episode finished with {count} dropped frame(s) for {video_key}.\")\n\n        # Send sentinel to all queues\n        for video_key in self._frame_queues:\n            self._frame_queues[video_key].put(None)\n\n        # Wait for all threads and collect results\n        for video_key in self._threads:\n            self._threads[video_key].join(timeout=120)\n            if self._threads[video_key].is_alive():\n                logger.error(f\"Encoder thread for {video_key} did not finish in time\")\n                self._stop_events[video_key].set()\n                self._threads[video_key].join(timeout=5)\n                results[video_key] = (self._video_paths[video_key], None)\n                continue\n\n            try:\n                status, data = self._result_queues[video_key].get(timeout=5)\n                if status == \"error\":\n                    raise RuntimeError(f\"Encoder thread for {video_key} failed: {data}\")\n                results[video_key] = (self._video_paths[video_key], data)\n            except queue.Empty:\n                logger.error(f\"No result from encoder thread for {video_key}\")\n                results[video_key] = (self._video_paths[video_key], None)\n\n        self._cleanup()\n        self._episode_active = False\n        return results",
+      "blobs": [
+        "168d63e2fd12719b45d5c960d7399bf11f637b7d",
+        "180e7dcb4a926f188f6e3fdee59fcacdf5a829ec",
+        "187f5c0c37efac4e06597262e0142ce17f78975e",
+        "2ebbd02dc1e8064a8acc34720d59a2a743547864",
+        "38ebf0b38fb2421fa00ab529406b956ead849033",
+        "6267c68d69cfbc3bbdcfb3584f68657c4f76b4f0",
+        "66be2ca34e5db365d805587764052555ed78f340",
+        "6a6f1d475fce01870a946d2dbdb902f35b2be778",
+        "7bf064ad9bf8b66465677977344d46db2ac554cc",
+        "7fa7839466149f0df5f7b0e396d97fe0bed5a71f",
+        "9ef380e356377e9673d18cdd2fb5143d6dfdf6df",
+        "a93b3ffaa260cb7ce5e5ad50d817b719202eaa4a",
+        "bd6b22e00d292dc36eb9a00f0defa7a08d609d32",
+        "be1fb5acc95b19899c7e902848058497e48bc4d3",
+        "cdc9b79857346277a3e0ceb93486bfd4993c2cf7",
+        "d4a4760e672f76111100ad1e68d7434063c023d6",
+        "d7f5aef6ac8829688b4c61a94863aa81ea7c05a3",
+        "e13b4c9f27e80cfcc534a25f30e7d952e60ddfdd",
+        "eb68f3194d633616024cf04c919c5fa2d6b2daf2",
+        "f1886b131368518911d35bff28f510655af28a48",
+        "fd2153853a53498bc73d9cd9593a3b3021740431"
+      ],
+      "paths": [
+        "src/lerobot/datasets/video_utils.py"
+      ]
+    },
+    "9739bb53618bc1a552c2dfe595a0e3dd8ebb6c3d4824e5df6ac5c6a00a686523": {
+      "source": "    def finish_episode(self) -> dict[str, tuple[Path, dict | None]]:\n        \"\"\"Finish encoding the current episode.\n\n        Sends sentinel values, waits for encoder threads to complete,\n        and collects results.\n\n        Returns:\n            Dict mapping video_key to (mp4_path, stats_dict_or_None)\n        \"\"\"\n        if not self._episode_active:\n            raise RuntimeError(\"No active episode to finish.\")\n\n        results = {}\n\n        # Report repeated frames\n        for video_key, count in self._repeated_frames.items():\n            if count > 0:\n                logger.warning(f\"Episode finished with {count} repeated frame(s) for {video_key}.\")\n\n        # Send sentinel to all queues: the total frame count lets the thread fill a trailing gap\n        for video_key in self._frame_queues:\n            self._frame_queues[video_key].put((self._fed_frames.get(video_key, 0), None))\n\n        # Wait for all threads and collect results\n        for video_key in self._threads:\n            self._threads[video_key].join(timeout=120)\n            if self._threads[video_key].is_alive():\n                logger.error(f\"Encoder thread for {video_key} did not finish in time\")\n                self._stop_events[video_key].set()\n                self._threads[video_key].join(timeout=5)\n                results[video_key] = (self._video_paths[video_key], None)\n                continue\n\n            try:\n                status, data = self._result_queues[video_key].get(timeout=5)\n                if status == \"error\":\n                    raise RuntimeError(f\"Encoder thread for {video_key} failed: {data}\")\n                results[video_key] = (self._video_paths[video_key], data)\n            except queue.Empty:\n                logger.error(f\"No result from encoder thread for {video_key}\")\n                results[video_key] = (self._video_paths[video_key], None)\n\n        self._cleanup()\n        self._episode_active = False\n        return results",
+      "blobs": [
+        "342b8692d98ea4bac7723f280b7f990c6b46d225",
+        "a8020818790ef7a28cfb5a702123aa5baa73fd8d",
+        "adc8324f25c648d201a9b00ea457eca594419c5b",
+        "e3f8446171cd3513836b60fe4410faa4280df8f3"
+      ],
+      "paths": [
+        "src/lerobot/datasets/video_utils.py"
+      ]
+    },
+    "0da44d80c7d217599bcab197fd5c22603e29f7916e5efb1e77e93a3890b82cc1": {
+      "source": "    def finish_episode(self) -> dict[str, Path]:\n        \"\"\"Flush all encoders, wait for completion, return {key: video_path}.\"\"\"\n        paths = {}\n        for key, enc in self._encoders.items():\n            paths[key] = enc.finish()\n        self._encoders.clear()\n        return paths",
+      "blobs": [
+        "515a83ba2c4a6233c676b597042a2c979e5d2211",
+        "6edaac54b324dd61b958e1b59f80f1d6331cfdf1",
+        "896e40bd52fb96fc8134705a9a51abfb339302a7",
+        "a11d1df8f059d9391376e06ca6450d45a12d84c1",
+        "ed50fb85ce6c57895246aead0414fba2d4715545"
+      ],
+      "paths": [
+        "src/lerobot/datasets/video_utils.py"
+      ]
+    },
+    "f2363bb7a17a2cf1fc1cf329c349572a6a0cfcb72bccb6bd0cdd876ac506e334": {
+      "source": "    def finish_episode(self) -> dict[str, tuple[Path, dict | None]]:\n        \"\"\"Finish encoding the current episode.\n\n        Sends sentinel values, waits for encoder threads to complete,\n        and collects results.\n\n        Returns:\n            Dict mapping video_key to (mp4_path, stats_dict_or_None)\n        \"\"\"\n        if not self._episode_active:\n            raise RuntimeError(\"No active episode to finish.\")\n\n        results = {}\n\n        # Report dropped frames\n        for video_key, count in self._dropped_frames.items():\n            if count > 0:\n                logging.warning(f\"Episode finished with {count} dropped frame(s) for {video_key}.\")\n\n        # Send sentinel to all queues\n        for video_key in self._frame_queues:\n            self._frame_queues[video_key].put(None)\n\n        # Wait for all threads and collect results\n        for video_key in self._threads:\n            self._threads[video_key].join(timeout=120)\n            if self._threads[video_key].is_alive():\n                logging.error(f\"Encoder thread for {video_key} did not finish in time\")\n                self._stop_events[video_key].set()\n                self._threads[video_key].join(timeout=5)\n                results[video_key] = (self._video_paths[video_key], None)\n                continue\n\n            try:\n                status, data = self._result_queues[video_key].get(timeout=5)\n                if status == \"error\":\n                    raise RuntimeError(f\"Encoder thread for {video_key} failed: {data}\")\n                results[video_key] = (self._video_paths[video_key], data)\n            except queue.Empty:\n                logging.error(f\"No result from encoder thread for {video_key}\")\n                results[video_key] = (self._video_paths[video_key], None)\n\n        self._cleanup()\n        self._episode_active = False\n        return results",
+      "blobs": [
+        "5464e59d452d015fcaa9671ee29efce6358eae8b",
+        "5dee417d9cbf3864e4fe42b6448785555e136baf",
+        "73383f583adf7016820d0aaefeb54fbc73fc0f25",
+        "8933afa5e41880c7128373cde7794773ab9a5852",
+        "8a09971ebb08841885a1dcbf07840816026fdaca",
+        "8c8494b87637db8b99bdc2c8d192c5c18f7dba1f",
+        "acc24a9e05d04ad561a536b645dcff5cfec8113b"
+      ],
+      "paths": [
+        "src/lerobot/datasets/video_utils.py"
+      ]
+    },
+    "4116fdb3ed65b011a6f587d3170d9bd2e2b8e620ba09e847d18bb0d2435c381a": {
+      "source": "    def finish_episode(self) -> dict[str, tuple[Path, dict | None]]:\n        \"\"\"Finish encoding the current episode.\n\n        Sends sentinel values, waits for encoder processes to complete,\n        and collects results.\n\n        Returns:\n            Dict mapping video_key to (mp4_path, stats_dict_or_None)\n        \"\"\"\n        if not self._episode_active:\n            raise RuntimeError(\"No active episode to finish.\")\n\n        results = {}\n\n        # Report dropped frames\n        for video_key, count in self._dropped_frames.items():\n            if count > 0:\n                logging.warning(f\"Episode finished with {count} dropped frame(s) for {video_key}.\")\n\n        # Send sentinel to all ring buffers\n        for video_key in self._ring_buffers:\n            self._ring_buffers[video_key].send_sentinel()\n\n        # Wait for all processes and collect results\n        for video_key in self._processes:\n            self._processes[video_key].join(timeout=120)\n            if self._processes[video_key].is_alive():\n                logging.error(f\"Encoder process for {video_key} did not finish in time\")\n                self._stop_events[video_key].set()\n                self._processes[video_key].terminate()\n                self._processes[video_key].join(timeout=5)\n                results[video_key] = (self._video_paths[video_key], None)\n                continue\n\n            try:\n                status, data = self._result_queues[video_key].get(timeout=5)\n                if status == \"error\":\n                    raise RuntimeError(f\"Encoder process for {video_key} failed: {data}\")\n                results[video_key] = (self._video_paths[video_key], data)\n            except queue.Empty:\n                logging.error(f\"No result from encoder process for {video_key}\")\n                results[video_key] = (self._video_paths[video_key], None)\n\n        self._cleanup()\n        self._episode_active = False\n        return results",
+      "blobs": [
+        "e40a9aa3b9a281b95a79ace122b7c8143d4bd3ce"
+      ],
+      "paths": [
+        "src/lerobot/datasets/video_utils.py"
+      ]
+    },
+    "c59248c56afe0a6d8107f6bdfe8b7b5c84591da09191f7b088acb631e1ec25fa": {
+      "source": "    def finish_episode(self) -> dict[str, tuple[Path, dict | None]]:\n        \"\"\"Finish encoding the current episode.\n\n        Sends sentinel values, waits for encoder processes to complete,\n        and collects results.\n\n        Returns:\n            Dict mapping video_key to (mp4_path, stats_dict_or_None)\n        \"\"\"\n        if not self._episode_active:\n            raise RuntimeError(\"No active episode to finish.\")\n\n        results = {}\n\n        # Send sentinel to all queues\n        for video_key in self._frame_queues:\n            self._frame_queues[video_key].put(None)\n\n        # Wait for all processes and collect results\n        for video_key in self._processes:\n            self._processes[video_key].join(timeout=120)\n            if self._processes[video_key].is_alive():\n                logging.error(f\"Encoder process for {video_key} did not finish in time, terminating\")\n                self._processes[video_key].terminate()\n                self._processes[video_key].join(timeout=5)\n                results[video_key] = (self._video_paths[video_key], None)\n                continue\n\n            try:\n                status, data = self._result_queues[video_key].get(timeout=5)\n                if status == \"error\":\n                    raise RuntimeError(f\"Encoder process for {video_key} failed: {data}\")\n                results[video_key] = (self._video_paths[video_key], data)\n            except queue.Empty:\n                logging.error(f\"No result from encoder process for {video_key}\")\n                results[video_key] = (self._video_paths[video_key], None)\n\n        self._cleanup_queues()\n        self._episode_active = False\n        return results",
+      "blobs": [
+        "fa724e2e252cf72bf0b87bc3696013f333458cde"
+      ],
+      "paths": [
+        "src/lerobot/datasets/video_utils.py"
+      ]
+    }
+  },
+  "failures": []
+}
