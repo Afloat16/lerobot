@@ -1,0 +1,18 @@
+{
+  "characters": 1069777,
+  "instructions": "Concatenate parts in order without inserted separators before JSON parsing",
+  "parts": [
+    {
+      "path": "history-part-1.json",
+      "characters": 400000
+    },
+    {
+      "path": "history-part-2.json",
+      "characters": 400000
+    },
+    {
+      "path": "history-part-3.json",
+      "characters": 269777
+    }
+  ]
+}

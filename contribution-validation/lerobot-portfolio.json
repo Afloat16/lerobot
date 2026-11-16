@@ -1,0 +1,19 @@
+{
+  "repository": "huggingface/lerobot",
+  "new_upstream_pr_count": 0,
+  "published": [],
+  "prepared": [
+    {
+      "title": "TDMPC action-chunk warm start",
+      "head": "69747d8f44403ac64c6f15bdb1429df8150de4f0",
+      "status": "code_and_ci_verified_community_review_unposted",
+      "ready_path": "contribution-validation/tdmpc-warm-start/ready.json"
+    },
+    {
+      "title": "Bound relative-action statistics batches",
+      "head": "7dd35f28dd6d6e0fd94da353597eecb51c6ca14d",
+      "status": "native_verified_fork_fast_tests_pending_community_review_unposted",
+      "ready_path": "contribution-validation/relative-stats-bounded-futures/ready.json"
+    }
+  ]
+}

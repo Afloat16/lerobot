@@ -1,0 +1,161 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 133667000658,
+      "run_id": 43972209997,
+      "workflow_name": "Fast Tests",
+      "head_branch": "fix/relative-stats-bounded-futures-20261116",
+      "run_url": "https://api.github.com/repos/Afloat16/lerobot/actions/runs/43972209997",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOU4hXMM8AAAAfHyyRUg",
+      "head_sha": "7dd35f28dd6d6e0fd94da353597eecb51c6ca14d",
+      "url": "https://api.github.com/repos/Afloat16/lerobot/actions/jobs/133667000658",
+      "html_url": "https://github.com/Afloat16/lerobot/actions/runs/43972209997/job/133667000658",
+      "status": "in_progress",
+      "conclusion": null,
+      "created_at": "2026-11-16T22:39:53Z",
+      "started_at": "2026-11-16T22:39:55Z",
+      "completed_at": null,
+      "name": "Fast Pytest Tests",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-16T22:39:56Z",
+          "completed_at": "2026-11-16T22:39:57Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-16T22:39:57Z",
+          "completed_at": "2026-11-16T22:40:07Z"
+        },
+        {
+          "name": "Setup /mnt storage",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-16T22:40:07Z",
+          "completed_at": "2026-11-16T22:40:07Z"
+        },
+        {
+          "name": "Install apt dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-16T22:40:07Z",
+          "completed_at": "2026-11-16T22:40:35Z"
+        },
+        {
+          "name": "Setup uv and Python",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-16T22:40:35Z",
+          "completed_at": "2026-11-16T22:40:37Z"
+        },
+        {
+          "name": "Tier 1 — Install: base",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-16T22:40:37Z",
+          "completed_at": "2026-11-16T22:41:02Z"
+        },
+        {
+          "name": "Login to Hugging Face",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7,
+          "started_at": "2026-11-16T22:41:02Z",
+          "completed_at": "2026-11-16T22:41:02Z"
+        },
+        {
+          "name": "Tier 1 — Test: base",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-16T22:41:02Z",
+          "completed_at": "2026-11-16T22:42:48Z"
+        },
+        {
+          "name": "Tier 2 — Install: dataset",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-16T22:42:48Z",
+          "completed_at": "2026-11-16T22:42:50Z"
+        },
+        {
+          "name": "Tier 2 — Test: dataset",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 10,
+          "started_at": "2026-11-16T22:42:50Z",
+          "completed_at": null
+        },
+        {
+          "name": "Tier 3 — Install: hardware",
+          "status": "pending",
+          "conclusion": null,
+          "number": 11,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Tier 3 — Test: hardware",
+          "status": "pending",
+          "conclusion": null,
+          "number": 12,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Tier 4 — Install: viz",
+          "status": "pending",
+          "conclusion": null,
+          "number": 13,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Tier 4 — Test: viz",
+          "status": "pending",
+          "conclusion": null,
+          "number": 14,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Post Setup uv and Python",
+          "status": "pending",
+          "conclusion": null,
+          "number": 27,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "pending",
+          "conclusion": null,
+          "number": 28,
+          "started_at": null,
+          "completed_at": null
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Afloat16/lerobot/check-runs/133667000658",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010645,
+      "runner_name": "GitHub Actions 1000010645",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

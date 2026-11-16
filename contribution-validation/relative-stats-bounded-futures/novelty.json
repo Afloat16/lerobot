@@ -1,0 +1,351 @@
+{
+  "coverage_complete_after_manual_review": true,
+  "automated_parse_complete": false,
+  "automated_report": "lerobot-relative-stats-history.json",
+  "merge_parent_diffs_included": true,
+  "full_source_paths_and_name_independent_function_moves_checked": true,
+  "ref_counts": {
+    "all_references": 4333,
+    "upstream_pr_heads": 3800,
+    "fork_branches": 265
+  },
+  "reachable_commits": 27873,
+  "source_blobs": 2482,
+  "paths": 44,
+  "stat_function_variants": [
+    {
+      "digest": "24d02c33dd6d0b0a19d31f1fed917601f09f172bd37f37a2007229a43a50ab37",
+      "paths": [
+        "src/lerobot/policies/gr00t_n1d6/utils.py"
+      ],
+      "blobs": [
+        "0090e0e7a30b2319450ed1cd51f40c332cf707fe",
+        "3d164b45f7c8aa784247ed7c967c861fbb6edd45",
+        "46ce6613323e8fe1760c85a01aaa548fc2a901cf",
+        "76e84381bbfedc66834957a69e97d6223fbdb114",
+        "805db0ae9e5eb9d67701fc3b57e87bb18f184754"
+      ],
+      "disposition": "Different GR00T per-timestep API; accumulates all relative chunks before stacking, with no bounded future processing"
+    },
+    {
+      "digest": "a51b976d557944c15bb21980964cf17d66baf3141615536e3b4d316ced44642c",
+      "paths": [
+        "src/lerobot/datasets/compute_stats.py"
+      ],
+      "blobs": [
+        "02ecd81a4c14e50486f5b52a65a8bda045ebac2a",
+        "09765c1303b63f4cabcc1e53527073977a084f05",
+        "133c59f0e1776c08edf415f9efaa5552608b8b15",
+        "2621aed02098977a419a022f29e440a38f2b901c",
+        "2f0d6d19480803ea461080c7ce83589e090bae36",
+        "312f50dbc0b4f176376985053116308229025e06",
+        "37b32fc3d4dee80d299d47ff2a7a537ef71d551e",
+        "391a9506f79a425e605b9991284e5bae9611066c",
+        "3f0a27ee6d6c66a5d1f1e694c26e86e120012457",
+        "438ac7fbac192e2a684087715318a53b1fc4d3d2",
+        "48b5b0a9231c32094980463ad52a785449548c48",
+        "4b55750a66441ac34bf8da6fcd92c57ca051fe9b",
+        "4d68f3feb870cb9a690618d94dd79cdcdf9fc78b",
+        "524a86b9310ce70f6819157f94e14081264d82c0",
+        "560375fc37879fa5321bd28aa66c54f4268a8260",
+        "6316dbee3d77a49cbc8b0479789af04185298cd1",
+        "7c6fdc0801ad3d044c0c875ca2c7f9803126a774",
+        "845e4b3c187e03e75aba1e364df659dd880ede1c",
+        "849df2a9e4320e14ee99a9c66140b4700de1e65a",
+        "88f7ea226193c2461f2d0239ce11209e18642c12",
+        "8cfa778d76ae3f341d78a5dc36ac2ecc0a3a04fd",
+        "a28837674f681824f28aa86e8f3fd4dcd13c36db",
+        "a98ca20a4e96ee7ce22ff9e8703aa0e429585110",
+        "aa3b716b733c2094f7fda65b3967e6cf89c94bca",
+        "b2438f1d70405c7393508d6ccffcd206f994be9d",
+        "b7d64f4faa06dfb53e19d0df30273b1346f85ce1",
+        "b8f173ff67f1cc9af614533b4b209596e6048be9",
+        "be5f6b222b6da3ef44d7e680da1b530abf728364",
+        "c598d9ccfbdb2c825ccde7ede2e2f0194f7321c4",
+        "c6d12d25774f69395f4f4da498252ead96988923",
+        "d28a7f8aa5fdd41ad5b64505d997e36207e15c9f",
+        "d357ca4b2f9e76bfefd336f63b313676b3d6b51b",
+        "d58509af4c5a06426bb8ee8ffcc05855ffbcea51",
+        "d86c684a7fdc10fa0d6778e6da355a6c3e078c8d",
+        "d890ee3bbe892e89fb8a4d92b445d760e406618e",
+        "de1bb7a35b2ee010806be9ec3d5840e09e46cc28",
+        "e7f0abce95a997b07a8a62bf9123287984d374ae",
+        "f2af179b65846ee487146db07a03259d4e696fc3",
+        "f489c84a763e889fd7e98c09f7b60b06b47ccfe0",
+        "fc9a4c562b8cb23798cc417683caf338fa57d6ee"
+      ],
+      "disposition": "Submits every expanded batch eagerly and retains the complete Future list after consumption"
+    },
+    {
+      "digest": "5246a8e70b5f11e3d303219b90df039ba7f27f5e521ae8b97f5178a9211610e9",
+      "paths": [
+        "src/lerobot/datasets/compute_stats.py"
+      ],
+      "blobs": [
+        "03eefe40e19d9899d584ea721fb819217d54c4c4",
+        "a0a32b6387f62a9156b546d2b2b5c3862542aab4",
+        "a90e3ed8a255dd3677f7490dd5518617754a7667",
+        "d0b6be0ce8726ebc14a6262b221b9ace9c8eef60"
+      ],
+      "disposition": "Submits every expanded batch eagerly and retains the complete Future list after consumption"
+    },
+    {
+      "digest": "3acd3cbb6e3cd223254eba48f2df1364492ab582bfb6a340b022ed1d1c984a02",
+      "paths": [
+        "src/lerobot/datasets/compute_stats.py"
+      ],
+      "blobs": [
+        "0839273968133acd9e73f38372da1ea1c084ee81"
+      ],
+      "disposition": "Submits every expanded batch eagerly and retains the complete Future list after consumption"
+    },
+    {
+      "digest": "71d8e10b296bf51e449fcac0c600da69a5c974b6108f6a6b7cf3581f9dfb55ff",
+      "paths": [
+        "src/lerobot/datasets/compute_stats.py"
+      ],
+      "blobs": [
+        "0b8107c23b8e4f346811147132d6d3780bc144cd",
+        "1a0b3b691361bf1376ede711d8356a1754ce6ba5",
+        "408f9afcc52a19b08a9c9de5427729d66bc273ad",
+        "41dc93ae0f14098fc9d8009e0c10c331b80a7ec3",
+        "4f9236940111c2f66bd33625354a040c251abf54",
+        "50e546af18fe53540ab383c65289108dc4f20731",
+        "63fd92b62b605b691a7406e7a6dc37a94fb7f327",
+        "9a6e0a971f82333247b4c9cc5d4c54fcdf5843ef",
+        "a0eba3511b46eddc0fdf85b93f94790e2c209680",
+        "acd10ffa784b945f64168e83386b17045ad99799",
+        "b5eccdeea2e694fd16e31770afe243ce48faf0c1",
+        "bee2ac93f8da9d13cee0f944a3eecc21a9a9089c",
+        "cbdc88affdd5ab35f5f8d14ef6e1852a0d9b031f",
+        "e950ee5880451052a9621fa3848fc653a930ed26",
+        "f4ba94b9ef818adf350c56377d9722729ac201fb"
+      ],
+      "disposition": "Submits every expanded batch eagerly and retains the complete Future list after consumption"
+    },
+    {
+      "digest": "b19131079f1fc1fa8c58ef60b1ffc55643b023da763b7378db4cb54477f8e46c",
+      "paths": [
+        "src/lerobot/datasets/compute_stats.py"
+      ],
+      "blobs": [
+        "14901cc4c05762c7187ad6536d75aaa1e7823a81",
+        "ef8de0b493ffa654424d1c4baf573922a2422a9f"
+      ],
+      "disposition": "Submits every expanded batch eagerly and retains the complete Future list after consumption"
+    },
+    {
+      "digest": "700eea60f94634b6e2bfb00145153d6687ad6df1c8989e61f4ff9d77f0c48450",
+      "paths": [
+        "src/lerobot/policies/gr00t_n1d6/utils.py"
+      ],
+      "blobs": [
+        "196e36bd7fb33d9a0dd9741cecab11c60754b5a7"
+      ],
+      "disposition": "Different GR00T per-timestep API; accumulates all relative chunks before stacking, with no bounded future processing"
+    },
+    {
+      "digest": "76dfa1f979450b3e73ab1a89e1bc081678db04f9a908ba7449866779f927d4d7",
+      "paths": [
+        "src/lerobot/policies/gr00t_n1d6/utils.py"
+      ],
+      "blobs": [
+        "1a6d2ca11a1ccf60ed2b3b08a70cd136953cb1b5"
+      ],
+      "disposition": "Different GR00T per-timestep API; accumulates all relative chunks before stacking, with no bounded future processing"
+    },
+    {
+      "digest": "459f18a16b5113333015762caaa06722d74db359109c4572a9b074d557efbf7f",
+      "paths": [
+        "src/lerobot/datasets/compute_stats.py"
+      ],
+      "blobs": [
+        "2c27c7a73260fec223274700e5fd6ad3721f870b"
+      ],
+      "disposition": "Submits every expanded batch eagerly and retains the complete Future list after consumption"
+    },
+    {
+      "digest": "d710cf86a3f4b3cdca9f479aaf39d18c380099ce3b7898bcfa240aa2c39a9bb2",
+      "paths": [
+        "src/lerobot/datasets/compute_stats.py"
+      ],
+      "blobs": [
+        "4cbd2e5e4f0c0c491032253cedba38ef5dd331cc"
+      ],
+      "disposition": "Submits every expanded batch eagerly and retains the complete Future list after consumption"
+    },
+    {
+      "digest": "ad0ac353a5d936a8ef64836d05271ec01a3f17235f5eaa5d4e57ad0a66b691cf",
+      "paths": [
+        "src/lerobot/datasets/compute_stats.py"
+      ],
+      "blobs": [
+        "773122fcea310d24cbdbb54264ebc21ff4b55a4c"
+      ],
+      "disposition": "Submits every expanded batch eagerly and retains the complete Future list after consumption"
+    },
+    {
+      "digest": "347123558cf97c7a5f3ea8f6076533992f3d41d9ebd175e6fb11e9b49e1b8824",
+      "paths": [
+        "src/lerobot/datasets/compute_stats.py"
+      ],
+      "blobs": [
+        "774ee925ec115257e2b441b519a4a9b563d784c6"
+      ],
+      "disposition": "Earlier sampling API; accumulates all sampled chunks before concatenation, with no parallel bounded processing"
+    },
+    {
+      "digest": "2e7a4551c39b823fdfbca172637b1de7d316d9558f3c854f00514c8b3dd13c15",
+      "paths": [
+        "src/lerobot/utils/relative_actions.py"
+      ],
+      "blobs": [
+        "888cb63a0197cffb2e9964c4c9ca7d769b9c727d",
+        "ee58741b96e9e4aaec4f512c14161fde9d10cc00"
+      ],
+      "disposition": "Different dataloader API; accumulates all tensors before concatenation, with no bounded future processing"
+    },
+    {
+      "digest": "dbeace9c10edba2e6bf8d93ed70babd2c92b97cf139a41aa26c59af8d5977ce4",
+      "paths": [
+        "src/lerobot/datasets/compute_stats.py"
+      ],
+      "blobs": [
+        "98a5a2d8ca2b739aa719f41adca9f3aef8bef6e1"
+      ],
+      "disposition": "Earlier sampling API; accumulates all sampled chunks before concatenation, with no parallel bounded processing"
+    },
+    {
+      "digest": "9417ca06b13ef7bb744ca303dda33112ba28b04892aaffcd847fcb5b72d47955",
+      "paths": [
+        "src/lerobot/datasets/compute_stats.py"
+      ],
+      "blobs": [
+        "9e3cb5996a8628afa0a71342a2485c9c05195072",
+        "c54d7549af0a81ddb532205351d1b2b3ee2ae651"
+      ],
+      "disposition": "Submits every expanded batch eagerly and retains the complete Future list after consumption"
+    },
+    {
+      "digest": "005298281aeac898efab6b8ea9522f07571566bf23674815b35b96e1b15bdd6c",
+      "paths": [
+        "src/lerobot/policies/gr00t_n1d6/utils.py"
+      ],
+      "blobs": [
+        "c7cd2016838a0e857f21303c574405a6b321d91d"
+      ],
+      "disposition": "Different GR00T per-timestep API; accumulates all relative chunks before stacking, with no bounded future processing"
+    },
+    {
+      "digest": "c2729e33e5671dbf2d73f2dfce9f8a65eb827dcee27a5bffef35a56b5c1b3010",
+      "paths": [
+        "src/lerobot/utils/relative_actions.py"
+      ],
+      "blobs": [
+        "c9176812ceac06b5b637b29d1bffd26baface0dc"
+      ],
+      "disposition": "Different dataloader API; accumulates all tensors before concatenation, with no bounded future processing"
+    },
+    {
+      "digest": "b68b94e4e9fe6ddf668269bed4c313f34bc864e8a03f328d56fb52cce751ea60",
+      "paths": [
+        "src/lerobot/datasets/compute_stats.py"
+      ],
+      "blobs": [
+        "d547bcbfb7f3d25e1eb3f425036e534d664faa00"
+      ],
+      "disposition": "Submits every expanded batch eagerly and retains the complete Future list after consumption"
+    },
+    {
+      "digest": "109ef9003c78b614ddaa2be807db8880ce6695a9dcd9b250ca0efcda2ec8eaf6",
+      "paths": [
+        "src/lerobot/datasets/compute_stats.py"
+      ],
+      "blobs": [
+        "e3cb323b2c4fadb73b366b4547d4853b13e0e56c"
+      ],
+      "disposition": "Submits every expanded batch eagerly and retains the complete Future list after consumption"
+    }
+  ],
+  "raw_parse_failure_dispositions": [
+    {
+      "blob": "8576068ad74c43a484b23c9c19a58c9adafc0ae4",
+      "paths": [
+        "lerobot/scripts/train.py"
+      ],
+      "error": "invalid decimal literal (<unknown>, line 33)",
+      "raw_file": "lerobot-parse-failure-8576068ad74c43a484b23c9c19a58c9adafc0ae4.py",
+      "target_identifier_counts": {
+        "compute_relative_action_stats": 0,
+        "_compute_relative_chunk_batch": 0,
+        "_get_valid_chunk_starts": 0,
+        "_prev_mean": 0
+      },
+      "disposition": "Unrelated training/factory historical file, containing no target definition, call, or warm-start state; raw content preserved and manually inspected"
+    },
+    {
+      "blob": "95a8ddde5677165c99324951338994e1a0cae5bb",
+      "paths": [
+        "src/lerobot/policies/factory.py"
+      ],
+      "error": "invalid decimal literal (<unknown>, line 39)",
+      "raw_file": "lerobot-parse-failure-95a8ddde5677165c99324951338994e1a0cae5bb.py",
+      "target_identifier_counts": {
+        "compute_relative_action_stats": 0,
+        "_compute_relative_chunk_batch": 0,
+        "_get_valid_chunk_starts": 0,
+        "_prev_mean": 0
+      },
+      "disposition": "Unrelated training/factory historical file, containing no target definition, call, or warm-start state; raw content preserved and manually inspected"
+    },
+    {
+      "blob": "b4e2523623df76d48f39e35928c9ce00f0a74c3b",
+      "paths": [
+        "src/lerobot/scripts/lerobot_train.py"
+      ],
+      "error": "'(' was never closed (<unknown>, line 395)",
+      "raw_file": "lerobot-parse-failure-b4e2523623df76d48f39e35928c9ce00f0a74c3b.py",
+      "target_identifier_counts": {
+        "compute_relative_action_stats": 0,
+        "_compute_relative_chunk_batch": 0,
+        "_get_valid_chunk_starts": 0,
+        "_prev_mean": 0
+      },
+      "disposition": "Unrelated training/factory historical file, containing no target definition, call, or warm-start state; raw content preserved and manually inspected"
+    },
+    {
+      "blob": "da1b1a3c13e87dccccd0322baf4e88cbec0e7dff",
+      "paths": [
+        "src/lerobot/policies/factory.py"
+      ],
+      "error": "invalid syntax (<unknown>, line 25)",
+      "raw_file": "lerobot-parse-failure-da1b1a3c13e87dccccd0322baf4e88cbec0e7dff.py",
+      "target_identifier_counts": {
+        "compute_relative_action_stats": 0,
+        "_compute_relative_chunk_batch": 0,
+        "_get_valid_chunk_starts": 0,
+        "_prev_mean": 0
+      },
+      "disposition": "Unrelated training/factory historical file, containing no target definition, call, or warm-start state; raw content preserved and manually inspected"
+    }
+  ],
+  "equivalent_prior_fix_found": false,
+  "tdmpc_followup": {
+    "new_warm_start_function_variants_since_saved_audit": 0,
+    "existing_prepared_candidate_retained": true
+  },
+  "existing_proposals_distinguished": [
+    {
+      "number": 3749,
+      "reason": "Samples frames in augment_dataset_quantile_stats; does not bound relative-action Future results and changes sample selection"
+    },
+    {
+      "number": 3801,
+      "reason": "Merges quantile histograms in another augmentation path; does not change relative-action worker scheduling"
+    },
+    {
+      "number": 4700,
+      "reason": "Discusses limiting full input columns by a frame cap; this change retains all input frames and bounds expanded intermediate results instead"
+    }
+  ]
+}

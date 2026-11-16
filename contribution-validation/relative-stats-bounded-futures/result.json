@@ -1,0 +1,194 @@
+{
+  "repository": "huggingface/lerobot",
+  "base": "7910c20a75834ad3fa6a9792df4d44a614d1bba6",
+  "status": "native_verified_fork_ci_pending",
+  "upstream_pr": null,
+  "new_upstream_pr_count": 0,
+  "regressions": {
+    "before": {
+      "failed": 2,
+      "passed": 5
+    },
+    "after_new_cases": {
+      "failed": 0,
+      "passed": 7
+    }
+  },
+  "related_local_run": {
+    "passed": 60,
+    "fixture_errors": 13,
+    "error": "Existing external-dataset fixtures require socksio for the configured SOCKS proxy; no proxy or test skip setting was changed",
+    "raw_log": "lerobot-relative-stats-after.log"
+  },
+  "memory": {
+    "before": {
+      "action_dim": 4,
+      "calls": 16,
+      "chunk_size": 32,
+      "final_peak_rss_kib": 940760,
+      "numpy": "2.2.6",
+      "peak_live_expanded_arrays": 16,
+      "peak_live_expanded_bytes": 409600000,
+      "seconds": 10.314595935000398,
+      "start_peak_rss_kib": 483416,
+      "starts": 800000,
+      "statistics": {
+        "count": [
+          25600000
+        ],
+        "max": [
+          100.0,
+          22.0,
+          36.0,
+          10.0
+        ],
+        "mean": [
+          47.0002892578125,
+          8.9999975390625,
+          17.0000244921875,
+          5.00000015625
+        ],
+        "min": [
+          -6.0,
+          -4.0,
+          -2.0,
+          0.0
+        ],
+        "q01": [
+          -3.0051260761835574,
+          -3.001209979068814,
+          -1.0039819711782485,
+          -1e-10
+        ],
+        "q10": [
+          6.997732496294703,
+          0.00036004898539146023,
+          2.00292009548553,
+          1.0002000006075042
+        ],
+        "q50": [
+          47.010608949382586,
+          9.002599983648478,
+          17.003800384454195,
+          5.001000000429708
+        ],
+        "q90": [
+          87.00227181151787,
+          17.999639934662767,
+          31.99707998250394,
+          8.999799999478434
+        ],
+        "q99": [
+          97.0051273152544,
+          21.001209988996525,
+          35.00398198856114,
+          9.999780000031246
+        ],
+        "std": [
+          29.222893728137493,
+          6.782320839989542,
+          10.708248965066028,
+          3.1622774378207206
+        ]
+      },
+      "workers": 2
+    },
+    "after": {
+      "action_dim": 4,
+      "calls": 16,
+      "chunk_size": 32,
+      "final_peak_rss_kib": 754052,
+      "numpy": "2.2.6",
+      "peak_live_expanded_arrays": 2,
+      "peak_live_expanded_bytes": 51200000,
+      "seconds": 4.124230918998364,
+      "start_peak_rss_kib": 502812,
+      "starts": 800000,
+      "statistics": {
+        "count": [
+          25600000
+        ],
+        "max": [
+          100.0,
+          22.0,
+          36.0,
+          10.0
+        ],
+        "mean": [
+          47.0002892578125,
+          8.9999975390625,
+          17.0000244921875,
+          5.00000015625
+        ],
+        "min": [
+          -6.0,
+          -4.0,
+          -2.0,
+          0.0
+        ],
+        "q01": [
+          -3.0051260761835574,
+          -3.001209979068814,
+          -1.0039819711782485,
+          -1e-10
+        ],
+        "q10": [
+          6.997732496294703,
+          0.00036004898539146023,
+          2.00292009548553,
+          1.0002000006075042
+        ],
+        "q50": [
+          47.010608949382586,
+          9.002599983648478,
+          17.003800384454195,
+          5.001000000429708
+        ],
+        "q90": [
+          87.00227181151787,
+          17.999639934662767,
+          31.99707998250394,
+          8.999799999478434
+        ],
+        "q99": [
+          97.0051273152544,
+          21.001209988996525,
+          35.00398198856114,
+          9.999780000031246
+        ],
+        "std": [
+          29.222893728137493,
+          6.782320839989542,
+          10.708248965066028,
+          3.1622774378207206
+        ]
+      },
+      "workers": 2
+    },
+    "all_statistics_equal": true
+  },
+  "source_diff": {
+    "insertions": 13,
+    "deletions": 5
+  },
+  "lint": "ruff check and format --check passed on both changed files",
+  "community_review": {
+    "status": "not_posted_integration_403",
+    "requirement_fulfilled": false
+  },
+  "novelty_report": "lerobot-relative-stats-novelty.json",
+  "head": "7dd35f28dd6d6e0fd94da353597eecb51c6ca14d",
+  "branch": "fix/relative-stats-bounded-futures-20261116",
+  "tree": "edc07d61bde97748172b967571039a2e9e732922",
+  "internal_pr": {
+    "number": 4,
+    "url": "https://github.com/Afloat16/lerobot/pull/4",
+    "state": "open",
+    "counts_as_upstream": false
+  },
+  "fork_ci": {
+    "fast_tests": 43972209997,
+    "quality": 43972209869,
+    "status": "in_progress_at_observation"
+  }
+}

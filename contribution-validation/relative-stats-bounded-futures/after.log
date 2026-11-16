@@ -1,0 +1,1389 @@
+
+Testing with DEVICE='cpu'
+....................................................EEEE.EEEE.EEEEE..... [ 98%]
+.                                                                        [100%]
+==================================== ERRORS ====================================
+_____________________ ERROR at setup of test_roundtrip_3d ______________________
+
+    @pytest.fixture(scope="module")
+    def dataset():
+>       return LeRobotDataset(REPO_ID, episodes=[0])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/policies/test_relative_actions.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/lerobot/datasets/lerobot_dataset.py:267: in __init__
+    self.meta = LeRobotDatasetMetadata(
+src/lerobot/datasets/dataset_metadata.py:147: in __init__
+    self.revision = get_safe_version(self.repo_id, self.revision)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:474: in get_safe_version
+    hub_versions = get_repo_versions(repo_id) if token is None else get_repo_versions(repo_id, token=token)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:437: in get_repo_versions
+    repo_refs = api.list_repo_refs(repo_id, repo_type="dataset")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/hf_api.py:4163: in list_repo_refs
+    response = get_session().get(
+               ^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:417: in get_session
+    _GLOBAL_CLIENT = _GLOBAL_CLIENT_FACTORY()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:345: in default_client_factory
+    return httpx2.Client(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:668: in __init__
+    else self._init_proxy_transport(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:716: in _init_proxy_transport
+    return HTTPTransport(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <httpx2.HTTPTransport object at 0x7f0f9613f620>, verify = True
+cert = None, trust_env = True, http1 = True, http2 = False
+limits = Limits(max_connections=100, max_keepalive_connections=20, keepalive_expiry=5.0)
+proxy = Proxy('socks5h://127.0.0.1:40507'), uds = None, local_address = None
+retries = 0, socket_options = None
+
+    def __init__(
+        self,
+        verify: ssl.SSLContext | str | bool = True,
+        cert: CertTypes | None = None,
+        trust_env: bool = True,
+        http1: bool = True,
+        http2: bool = False,
+        limits: Limits = DEFAULT_LIMITS,
+        proxy: ProxyTypes | None = None,
+        uds: str | None = None,
+        local_address: str | None = None,
+        retries: int = 0,
+        socket_options: Iterable[SOCKET_OPTION] | None = None,
+    ) -> None:
+        import httpcore2
+    
+        proxy = Proxy(url=proxy) if isinstance(proxy, (str, URL)) else proxy
+        ssl_context = create_ssl_context(verify=verify, cert=cert, trust_env=trust_env)
+    
+        if proxy is None:
+            self._pool = httpcore2.ConnectionPool(
+                ssl_context=ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                uds=uds,
+                local_address=local_address,
+                retries=retries,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("http", "https"):
+            self._pool = httpcore2.HTTPProxy(
+                proxy_url=httpcore2.URL(
+                    scheme=proxy.url.raw_scheme,
+                    host=proxy.url.raw_host,
+                    port=proxy.url.port,
+                    target=proxy.url.raw_path,
+                ),
+                proxy_auth=proxy.raw_auth,
+                proxy_headers=proxy.headers.raw,
+                ssl_context=ssl_context,
+                proxy_ssl_context=proxy.ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("socks5", "socks5h"):
+            try:
+                import socksio  # noqa
+            except ImportError:  # pragma: no cover
+>               raise ImportError(
+                    "Using SOCKS proxy, but the 'socksio' package is not installed. "
+                    "Make sure to install httpx using `pip install httpx[socks]`."
+                ) from None
+E               ImportError: Using SOCKS proxy, but the 'socksio' package is not installed. Make sure to install httpx using `pip install httpx[socks]`.
+
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_transports/default.py:184: ImportError
+---------------------------- Captured stderr setup -----------------------------
+WARNING:lerobot.utils.import_utils:'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+------------------------------ Captured log setup ------------------------------
+WARNING  lerobot.utils.import_utils:import_utils.py:108 'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+_____________________ ERROR at setup of test_roundtrip_2d ______________________
+
+    @pytest.fixture(scope="module")
+    def dataset():
+>       return LeRobotDataset(REPO_ID, episodes=[0])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/policies/test_relative_actions.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/lerobot/datasets/lerobot_dataset.py:267: in __init__
+    self.meta = LeRobotDatasetMetadata(
+src/lerobot/datasets/dataset_metadata.py:147: in __init__
+    self.revision = get_safe_version(self.repo_id, self.revision)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:474: in get_safe_version
+    hub_versions = get_repo_versions(repo_id) if token is None else get_repo_versions(repo_id, token=token)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:437: in get_repo_versions
+    repo_refs = api.list_repo_refs(repo_id, repo_type="dataset")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/hf_api.py:4163: in list_repo_refs
+    response = get_session().get(
+               ^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:417: in get_session
+    _GLOBAL_CLIENT = _GLOBAL_CLIENT_FACTORY()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:345: in default_client_factory
+    return httpx2.Client(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:668: in __init__
+    else self._init_proxy_transport(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:716: in _init_proxy_transport
+    return HTTPTransport(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <httpx2.HTTPTransport object at 0x7f0f9613f620>, verify = True
+cert = None, trust_env = True, http1 = True, http2 = False
+limits = Limits(max_connections=100, max_keepalive_connections=20, keepalive_expiry=5.0)
+proxy = Proxy('socks5h://127.0.0.1:40507'), uds = None, local_address = None
+retries = 0, socket_options = None
+
+    def __init__(
+        self,
+        verify: ssl.SSLContext | str | bool = True,
+        cert: CertTypes | None = None,
+        trust_env: bool = True,
+        http1: bool = True,
+        http2: bool = False,
+        limits: Limits = DEFAULT_LIMITS,
+        proxy: ProxyTypes | None = None,
+        uds: str | None = None,
+        local_address: str | None = None,
+        retries: int = 0,
+        socket_options: Iterable[SOCKET_OPTION] | None = None,
+    ) -> None:
+        import httpcore2
+    
+        proxy = Proxy(url=proxy) if isinstance(proxy, (str, URL)) else proxy
+        ssl_context = create_ssl_context(verify=verify, cert=cert, trust_env=trust_env)
+    
+        if proxy is None:
+            self._pool = httpcore2.ConnectionPool(
+                ssl_context=ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                uds=uds,
+                local_address=local_address,
+                retries=retries,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("http", "https"):
+            self._pool = httpcore2.HTTPProxy(
+                proxy_url=httpcore2.URL(
+                    scheme=proxy.url.raw_scheme,
+                    host=proxy.url.raw_host,
+                    port=proxy.url.port,
+                    target=proxy.url.raw_path,
+                ),
+                proxy_auth=proxy.raw_auth,
+                proxy_headers=proxy.headers.raw,
+                ssl_context=ssl_context,
+                proxy_ssl_context=proxy.ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("socks5", "socks5h"):
+            try:
+                import socksio  # noqa
+            except ImportError:  # pragma: no cover
+>               raise ImportError(
+                    "Using SOCKS proxy, but the 'socksio' package is not installed. "
+                    "Make sure to install httpx using `pip install httpx[socks]`."
+                ) from None
+E               ImportError: Using SOCKS proxy, but the 'socksio' package is not installed. Make sure to install httpx using `pip install httpx[socks]`.
+
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_transports/default.py:184: ImportError
+______ ERROR at setup of test_stacked_state_anchors_on_the_current_frame _______
+
+    @pytest.fixture(scope="module")
+    def dataset():
+>       return LeRobotDataset(REPO_ID, episodes=[0])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/policies/test_relative_actions.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/lerobot/datasets/lerobot_dataset.py:267: in __init__
+    self.meta = LeRobotDatasetMetadata(
+src/lerobot/datasets/dataset_metadata.py:147: in __init__
+    self.revision = get_safe_version(self.repo_id, self.revision)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:474: in get_safe_version
+    hub_versions = get_repo_versions(repo_id) if token is None else get_repo_versions(repo_id, token=token)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:437: in get_repo_versions
+    repo_refs = api.list_repo_refs(repo_id, repo_type="dataset")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/hf_api.py:4163: in list_repo_refs
+    response = get_session().get(
+               ^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:417: in get_session
+    _GLOBAL_CLIENT = _GLOBAL_CLIENT_FACTORY()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:345: in default_client_factory
+    return httpx2.Client(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:668: in __init__
+    else self._init_proxy_transport(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:716: in _init_proxy_transport
+    return HTTPTransport(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <httpx2.HTTPTransport object at 0x7f0f9613f620>, verify = True
+cert = None, trust_env = True, http1 = True, http2 = False
+limits = Limits(max_connections=100, max_keepalive_connections=20, keepalive_expiry=5.0)
+proxy = Proxy('socks5h://127.0.0.1:40507'), uds = None, local_address = None
+retries = 0, socket_options = None
+
+    def __init__(
+        self,
+        verify: ssl.SSLContext | str | bool = True,
+        cert: CertTypes | None = None,
+        trust_env: bool = True,
+        http1: bool = True,
+        http2: bool = False,
+        limits: Limits = DEFAULT_LIMITS,
+        proxy: ProxyTypes | None = None,
+        uds: str | None = None,
+        local_address: str | None = None,
+        retries: int = 0,
+        socket_options: Iterable[SOCKET_OPTION] | None = None,
+    ) -> None:
+        import httpcore2
+    
+        proxy = Proxy(url=proxy) if isinstance(proxy, (str, URL)) else proxy
+        ssl_context = create_ssl_context(verify=verify, cert=cert, trust_env=trust_env)
+    
+        if proxy is None:
+            self._pool = httpcore2.ConnectionPool(
+                ssl_context=ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                uds=uds,
+                local_address=local_address,
+                retries=retries,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("http", "https"):
+            self._pool = httpcore2.HTTPProxy(
+                proxy_url=httpcore2.URL(
+                    scheme=proxy.url.raw_scheme,
+                    host=proxy.url.raw_host,
+                    port=proxy.url.port,
+                    target=proxy.url.raw_path,
+                ),
+                proxy_auth=proxy.raw_auth,
+                proxy_headers=proxy.headers.raw,
+                ssl_context=ssl_context,
+                proxy_ssl_context=proxy.ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("socks5", "socks5h"):
+            try:
+                import socksio  # noqa
+            except ImportError:  # pragma: no cover
+>               raise ImportError(
+                    "Using SOCKS proxy, but the 'socksio' package is not installed. "
+                    "Make sure to install httpx using `pip install httpx[socks]`."
+                ) from None
+E               ImportError: Using SOCKS proxy, but the 'socksio' package is not installed. Make sure to install httpx using `pip install httpx[socks]`.
+
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_transports/default.py:184: ImportError
+______________________ ERROR at setup of test_no_mutation ______________________
+
+    @pytest.fixture(scope="module")
+    def dataset():
+>       return LeRobotDataset(REPO_ID, episodes=[0])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/policies/test_relative_actions.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/lerobot/datasets/lerobot_dataset.py:267: in __init__
+    self.meta = LeRobotDatasetMetadata(
+src/lerobot/datasets/dataset_metadata.py:147: in __init__
+    self.revision = get_safe_version(self.repo_id, self.revision)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:474: in get_safe_version
+    hub_versions = get_repo_versions(repo_id) if token is None else get_repo_versions(repo_id, token=token)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:437: in get_repo_versions
+    repo_refs = api.list_repo_refs(repo_id, repo_type="dataset")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/hf_api.py:4163: in list_repo_refs
+    response = get_session().get(
+               ^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:417: in get_session
+    _GLOBAL_CLIENT = _GLOBAL_CLIENT_FACTORY()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:345: in default_client_factory
+    return httpx2.Client(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:668: in __init__
+    else self._init_proxy_transport(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:716: in _init_proxy_transport
+    return HTTPTransport(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <httpx2.HTTPTransport object at 0x7f0f9613f620>, verify = True
+cert = None, trust_env = True, http1 = True, http2 = False
+limits = Limits(max_connections=100, max_keepalive_connections=20, keepalive_expiry=5.0)
+proxy = Proxy('socks5h://127.0.0.1:40507'), uds = None, local_address = None
+retries = 0, socket_options = None
+
+    def __init__(
+        self,
+        verify: ssl.SSLContext | str | bool = True,
+        cert: CertTypes | None = None,
+        trust_env: bool = True,
+        http1: bool = True,
+        http2: bool = False,
+        limits: Limits = DEFAULT_LIMITS,
+        proxy: ProxyTypes | None = None,
+        uds: str | None = None,
+        local_address: str | None = None,
+        retries: int = 0,
+        socket_options: Iterable[SOCKET_OPTION] | None = None,
+    ) -> None:
+        import httpcore2
+    
+        proxy = Proxy(url=proxy) if isinstance(proxy, (str, URL)) else proxy
+        ssl_context = create_ssl_context(verify=verify, cert=cert, trust_env=trust_env)
+    
+        if proxy is None:
+            self._pool = httpcore2.ConnectionPool(
+                ssl_context=ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                uds=uds,
+                local_address=local_address,
+                retries=retries,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("http", "https"):
+            self._pool = httpcore2.HTTPProxy(
+                proxy_url=httpcore2.URL(
+                    scheme=proxy.url.raw_scheme,
+                    host=proxy.url.raw_host,
+                    port=proxy.url.port,
+                    target=proxy.url.raw_path,
+                ),
+                proxy_auth=proxy.raw_auth,
+                proxy_headers=proxy.headers.raw,
+                ssl_context=ssl_context,
+                proxy_ssl_context=proxy.ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("socks5", "socks5h"):
+            try:
+                import socksio  # noqa
+            except ImportError:  # pragma: no cover
+>               raise ImportError(
+                    "Using SOCKS proxy, but the 'socksio' package is not installed. "
+                    "Make sure to install httpx using `pip install httpx[socks]`."
+                ) from None
+E               ImportError: Using SOCKS proxy, but the 'socksio' package is not installed. Make sure to install httpx using `pip install httpx[socks]`.
+
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_transports/default.py:184: ImportError
+_____ ERROR at setup of test_chunk_stats_have_larger_std_than_frame_stats ______
+
+    @pytest.fixture(scope="module")
+    def dataset():
+>       return LeRobotDataset(REPO_ID, episodes=[0])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/policies/test_relative_actions.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/lerobot/datasets/lerobot_dataset.py:267: in __init__
+    self.meta = LeRobotDatasetMetadata(
+src/lerobot/datasets/dataset_metadata.py:147: in __init__
+    self.revision = get_safe_version(self.repo_id, self.revision)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:474: in get_safe_version
+    hub_versions = get_repo_versions(repo_id) if token is None else get_repo_versions(repo_id, token=token)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:437: in get_repo_versions
+    repo_refs = api.list_repo_refs(repo_id, repo_type="dataset")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/hf_api.py:4163: in list_repo_refs
+    response = get_session().get(
+               ^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:417: in get_session
+    _GLOBAL_CLIENT = _GLOBAL_CLIENT_FACTORY()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:345: in default_client_factory
+    return httpx2.Client(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:668: in __init__
+    else self._init_proxy_transport(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:716: in _init_proxy_transport
+    return HTTPTransport(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <httpx2.HTTPTransport object at 0x7f0f9613f620>, verify = True
+cert = None, trust_env = True, http1 = True, http2 = False
+limits = Limits(max_connections=100, max_keepalive_connections=20, keepalive_expiry=5.0)
+proxy = Proxy('socks5h://127.0.0.1:40507'), uds = None, local_address = None
+retries = 0, socket_options = None
+
+    def __init__(
+        self,
+        verify: ssl.SSLContext | str | bool = True,
+        cert: CertTypes | None = None,
+        trust_env: bool = True,
+        http1: bool = True,
+        http2: bool = False,
+        limits: Limits = DEFAULT_LIMITS,
+        proxy: ProxyTypes | None = None,
+        uds: str | None = None,
+        local_address: str | None = None,
+        retries: int = 0,
+        socket_options: Iterable[SOCKET_OPTION] | None = None,
+    ) -> None:
+        import httpcore2
+    
+        proxy = Proxy(url=proxy) if isinstance(proxy, (str, URL)) else proxy
+        ssl_context = create_ssl_context(verify=verify, cert=cert, trust_env=trust_env)
+    
+        if proxy is None:
+            self._pool = httpcore2.ConnectionPool(
+                ssl_context=ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                uds=uds,
+                local_address=local_address,
+                retries=retries,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("http", "https"):
+            self._pool = httpcore2.HTTPProxy(
+                proxy_url=httpcore2.URL(
+                    scheme=proxy.url.raw_scheme,
+                    host=proxy.url.raw_host,
+                    port=proxy.url.port,
+                    target=proxy.url.raw_path,
+                ),
+                proxy_auth=proxy.raw_auth,
+                proxy_headers=proxy.headers.raw,
+                ssl_context=ssl_context,
+                proxy_ssl_context=proxy.ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("socks5", "socks5h"):
+            try:
+                import socksio  # noqa
+            except ImportError:  # pragma: no cover
+>               raise ImportError(
+                    "Using SOCKS proxy, but the 'socksio' package is not installed. "
+                    "Make sure to install httpx using `pip install httpx[socks]`."
+                ) from None
+E               ImportError: Using SOCKS proxy, but the 'socksio' package is not installed. Make sure to install httpx using `pip install httpx[socks]`.
+
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_transports/default.py:184: ImportError
+________________ ERROR at setup of test_full_pipeline_roundtrip ________________
+
+    @pytest.fixture(scope="module")
+    def dataset():
+>       return LeRobotDataset(REPO_ID, episodes=[0])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/policies/test_relative_actions.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/lerobot/datasets/lerobot_dataset.py:267: in __init__
+    self.meta = LeRobotDatasetMetadata(
+src/lerobot/datasets/dataset_metadata.py:147: in __init__
+    self.revision = get_safe_version(self.repo_id, self.revision)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:474: in get_safe_version
+    hub_versions = get_repo_versions(repo_id) if token is None else get_repo_versions(repo_id, token=token)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:437: in get_repo_versions
+    repo_refs = api.list_repo_refs(repo_id, repo_type="dataset")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/hf_api.py:4163: in list_repo_refs
+    response = get_session().get(
+               ^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:417: in get_session
+    _GLOBAL_CLIENT = _GLOBAL_CLIENT_FACTORY()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:345: in default_client_factory
+    return httpx2.Client(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:668: in __init__
+    else self._init_proxy_transport(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:716: in _init_proxy_transport
+    return HTTPTransport(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <httpx2.HTTPTransport object at 0x7f0f9613f620>, verify = True
+cert = None, trust_env = True, http1 = True, http2 = False
+limits = Limits(max_connections=100, max_keepalive_connections=20, keepalive_expiry=5.0)
+proxy = Proxy('socks5h://127.0.0.1:40507'), uds = None, local_address = None
+retries = 0, socket_options = None
+
+    def __init__(
+        self,
+        verify: ssl.SSLContext | str | bool = True,
+        cert: CertTypes | None = None,
+        trust_env: bool = True,
+        http1: bool = True,
+        http2: bool = False,
+        limits: Limits = DEFAULT_LIMITS,
+        proxy: ProxyTypes | None = None,
+        uds: str | None = None,
+        local_address: str | None = None,
+        retries: int = 0,
+        socket_options: Iterable[SOCKET_OPTION] | None = None,
+    ) -> None:
+        import httpcore2
+    
+        proxy = Proxy(url=proxy) if isinstance(proxy, (str, URL)) else proxy
+        ssl_context = create_ssl_context(verify=verify, cert=cert, trust_env=trust_env)
+    
+        if proxy is None:
+            self._pool = httpcore2.ConnectionPool(
+                ssl_context=ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                uds=uds,
+                local_address=local_address,
+                retries=retries,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("http", "https"):
+            self._pool = httpcore2.HTTPProxy(
+                proxy_url=httpcore2.URL(
+                    scheme=proxy.url.raw_scheme,
+                    host=proxy.url.raw_host,
+                    port=proxy.url.port,
+                    target=proxy.url.raw_path,
+                ),
+                proxy_auth=proxy.raw_auth,
+                proxy_headers=proxy.headers.raw,
+                ssl_context=ssl_context,
+                proxy_ssl_context=proxy.ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("socks5", "socks5h"):
+            try:
+                import socksio  # noqa
+            except ImportError:  # pragma: no cover
+>               raise ImportError(
+                    "Using SOCKS proxy, but the 'socksio' package is not installed. "
+                    "Make sure to install httpx using `pip install httpx[socks]`."
+                ) from None
+E               ImportError: Using SOCKS proxy, but the 'socksio' package is not installed. Make sure to install httpx using `pip install httpx[socks]`.
+
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_transports/default.py:184: ImportError
+_______ ERROR at setup of test_normalized_relative_values_are_reasonable _______
+
+    @pytest.fixture(scope="module")
+    def dataset():
+>       return LeRobotDataset(REPO_ID, episodes=[0])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/policies/test_relative_actions.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/lerobot/datasets/lerobot_dataset.py:267: in __init__
+    self.meta = LeRobotDatasetMetadata(
+src/lerobot/datasets/dataset_metadata.py:147: in __init__
+    self.revision = get_safe_version(self.repo_id, self.revision)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:474: in get_safe_version
+    hub_versions = get_repo_versions(repo_id) if token is None else get_repo_versions(repo_id, token=token)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:437: in get_repo_versions
+    repo_refs = api.list_repo_refs(repo_id, repo_type="dataset")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/hf_api.py:4163: in list_repo_refs
+    response = get_session().get(
+               ^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:417: in get_session
+    _GLOBAL_CLIENT = _GLOBAL_CLIENT_FACTORY()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:345: in default_client_factory
+    return httpx2.Client(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:668: in __init__
+    else self._init_proxy_transport(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:716: in _init_proxy_transport
+    return HTTPTransport(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <httpx2.HTTPTransport object at 0x7f0f9613f620>, verify = True
+cert = None, trust_env = True, http1 = True, http2 = False
+limits = Limits(max_connections=100, max_keepalive_connections=20, keepalive_expiry=5.0)
+proxy = Proxy('socks5h://127.0.0.1:40507'), uds = None, local_address = None
+retries = 0, socket_options = None
+
+    def __init__(
+        self,
+        verify: ssl.SSLContext | str | bool = True,
+        cert: CertTypes | None = None,
+        trust_env: bool = True,
+        http1: bool = True,
+        http2: bool = False,
+        limits: Limits = DEFAULT_LIMITS,
+        proxy: ProxyTypes | None = None,
+        uds: str | None = None,
+        local_address: str | None = None,
+        retries: int = 0,
+        socket_options: Iterable[SOCKET_OPTION] | None = None,
+    ) -> None:
+        import httpcore2
+    
+        proxy = Proxy(url=proxy) if isinstance(proxy, (str, URL)) else proxy
+        ssl_context = create_ssl_context(verify=verify, cert=cert, trust_env=trust_env)
+    
+        if proxy is None:
+            self._pool = httpcore2.ConnectionPool(
+                ssl_context=ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                uds=uds,
+                local_address=local_address,
+                retries=retries,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("http", "https"):
+            self._pool = httpcore2.HTTPProxy(
+                proxy_url=httpcore2.URL(
+                    scheme=proxy.url.raw_scheme,
+                    host=proxy.url.raw_host,
+                    port=proxy.url.port,
+                    target=proxy.url.raw_path,
+                ),
+                proxy_auth=proxy.raw_auth,
+                proxy_headers=proxy.headers.raw,
+                ssl_context=ssl_context,
+                proxy_ssl_context=proxy.ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("socks5", "socks5h"):
+            try:
+                import socksio  # noqa
+            except ImportError:  # pragma: no cover
+>               raise ImportError(
+                    "Using SOCKS proxy, but the 'socksio' package is not installed. "
+                    "Make sure to install httpx using `pip install httpx[socks]`."
+                ) from None
+E               ImportError: Using SOCKS proxy, but the 'socksio' package is not installed. Make sure to install httpx using `pip install httpx[socks]`.
+
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_transports/default.py:184: ImportError
+_______________ ERROR at setup of test_processor_step_roundtrip ________________
+
+    @pytest.fixture(scope="module")
+    def dataset():
+>       return LeRobotDataset(REPO_ID, episodes=[0])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/policies/test_relative_actions.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/lerobot/datasets/lerobot_dataset.py:267: in __init__
+    self.meta = LeRobotDatasetMetadata(
+src/lerobot/datasets/dataset_metadata.py:147: in __init__
+    self.revision = get_safe_version(self.repo_id, self.revision)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:474: in get_safe_version
+    hub_versions = get_repo_versions(repo_id) if token is None else get_repo_versions(repo_id, token=token)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:437: in get_repo_versions
+    repo_refs = api.list_repo_refs(repo_id, repo_type="dataset")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/hf_api.py:4163: in list_repo_refs
+    response = get_session().get(
+               ^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:417: in get_session
+    _GLOBAL_CLIENT = _GLOBAL_CLIENT_FACTORY()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:345: in default_client_factory
+    return httpx2.Client(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:668: in __init__
+    else self._init_proxy_transport(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:716: in _init_proxy_transport
+    return HTTPTransport(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <httpx2.HTTPTransport object at 0x7f0f9613f620>, verify = True
+cert = None, trust_env = True, http1 = True, http2 = False
+limits = Limits(max_connections=100, max_keepalive_connections=20, keepalive_expiry=5.0)
+proxy = Proxy('socks5h://127.0.0.1:40507'), uds = None, local_address = None
+retries = 0, socket_options = None
+
+    def __init__(
+        self,
+        verify: ssl.SSLContext | str | bool = True,
+        cert: CertTypes | None = None,
+        trust_env: bool = True,
+        http1: bool = True,
+        http2: bool = False,
+        limits: Limits = DEFAULT_LIMITS,
+        proxy: ProxyTypes | None = None,
+        uds: str | None = None,
+        local_address: str | None = None,
+        retries: int = 0,
+        socket_options: Iterable[SOCKET_OPTION] | None = None,
+    ) -> None:
+        import httpcore2
+    
+        proxy = Proxy(url=proxy) if isinstance(proxy, (str, URL)) else proxy
+        ssl_context = create_ssl_context(verify=verify, cert=cert, trust_env=trust_env)
+    
+        if proxy is None:
+            self._pool = httpcore2.ConnectionPool(
+                ssl_context=ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                uds=uds,
+                local_address=local_address,
+                retries=retries,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("http", "https"):
+            self._pool = httpcore2.HTTPProxy(
+                proxy_url=httpcore2.URL(
+                    scheme=proxy.url.raw_scheme,
+                    host=proxy.url.raw_host,
+                    port=proxy.url.port,
+                    target=proxy.url.raw_path,
+                ),
+                proxy_auth=proxy.raw_auth,
+                proxy_headers=proxy.headers.raw,
+                ssl_context=ssl_context,
+                proxy_ssl_context=proxy.ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("socks5", "socks5h"):
+            try:
+                import socksio  # noqa
+            except ImportError:  # pragma: no cover
+>               raise ImportError(
+                    "Using SOCKS proxy, but the 'socksio' package is not installed. "
+                    "Make sure to install httpx using `pip install httpx[socks]`."
+                ) from None
+E               ImportError: Using SOCKS proxy, but the 'socksio' package is not installed. Make sure to install httpx using `pip install httpx[socks]`.
+
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_transports/default.py:184: ImportError
+____________ ERROR at setup of test_processor_step_disabled_is_noop ____________
+
+    @pytest.fixture(scope="module")
+    def dataset():
+>       return LeRobotDataset(REPO_ID, episodes=[0])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/policies/test_relative_actions.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/lerobot/datasets/lerobot_dataset.py:267: in __init__
+    self.meta = LeRobotDatasetMetadata(
+src/lerobot/datasets/dataset_metadata.py:147: in __init__
+    self.revision = get_safe_version(self.repo_id, self.revision)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:474: in get_safe_version
+    hub_versions = get_repo_versions(repo_id) if token is None else get_repo_versions(repo_id, token=token)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:437: in get_repo_versions
+    repo_refs = api.list_repo_refs(repo_id, repo_type="dataset")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/hf_api.py:4163: in list_repo_refs
+    response = get_session().get(
+               ^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:417: in get_session
+    _GLOBAL_CLIENT = _GLOBAL_CLIENT_FACTORY()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:345: in default_client_factory
+    return httpx2.Client(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:668: in __init__
+    else self._init_proxy_transport(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:716: in _init_proxy_transport
+    return HTTPTransport(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <httpx2.HTTPTransport object at 0x7f0f9613f620>, verify = True
+cert = None, trust_env = True, http1 = True, http2 = False
+limits = Limits(max_connections=100, max_keepalive_connections=20, keepalive_expiry=5.0)
+proxy = Proxy('socks5h://127.0.0.1:40507'), uds = None, local_address = None
+retries = 0, socket_options = None
+
+    def __init__(
+        self,
+        verify: ssl.SSLContext | str | bool = True,
+        cert: CertTypes | None = None,
+        trust_env: bool = True,
+        http1: bool = True,
+        http2: bool = False,
+        limits: Limits = DEFAULT_LIMITS,
+        proxy: ProxyTypes | None = None,
+        uds: str | None = None,
+        local_address: str | None = None,
+        retries: int = 0,
+        socket_options: Iterable[SOCKET_OPTION] | None = None,
+    ) -> None:
+        import httpcore2
+    
+        proxy = Proxy(url=proxy) if isinstance(proxy, (str, URL)) else proxy
+        ssl_context = create_ssl_context(verify=verify, cert=cert, trust_env=trust_env)
+    
+        if proxy is None:
+            self._pool = httpcore2.ConnectionPool(
+                ssl_context=ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                uds=uds,
+                local_address=local_address,
+                retries=retries,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("http", "https"):
+            self._pool = httpcore2.HTTPProxy(
+                proxy_url=httpcore2.URL(
+                    scheme=proxy.url.raw_scheme,
+                    host=proxy.url.raw_host,
+                    port=proxy.url.port,
+                    target=proxy.url.raw_path,
+                ),
+                proxy_auth=proxy.raw_auth,
+                proxy_headers=proxy.headers.raw,
+                ssl_context=ssl_context,
+                proxy_ssl_context=proxy.ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("socks5", "socks5h"):
+            try:
+                import socksio  # noqa
+            except ImportError:  # pragma: no cover
+>               raise ImportError(
+                    "Using SOCKS proxy, but the 'socksio' package is not installed. "
+                    "Make sure to install httpx using `pip install httpx[socks]`."
+                ) from None
+E               ImportError: Using SOCKS proxy, but the 'socksio' package is not installed. Make sure to install httpx using `pip install httpx[socks]`.
+
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_transports/default.py:184: ImportError
+______________ ERROR at setup of test_relative_with_action_chunks ______________
+
+    @pytest.fixture(scope="module")
+    def dataset():
+>       return LeRobotDataset(REPO_ID, episodes=[0])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/policies/test_relative_actions.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/lerobot/datasets/lerobot_dataset.py:267: in __init__
+    self.meta = LeRobotDatasetMetadata(
+src/lerobot/datasets/dataset_metadata.py:147: in __init__
+    self.revision = get_safe_version(self.repo_id, self.revision)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:474: in get_safe_version
+    hub_versions = get_repo_versions(repo_id) if token is None else get_repo_versions(repo_id, token=token)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:437: in get_repo_versions
+    repo_refs = api.list_repo_refs(repo_id, repo_type="dataset")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/hf_api.py:4163: in list_repo_refs
+    response = get_session().get(
+               ^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:417: in get_session
+    _GLOBAL_CLIENT = _GLOBAL_CLIENT_FACTORY()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:345: in default_client_factory
+    return httpx2.Client(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:668: in __init__
+    else self._init_proxy_transport(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:716: in _init_proxy_transport
+    return HTTPTransport(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <httpx2.HTTPTransport object at 0x7f0f9613f620>, verify = True
+cert = None, trust_env = True, http1 = True, http2 = False
+limits = Limits(max_connections=100, max_keepalive_connections=20, keepalive_expiry=5.0)
+proxy = Proxy('socks5h://127.0.0.1:40507'), uds = None, local_address = None
+retries = 0, socket_options = None
+
+    def __init__(
+        self,
+        verify: ssl.SSLContext | str | bool = True,
+        cert: CertTypes | None = None,
+        trust_env: bool = True,
+        http1: bool = True,
+        http2: bool = False,
+        limits: Limits = DEFAULT_LIMITS,
+        proxy: ProxyTypes | None = None,
+        uds: str | None = None,
+        local_address: str | None = None,
+        retries: int = 0,
+        socket_options: Iterable[SOCKET_OPTION] | None = None,
+    ) -> None:
+        import httpcore2
+    
+        proxy = Proxy(url=proxy) if isinstance(proxy, (str, URL)) else proxy
+        ssl_context = create_ssl_context(verify=verify, cert=cert, trust_env=trust_env)
+    
+        if proxy is None:
+            self._pool = httpcore2.ConnectionPool(
+                ssl_context=ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                uds=uds,
+                local_address=local_address,
+                retries=retries,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("http", "https"):
+            self._pool = httpcore2.HTTPProxy(
+                proxy_url=httpcore2.URL(
+                    scheme=proxy.url.raw_scheme,
+                    host=proxy.url.raw_host,
+                    port=proxy.url.port,
+                    target=proxy.url.raw_path,
+                ),
+                proxy_auth=proxy.raw_auth,
+                proxy_headers=proxy.headers.raw,
+                ssl_context=ssl_context,
+                proxy_ssl_context=proxy.ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("socks5", "socks5h"):
+            try:
+                import socksio  # noqa
+            except ImportError:  # pragma: no cover
+>               raise ImportError(
+                    "Using SOCKS proxy, but the 'socksio' package is not installed. "
+                    "Make sure to install httpx using `pip install httpx[socks]`."
+                ) from None
+E               ImportError: Using SOCKS proxy, but the 'socksio' package is not installed. Make sure to install httpx using `pip install httpx[socks]`.
+
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_transports/default.py:184: ImportError
+_____ ERROR at setup of test_relative_stats_match_actual_data_distribution _____
+
+    @pytest.fixture(scope="module")
+    def dataset():
+>       return LeRobotDataset(REPO_ID, episodes=[0])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/policies/test_relative_actions.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/lerobot/datasets/lerobot_dataset.py:267: in __init__
+    self.meta = LeRobotDatasetMetadata(
+src/lerobot/datasets/dataset_metadata.py:147: in __init__
+    self.revision = get_safe_version(self.repo_id, self.revision)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:474: in get_safe_version
+    hub_versions = get_repo_versions(repo_id) if token is None else get_repo_versions(repo_id, token=token)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:437: in get_repo_versions
+    repo_refs = api.list_repo_refs(repo_id, repo_type="dataset")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/hf_api.py:4163: in list_repo_refs
+    response = get_session().get(
+               ^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:417: in get_session
+    _GLOBAL_CLIENT = _GLOBAL_CLIENT_FACTORY()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:345: in default_client_factory
+    return httpx2.Client(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:668: in __init__
+    else self._init_proxy_transport(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:716: in _init_proxy_transport
+    return HTTPTransport(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <httpx2.HTTPTransport object at 0x7f0f9613f620>, verify = True
+cert = None, trust_env = True, http1 = True, http2 = False
+limits = Limits(max_connections=100, max_keepalive_connections=20, keepalive_expiry=5.0)
+proxy = Proxy('socks5h://127.0.0.1:40507'), uds = None, local_address = None
+retries = 0, socket_options = None
+
+    def __init__(
+        self,
+        verify: ssl.SSLContext | str | bool = True,
+        cert: CertTypes | None = None,
+        trust_env: bool = True,
+        http1: bool = True,
+        http2: bool = False,
+        limits: Limits = DEFAULT_LIMITS,
+        proxy: ProxyTypes | None = None,
+        uds: str | None = None,
+        local_address: str | None = None,
+        retries: int = 0,
+        socket_options: Iterable[SOCKET_OPTION] | None = None,
+    ) -> None:
+        import httpcore2
+    
+        proxy = Proxy(url=proxy) if isinstance(proxy, (str, URL)) else proxy
+        ssl_context = create_ssl_context(verify=verify, cert=cert, trust_env=trust_env)
+    
+        if proxy is None:
+            self._pool = httpcore2.ConnectionPool(
+                ssl_context=ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                uds=uds,
+                local_address=local_address,
+                retries=retries,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("http", "https"):
+            self._pool = httpcore2.HTTPProxy(
+                proxy_url=httpcore2.URL(
+                    scheme=proxy.url.raw_scheme,
+                    host=proxy.url.raw_host,
+                    port=proxy.url.port,
+                    target=proxy.url.raw_path,
+                ),
+                proxy_auth=proxy.raw_auth,
+                proxy_headers=proxy.headers.raw,
+                ssl_context=ssl_context,
+                proxy_ssl_context=proxy.ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("socks5", "socks5h"):
+            try:
+                import socksio  # noqa
+            except ImportError:  # pragma: no cover
+>               raise ImportError(
+                    "Using SOCKS proxy, but the 'socksio' package is not installed. "
+                    "Make sure to install httpx using `pip install httpx[socks]`."
+                ) from None
+E               ImportError: Using SOCKS proxy, but the 'socksio' package is not installed. Make sure to install httpx using `pip install httpx[socks]`.
+
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_transports/default.py:184: ImportError
+___________ ERROR at setup of test_quantile_normalization_roundtrip ____________
+
+    @pytest.fixture(scope="module")
+    def dataset():
+>       return LeRobotDataset(REPO_ID, episodes=[0])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/policies/test_relative_actions.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/lerobot/datasets/lerobot_dataset.py:267: in __init__
+    self.meta = LeRobotDatasetMetadata(
+src/lerobot/datasets/dataset_metadata.py:147: in __init__
+    self.revision = get_safe_version(self.repo_id, self.revision)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:474: in get_safe_version
+    hub_versions = get_repo_versions(repo_id) if token is None else get_repo_versions(repo_id, token=token)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:437: in get_repo_versions
+    repo_refs = api.list_repo_refs(repo_id, repo_type="dataset")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/hf_api.py:4163: in list_repo_refs
+    response = get_session().get(
+               ^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:417: in get_session
+    _GLOBAL_CLIENT = _GLOBAL_CLIENT_FACTORY()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:345: in default_client_factory
+    return httpx2.Client(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:668: in __init__
+    else self._init_proxy_transport(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:716: in _init_proxy_transport
+    return HTTPTransport(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <httpx2.HTTPTransport object at 0x7f0f9613f620>, verify = True
+cert = None, trust_env = True, http1 = True, http2 = False
+limits = Limits(max_connections=100, max_keepalive_connections=20, keepalive_expiry=5.0)
+proxy = Proxy('socks5h://127.0.0.1:40507'), uds = None, local_address = None
+retries = 0, socket_options = None
+
+    def __init__(
+        self,
+        verify: ssl.SSLContext | str | bool = True,
+        cert: CertTypes | None = None,
+        trust_env: bool = True,
+        http1: bool = True,
+        http2: bool = False,
+        limits: Limits = DEFAULT_LIMITS,
+        proxy: ProxyTypes | None = None,
+        uds: str | None = None,
+        local_address: str | None = None,
+        retries: int = 0,
+        socket_options: Iterable[SOCKET_OPTION] | None = None,
+    ) -> None:
+        import httpcore2
+    
+        proxy = Proxy(url=proxy) if isinstance(proxy, (str, URL)) else proxy
+        ssl_context = create_ssl_context(verify=verify, cert=cert, trust_env=trust_env)
+    
+        if proxy is None:
+            self._pool = httpcore2.ConnectionPool(
+                ssl_context=ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                uds=uds,
+                local_address=local_address,
+                retries=retries,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("http", "https"):
+            self._pool = httpcore2.HTTPProxy(
+                proxy_url=httpcore2.URL(
+                    scheme=proxy.url.raw_scheme,
+                    host=proxy.url.raw_host,
+                    port=proxy.url.port,
+                    target=proxy.url.raw_path,
+                ),
+                proxy_auth=proxy.raw_auth,
+                proxy_headers=proxy.headers.raw,
+                ssl_context=ssl_context,
+                proxy_ssl_context=proxy.ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("socks5", "socks5h"):
+            try:
+                import socksio  # noqa
+            except ImportError:  # pragma: no cover
+>               raise ImportError(
+                    "Using SOCKS proxy, but the 'socksio' package is not installed. "
+                    "Make sure to install httpx using `pip install httpx[socks]`."
+                ) from None
+E               ImportError: Using SOCKS proxy, but the 'socksio' package is not installed. Make sure to install httpx using `pip install httpx[socks]`.
+
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_transports/default.py:184: ImportError
+_______ ERROR at setup of test_state_not_modified_by_relative_processor ________
+
+    @pytest.fixture(scope="module")
+    def dataset():
+>       return LeRobotDataset(REPO_ID, episodes=[0])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/policies/test_relative_actions.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/lerobot/datasets/lerobot_dataset.py:267: in __init__
+    self.meta = LeRobotDatasetMetadata(
+src/lerobot/datasets/dataset_metadata.py:147: in __init__
+    self.revision = get_safe_version(self.repo_id, self.revision)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:474: in get_safe_version
+    hub_versions = get_repo_versions(repo_id) if token is None else get_repo_versions(repo_id, token=token)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/lerobot/datasets/utils.py:437: in get_repo_versions
+    repo_refs = api.list_repo_refs(repo_id, repo_type="dataset")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/hf_api.py:4163: in list_repo_refs
+    response = get_session().get(
+               ^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:417: in get_session
+    _GLOBAL_CLIENT = _GLOBAL_CLIENT_FACTORY()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venv-lerobot/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:345: in default_client_factory
+    return httpx2.Client(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:668: in __init__
+    else self._init_proxy_transport(
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_client.py:716: in _init_proxy_transport
+    return HTTPTransport(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <httpx2.HTTPTransport object at 0x7f0f9613f620>, verify = True
+cert = None, trust_env = True, http1 = True, http2 = False
+limits = Limits(max_connections=100, max_keepalive_connections=20, keepalive_expiry=5.0)
+proxy = Proxy('socks5h://127.0.0.1:40507'), uds = None, local_address = None
+retries = 0, socket_options = None
+
+    def __init__(
+        self,
+        verify: ssl.SSLContext | str | bool = True,
+        cert: CertTypes | None = None,
+        trust_env: bool = True,
+        http1: bool = True,
+        http2: bool = False,
+        limits: Limits = DEFAULT_LIMITS,
+        proxy: ProxyTypes | None = None,
+        uds: str | None = None,
+        local_address: str | None = None,
+        retries: int = 0,
+        socket_options: Iterable[SOCKET_OPTION] | None = None,
+    ) -> None:
+        import httpcore2
+    
+        proxy = Proxy(url=proxy) if isinstance(proxy, (str, URL)) else proxy
+        ssl_context = create_ssl_context(verify=verify, cert=cert, trust_env=trust_env)
+    
+        if proxy is None:
+            self._pool = httpcore2.ConnectionPool(
+                ssl_context=ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                uds=uds,
+                local_address=local_address,
+                retries=retries,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("http", "https"):
+            self._pool = httpcore2.HTTPProxy(
+                proxy_url=httpcore2.URL(
+                    scheme=proxy.url.raw_scheme,
+                    host=proxy.url.raw_host,
+                    port=proxy.url.port,
+                    target=proxy.url.raw_path,
+                ),
+                proxy_auth=proxy.raw_auth,
+                proxy_headers=proxy.headers.raw,
+                ssl_context=ssl_context,
+                proxy_ssl_context=proxy.ssl_context,
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+                http1=http1,
+                http2=http2,
+                socket_options=socket_options,
+            )
+        elif proxy.url.scheme in ("socks5", "socks5h"):
+            try:
+                import socksio  # noqa
+            except ImportError:  # pragma: no cover
+>               raise ImportError(
+                    "Using SOCKS proxy, but the 'socksio' package is not installed. "
+                    "Make sure to install httpx using `pip install httpx[socks]`."
+                ) from None
+E               ImportError: Using SOCKS proxy, but the 'socksio' package is not installed. Make sure to install httpx using `pip install httpx[socks]`.
+
+../../.venv-lerobot/lib/python3.12/site-packages/httpx2/_transports/default.py:184: ImportError
+=========================== short test summary info ============================
+ERROR tests/policies/test_relative_actions.py::test_roundtrip_3d - ImportErro...
+ERROR tests/policies/test_relative_actions.py::test_roundtrip_2d - ImportErro...
+ERROR tests/policies/test_relative_actions.py::test_stacked_state_anchors_on_the_current_frame
+ERROR tests/policies/test_relative_actions.py::test_no_mutation - ImportError...
+ERROR tests/policies/test_relative_actions.py::test_chunk_stats_have_larger_std_than_frame_stats
+ERROR tests/policies/test_relative_actions.py::test_full_pipeline_roundtrip
+ERROR tests/policies/test_relative_actions.py::test_normalized_relative_values_are_reasonable
+ERROR tests/policies/test_relative_actions.py::test_processor_step_roundtrip
+ERROR tests/policies/test_relative_actions.py::test_processor_step_disabled_is_noop
+ERROR tests/policies/test_relative_actions.py::test_relative_with_action_chunks
+ERROR tests/policies/test_relative_actions.py::test_relative_stats_match_actual_data_distribution
+ERROR tests/policies/test_relative_actions.py::test_quantile_normalization_roundtrip
+ERROR tests/policies/test_relative_actions.py::test_state_not_modified_by_relative_processor
+60 passed, 13 errors in 4.59s

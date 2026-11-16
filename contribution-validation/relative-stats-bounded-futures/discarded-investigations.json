@@ -1,0 +1,23 @@
+{
+  "investigations": [
+    {
+      "candidate": "FSDP2 fp16 found_inf synchronization",
+      "disposition": "false_positive",
+      "evidence": "The installed Torch 2.15 DTensor found_inf_reduce_handler creates Partial(max) placements, materializes the full tensor, and copies the reduced flag back. LeRobot's documented cross-rank behavior is implemented below its own source layer.",
+      "production_change": false
+    },
+    {
+      "candidate": "MPS RNG restoration in seeded_context",
+      "disposition": "existing_exact_proposal",
+      "existing_pr": "https://github.com/huggingface/lerobot/pull/5137",
+      "evidence": "The open PR already adds the missing in-memory MPS snapshot and restoration, with tests. PR #4014 also explicitly deferred this same path as a follow-up.",
+      "production_change": false
+    },
+    {
+      "candidate": "MultiLeRobotDataset fps metadata access",
+      "disposition": "not_prioritized_as_core_training_fix",
+      "evidence": "The current dataset factory raises NotImplementedError before constructing MultiLeRobotDataset. No current training-path claim is made.",
+      "production_change": false
+    }
+  ]
+}
