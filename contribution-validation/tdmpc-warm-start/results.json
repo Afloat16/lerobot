@@ -1,0 +1,74 @@
+{
+  "baseline": {
+    "head": "d3cc74a5a95e39beac7baa8411050e3c2395e0ed",
+    "run": 43961818735,
+    "job": 133630905905,
+    "url": "https://github.com/Afloat16/lerobot/actions/runs/43961818735",
+    "new_cases": {
+      "failed": 6,
+      "passed": 10
+    },
+    "base_suite": {
+      "failed": 6,
+      "passed": 2580,
+      "skipped": 540,
+      "deselected": 64
+    },
+    "failure_scope": "Only the six newly added multi-action warm-start cases failed. Existing tests and all single-step, repeated-single-action and reset controls passed.",
+    "source": "unmodified upstream 7910c20a75834ad3fa6a9792df4d44a614d1bba6",
+    "log_files": [
+      "baseline-fast-tests-part-1.log",
+      "baseline-fast-tests-part-2.log",
+      "baseline-fast-tests-part-3.log"
+    ],
+    "raw_log_characters": 1346909
+  },
+  "history": {
+    "complete": true,
+    "ref_counts": {
+      "all_references": 4330,
+      "fork_heads": 262,
+      "upstream_pr_heads": 3800
+    },
+    "reachable_commits": 27867,
+    "source_paths": [
+      "contribution-validation/tdmpc-warm-start/audit_history.py",
+      "lerobot/common/policies/tdmpc.py",
+      "lerobot/common/policies/tdmpc/__init__.py",
+      "lerobot/common/policies/tdmpc/configuration_tdmpc.py",
+      "lerobot/common/policies/tdmpc/helper.py",
+      "lerobot/common/policies/tdmpc/modeling_tdmpc.py",
+      "lerobot/common/policies/tdmpc/policy.py",
+      "lerobot/common/policies/tdmpc2/configuration_tdmpc2.py",
+      "lerobot/common/policies/tdmpc2/modeling_tdmpc2.py",
+      "lerobot/common/policies/tdmpc2/tdmpc2_utils.py",
+      "lerobot/common/policies/tdmpc_helper.py",
+      "lerobot/common/tdmpc.py",
+      "lerobot/common/tdmpc_helper.py",
+      "src/lerobot/policies/tdmpc/__init__.py",
+      "src/lerobot/policies/tdmpc/configuration_tdmpc.py",
+      "src/lerobot/policies/tdmpc/modeling_tdmpc.py",
+      "src/lerobot/policies/tdmpc/processor_tdmpc.py",
+      "tests/policies/tdmpc/test_000_history_audit.py",
+      "tests/policies/tdmpc/test_tdmpc.py",
+      "tests/policies/tdmpc/test_warm_start.py",
+      "tests/processor/test_tdmpc_processor.py"
+    ],
+    "source_blobs": 294,
+    "production_function_variants": 47,
+    "parse_failures": [],
+    "finding": "Every extracted prior planner uses a one-step shift. No equivalent correction found. A follow-up extraction includes select_action/predict_action_chunk variants before final novelty conclusion.",
+    "data_file": "history-baseline.json"
+  },
+  "candidate": {
+    "head": "fa256b84578785422072af1ec28df066038f35a5",
+    "status": "pushed_validation_not_yet_verified",
+    "production_change": "Warm start advances by n_action_steps instead of one."
+  },
+  "quality_baseline": {
+    "run": 43961818791,
+    "precommit": "failed: formatting in new test/audit and three B607 findings in validation-only git executable lookup",
+    "doctests": "success",
+    "candidate_changes": "Apply actual formatter patch; resolve the git executable with shutil.which in validation-only audit. No ignores or security setting changes."
+  }
+}
