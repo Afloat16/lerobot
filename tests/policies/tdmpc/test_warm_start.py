@@ -53,9 +53,9 @@ def controlled_proposals(
     # All proposals have the same first trajectory. Subsequent zero-noise proposals expose the
     # next warm start through the actual CEM loop, dynamics/value networks and selected action.
     # No planner, action queue, learned model, or previous-mean state is replaced.
-    initial_plan = torch.linspace(
-        0.05, 0.75, policy.config.horizon * batch_size * 2
-    ).reshape(policy.config.horizon, batch_size, 2)
+    initial_plan = torch.linspace(0.05, 0.75, policy.config.horizon * batch_size * 2).reshape(
+        policy.config.horizon, batch_size, 2
+    )
     calls = 0
 
     def sample_proposals(*shape: int, device: torch.device) -> torch.Tensor:

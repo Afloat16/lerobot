@@ -3,24 +3,30 @@
 import ast
 import hashlib
 import os
-from pathlib import Path
+import shutil
 import subprocess
 import tempfile
+from pathlib import Path
 
 
 def audit() -> dict:
     with tempfile.TemporaryDirectory(prefix="lerobot-tdmpc-history-") as directory:
         repo = Path(directory) / "history.git"
+        git_executable = shutil.which("git")
+        assert git_executable is not None
         env = {**os.environ, "GIT_TERMINAL_PROMPT": "0", "GIT_LFS_SKIP_SMUDGE": "1"}
 
         def git(*args: str, timeout: int = 600) -> bytes:
             result = subprocess.run(
-                ["git", "-C", str(repo), *args],
-                check=True, capture_output=True, env=env, timeout=timeout,
+                [git_executable, "-C", str(repo), *args],
+                check=True,
+                capture_output=True,
+                env=env,
+                timeout=timeout,
             )
             return result.stdout
 
-        subprocess.run(["git", "init", "--bare", str(repo)], check=True, capture_output=True, env=env)
+        subprocess.run([git_executable, "init", "--bare", str(repo)], check=True, capture_output=True, env=env)
         remotes = {
             "upstream": "https://github.com/huggingface/lerobot.git",
             "fork": "https://github.com/Afloat16/lerobot.git",
@@ -44,14 +50,16 @@ def audit() -> dict:
                 suffix = "*/head" if source == "refs/pull/" else "*"
                 refspecs.append(f"+{source}{suffix}:{destination}{suffix}")
             git("fetch", "--no-tags", "--no-recurse-submodules", url, *refspecs, timeout=1200)
-            advertised = git("ls-remote", "--refs", url, *[
-                source + ("*/head" if source == "refs/pull/" else "*")
-                for source, _ in requested[name]
-            ]).decode()
+            advertised = git(
+                "ls-remote",
+                "--refs",
+                url,
+                *[source + ("*/head" if source == "refs/pull/" else "*") for source, _ in requested[name]],
+            ).decode()
             for line in advertised.splitlines():
                 sha, ref = line.split("\t")
                 source, destination = next(pair for pair in requested[name] if ref.startswith(pair[0]))
-                target = destination + ref[len(source):]
+                target = destination + ref[len(source) :]
                 actual = git("rev-parse", target).decode().strip()
                 if actual != sha:
                     raise AssertionError(f"History snapshot changed during audit: {ref}: {actual} != {sha}")
@@ -63,9 +71,11 @@ def audit() -> dict:
         assert fork_heads >= 261, fork_heads
         assert pr_heads > 1000, pr_heads
 
-        all_names = set(git(
-            "log", "--all", "--full-history", "--no-renames", "--format=", "--name-only"
-        ).decode().splitlines())
+        all_names = set(
+            git("log", "--all", "--full-history", "--no-renames", "--format=", "--name-only")
+            .decode()
+            .splitlines()
+        )
         paths = {path for path in all_names if "tdmpc" in path.lower() and path.endswith(".py")}
         # Include earlier filenames, even when neither their basename nor their directory says TDMPC.
         rename_log = git(
@@ -85,8 +95,15 @@ def audit() -> dict:
                     changed = True
 
         raw = git(
-            "log", "--all", "--full-history", "--no-renames", "--format=", "--raw",
-            "--no-abbrev", "--", *sorted(paths),
+            "log",
+            "--all",
+            "--full-history",
+            "--no-renames",
+            "--format=",
+            "--raw",
+            "--no-abbrev",
+            "--",
+            *sorted(paths),
         ).decode()
         blobs = {}
         for line in raw.splitlines():
@@ -102,9 +119,12 @@ def audit() -> dict:
         object_types = dict(line.split() for line in output.decode().splitlines())
         blob_ids = sorted(sha for sha in blobs if object_types.get(sha) == "blob")
         process = subprocess.run(
-            ["git", "-C", str(repo), "cat-file", "--batch"],
+            [git_executable, "-C", str(repo), "cat-file", "--batch"],
             input="".join(sha + "\n" for sha in blob_ids).encode(),
-            capture_output=True, check=True, env=env, timeout=600,
+            capture_output=True,
+            check=True,
+            env=env,
+            timeout=600,
         )
         content = process.stdout
         cursor = 0
@@ -129,14 +149,25 @@ def audit() -> dict:
             for node in ast.walk(syntax):
                 if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                     continue
-                source = "\n".join(lines[node.lineno - 1:node.end_lineno])
+                source = "\n".join(lines[node.lineno - 1 : node.end_lineno])
                 # Inspect every planner variant and every function holding warm-start state,
                 # including intermediate and later-reverted commits.
-                if ("plan" in node.name.lower() or "_prev_mean" in source or "prev_mean" in source):
+                if (
+                    "plan" in node.name.lower()
+                    or "_prev_mean" in source
+                    or "prev_mean" in source
+                    or node.name in ("select_action", "predict_action_chunk")
+                ):
                     digest = hashlib.sha256(source.encode()).hexdigest()
-                    entry = variants.setdefault(digest, {
-                        "function": node.name, "source": source, "blobs": [], "paths": [],
-                    })
+                    entry = variants.setdefault(
+                        digest,
+                        {
+                            "function": node.name,
+                            "source": source,
+                            "blobs": [],
+                            "paths": [],
+                        },
+                    )
                     entry["blobs"].append(sha)
                     entry["paths"] = sorted(set(entry["paths"]).union(blobs[sha]))
         result = {
