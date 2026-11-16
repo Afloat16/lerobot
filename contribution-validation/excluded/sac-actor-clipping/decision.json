@@ -1,0 +1,21 @@
+{
+  "decision": "excluded_historical_equivalent",
+  "base": "7910c20a75834ad3fa6a9792df4d44a614d1bba6",
+  "equivalent_commit": "ad8dcd7519947d13f1195a9013b3d5f368902125",
+  "equivalent_branch": "Afloat16/lerobot:fix/sac-actor-optimizer-clipping-20261112",
+  "equivalent_blob": "1f10ab23a4435fd78440314df099113a93f2768f",
+  "reason": "The previous user fork branch already clips the actor optimizer's owned parameters instead of the whole actor module, excluding shared encoder tensors.",
+  "native_observation": {
+    "status": "observed in a completed native terminal call; original stdout was not written to a raw log",
+    "torch": "2.15.0+cpu",
+    "seed": 42,
+    "actual_entry": "SACAlgorithm.update",
+    "actor_owned_gradient_norm": 23.695053100585938,
+    "reported_whole_actor_norm": 24.93022346496582,
+    "excluded_shared_encoder_gradient_norm": 7.7498650550842285,
+    "extra_parameter_tensors": 4
+  },
+  "production_modified": false,
+  "new_upstream_pr_count": 0,
+  "prepared_count": 0
+}

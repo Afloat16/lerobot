@@ -1,0 +1,31 @@
+{
+  "decision": "not_pursued_checkpoint_compatibility",
+  "base": "7910c20a75834ad3fa6a9792df4d44a614d1bba6",
+  "native_tests": {
+    "failed": 12,
+    "passed": 2,
+    "seconds": 3.27,
+    "production_unmodified": true,
+    "full_decode_max_absolute_error_block8": 1.3870084285736084
+  },
+  "mathematical_issue": "BlockDCT.idct applies the frequency-by-time basis in the forward orientation rather than its transpose. This fails DCT-III reconstruction for block sizes greater than two.",
+  "compatibility_evidence": {
+    "original_repository": "OpenGalaxea/GalaxeaVLA",
+    "original_ref": "89f2322b4ad016e192437adc1a2c253b05bab246",
+    "original_file": "src/g05/tokenizer/models/actioncodec2_v2/modular_actioncodec2v2.py",
+    "original_same_operator": true,
+    "release_config": "configs/tokenizer/actioncodec.yaml",
+    "use_block_dct": true,
+    "block_dct_block_size": 8,
+    "parity_prs": [
+      4195,
+      4445
+    ],
+    "pr4195_reported_decoder_mean_abs_difference": 3e-7
+  },
+  "reason": "The adapter deliberately preserves the source codec's learned checkpoint behavior. The source implementation has the same operator and its release configuration enables it. Existing weights may have learned around that behavior; mathematical round-trip correctness does not establish end-to-end action quality or a safe compatible fix. No released-checkpoint retraining or quality comparison was performed.",
+  "production_modified": false,
+  "new_upstream_pr_count": 0,
+  "prepared_count": 0,
+  "default_switch_or_new_option_added": false
+}

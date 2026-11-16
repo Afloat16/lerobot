@@ -1,0 +1,69 @@
+{
+  "complete": false,
+  "base": "7910c20a75834ad3fa6a9792df4d44a614d1bba6",
+  "reachable_commits": 27877,
+  "all_merge_parent_diffs": true,
+  "global_name_independent_pickaxe": true,
+  "rename_closure_20_percent": true,
+  "refs_count": 4334,
+  "source_blobs_count": 3989,
+  "paths_count": 355,
+  "variants_count": 33,
+  "parse_failures_count": 264,
+  "inverse_variants": {
+    "932c005b4cb0d6c25957707e0c5ac0f35f04b80cc68add28405d38cb2063ca71": {
+      "name": "idct",
+      "source": "    def idct(self, values: Tensor, horizon: int) -> Tensor:\n        \"\"\"Invert the blockwise DCT.\"\"\"\n        batch, padded_horizon, dimension = values.shape\n        blocks = padded_horizon // self.block_size\n        values = values.reshape(batch * blocks, self.block_size, dimension)\n        restored = torch.einsum(\"nk,bkd->bnd\", self.basis.to(values), values)\n        return restored.reshape(batch, padded_horizon, dimension)[:, :horizon]",
+      "blobs": [
+        "08888fda59fe8dbe60d72d39e14c45ac7025ddf8",
+        "1879071b8056a49de7bc7ca5fd93fa97acd37a68",
+        "23bace5ec436cc318275ded136374899e1bdbdb8",
+        "47520462a917f23ba9d4a19f7287cac5941d3532",
+        "c6cf5cf80d472a154386a1d56f5600a2864b594b",
+        "fb78ff9ae3d5dc70b92e4dfadf167f78ca7afd12"
+      ],
+      "paths": [
+        "src/lerobot/policies/g05/action_codec_g05.py"
+      ]
+    },
+    "16744f0d3f777d94b55072d137ce8102b15eaeb8d825ba8eeefdad18c654ce05": {
+      "name": "idct",
+      "source": "    def idct(self, values: Tensor, horizon: int) -> Tensor:\n        batch_size = values.shape[0]\n        values = rearrange(\n            values, \"batch (blocks time) width -> (batch blocks) time width\", time=self.block_size\n        )\n        values = torch.einsum(\"tk,bkw->btw\", self.basis(values), values)\n        values = rearrange(values, \"(batch blocks) time width -> batch (blocks time) width\", batch=batch_size)\n        return values[:, :horizon]",
+      "blobs": [
+        "18813bcdc744ab2b73ee670492cce8a1e5fa318a",
+        "9c551f5466cfae842635b202a4b6ebc37e91becd"
+      ],
+      "paths": [
+        "src/lerobot/policies/g05/action_tokenizer/modular_actioncodec.py"
+      ]
+    },
+    "40279ee2c75db80313b41483b51a0b1289c31050e1763b7f63b55be695fc8a69": {
+      "name": "idct",
+      "source": "    def idct(self, values: Tensor, horizon: int) -> Tensor:\n        batch, padded_horizon, dimension = values.shape\n        blocks = padded_horizon // self.block_size\n        values = values.reshape(batch * blocks, self.block_size, dimension)\n        restored = torch.einsum(\"nk,bkd->bnd\", self.basis.to(values), values)\n        return restored.reshape(batch, padded_horizon, dimension)[:, :horizon]",
+      "blobs": [
+        "21606d899f50bbf03047c7995a1f452e58ae129a",
+        "25a6d986f6e4ec3f4082ab8bfb6c5cc62e33be7b",
+        "481e9dd067b70b024c4962fa7ae5de1d37197546",
+        "50ce2186d2bc1d04093b683e15bd9929bb6a995c",
+        "5d54511d340bd6bf6d1a75a56ad3828cfc38ad66",
+        "6d94e30d9109d78e590e1c1770d3d0fa5f023476",
+        "78cedaacad186371eee0e5178b851fd8c1a935a2",
+        "8b565aff57a8330791f9b62cde7b9ef65a2204bf",
+        "8cee6682251191043254868ef18965579a03d8b8",
+        "9de4c362d21330919acdb8faabac6c4c29c4a7bd",
+        "af6f4e3af20242a4368db75e9472e084a82ebce1",
+        "d0c2331c534d1087b42859fef1649ae7b2c16021",
+        "dcc702f6360bd34fefc6f932971d7f4566b2fa03",
+        "e023a188fc40191f0d4262c32822cf9a7a3c0c20",
+        "e1535c4a6c20c6dff5a73622900c8d59f1154bb0",
+        "f0e6548a0f0f73509e93d70fb33d756bdb0dcd6b"
+      ],
+      "paths": [
+        "src/lerobot/policies/g05/action_codec_g05.py",
+        "src/lerobot/policies/g05/modeling_g05.py"
+      ]
+    }
+  },
+  "novelty_not_claimed": true,
+  "reason": "Candidate stopped for checkpoint-compatibility concerns before completing manual review of unrelated historical parse failures."
+}

@@ -23,6 +23,19 @@
       "equivalent_pr": "https://github.com/huggingface/lerobot/pull/4462",
       "evidence_path": "contribution-validation/excluded/streaming-finish/decision.json",
       "new_upstream_pr_count": 0
+    },
+    {
+      "title": "SAC actor gradient clipping ownership",
+      "decision": "excluded_historical_equivalent",
+      "equivalent_commit": "ad8dcd7519947d13f1195a9013b3d5f368902125",
+      "evidence_path": "contribution-validation/excluded/sac-actor-clipping/decision.json",
+      "new_upstream_pr_count": 0
+    },
+    {
+      "title": "G05 block-DCT inverse orientation",
+      "decision": "not_pursued_checkpoint_compatibility",
+      "evidence_path": "contribution-validation/excluded/g05-idct/decision.json",
+      "new_upstream_pr_count": 0
     }
   ]
 }
