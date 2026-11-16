@@ -204,9 +204,10 @@ class TDMPCPolicy(PreTrainedPolicy):
         # algorithm.
         # The initial mean and standard deviation for the cross-entropy method (CEM).
         mean = torch.zeros(self.config.horizon, batch_size, action_dim, device=device)
-        # Maybe warm start CEM with the mean from the previous step.
+        # Warm start from the unexecuted part of the previous plan.
         if self._prev_mean is not None:
-            mean[:-1] = self._prev_mean[1:]
+            n_action_steps = self.config.n_action_steps
+            mean[:-n_action_steps] = self._prev_mean[n_action_steps:]
         std = self.config.max_std * torch.ones_like(mean)
 
         for _ in range(self.config.cem_iterations):
