@@ -1,9 +1,11 @@
-# TDMPC warm-start validation
+# TDMPC action-chunk warm-start investigation
 
-This branch is an internal validation branch based on upstream 7910c20a75834ad3fa6a9792df4d44a614d1bba6. No production change is included yet.
+The production correction is `69747d8f44403ac64c6f15bdb1429df8150de4f0` on `fix/tdmpc-action-chunk-warm-start-20261116`. It changes only the TDMPC planner and 16 CPU regression cases relative to upstream `7910c20a75834ad3fa6a9792df4d44a614d1bba6`.
 
-The regression exercises the real CPU TDMPC select_action -> predict_action_chunk -> plan call chain. Only CEM Gaussian proposals are controlled, so that the selected next action exposes the initialization after consuming a chunk. Cases cover chunk lengths 1, 2, 3, and 5, horizon 1 and 5, batch sizes 1 and 2, repeated single actions, and reset. Expected baseline outcome has not yet been executed.
+`ready.json` and `pr-body.md` contain the complete verified result; `prefilled-pr-url.txt` contains the actual comparison URL with title/body parameters. No upstream PR has been created. The required peer review was prepared but its one API submission returned 403. Its exact text and ordinary GitHub UI steps are preserved in `community-review-4692.md` and `community-review-steps.md`; the peer-review checkbox remains incomplete.
 
-The separate validation-only audit fetches public upstream branch, tag, and all PR-head histories plus all Afloat16 fork branches and tags. It records every relevant intermediate source blob, including reverted versions and former filenames discovered through rename history. Its output requires manual review; it does not automatically declare novelty.
+The baseline failed six multi-action cases while ten controls passed. All 16 pass after the change. The exact production head passed all four existing Fast Tests tiers and Quality. Test counts distinguish passed, skipped and deselected cases. These are fork CI results, not local tests or upstream CI results.
 
-Only the final source correction and regression test will be considered for an upstream PR after real validation and a complete audit. The history audit, this snapshot, and this README are not part of that proposed upstream diff.
+Full public upstream PR and fork history, including intermediate/reverted source and previous filenames, was examined. `history-baseline.json` is the original planner audit; the later consumption/training audits and all raw CI logs are split losslessly according to `evidence-parts.json`.
+
+The state-only training investigation is excluded because issue #1090 already proposes that fix; the failed baseline and duplicate evidence remain preserved. Fork PRs are validation artifacts and do not count as upstream contributions.

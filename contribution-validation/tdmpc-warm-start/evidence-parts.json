@@ -1,0 +1,111 @@
+{
+  "format": "Raw UTF-8 text split at existing newlines; concatenate parts in listed order without inserted separators",
+  "files": [
+    {
+      "logical_name": "production-fast-tests.log",
+      "characters": 782808,
+      "parts": [
+        {
+          "path": "production-fast-tests-part-1.log",
+          "characters": 399913
+        },
+        {
+          "path": "production-fast-tests-part-2.log",
+          "characters": 382895
+        }
+      ]
+    },
+    {
+      "logical_name": "candidate-fast-tests.log",
+      "characters": 1724712,
+      "parts": [
+        {
+          "path": "candidate-fast-tests-part-1.log",
+          "characters": 399992
+        },
+        {
+          "path": "candidate-fast-tests-part-2.log",
+          "characters": 399962
+        },
+        {
+          "path": "candidate-fast-tests-part-3.log",
+          "characters": 399936
+        },
+        {
+          "path": "candidate-fast-tests-part-4.log",
+          "characters": 399861
+        },
+        {
+          "path": "candidate-fast-tests-part-5.log",
+          "characters": 124961
+        }
+      ]
+    },
+    {
+      "logical_name": "state-only-baseline-fast-tests.log",
+      "characters": 2226975,
+      "parts": [
+        {
+          "path": "state-only-baseline-fast-tests-part-1.log",
+          "characters": 394547
+        },
+        {
+          "path": "state-only-baseline-fast-tests-part-2.log",
+          "characters": 399598
+        },
+        {
+          "path": "state-only-baseline-fast-tests-part-3.log",
+          "characters": 396336
+        },
+        {
+          "path": "state-only-baseline-fast-tests-part-4.log",
+          "characters": 399893
+        },
+        {
+          "path": "state-only-baseline-fast-tests-part-5.log",
+          "characters": 399950
+        },
+        {
+          "path": "state-only-baseline-fast-tests-part-6.log",
+          "characters": 236651
+        }
+      ]
+    },
+    {
+      "logical_name": "history-consumption.json",
+      "characters": 660623,
+      "parts": [
+        {
+          "path": "history-consumption-part-1.json",
+          "characters": 400000
+        },
+        {
+          "path": "history-consumption-part-2.json",
+          "characters": 260623
+        }
+      ]
+    },
+    {
+      "logical_name": "history-training.json",
+      "characters": 1349547,
+      "parts": [
+        {
+          "path": "history-training-part-1.json",
+          "characters": 400000
+        },
+        {
+          "path": "history-training-part-2.json",
+          "characters": 400000
+        },
+        {
+          "path": "history-training-part-3.json",
+          "characters": 400000
+        },
+        {
+          "path": "history-training-part-4.json",
+          "characters": 149547
+        }
+      ]
+    }
+  ]
+}

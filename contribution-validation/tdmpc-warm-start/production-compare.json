@@ -1,0 +1,285 @@
+{
+  "url": "https://api.github.com/repos/Afloat16/lerobot/compare/7910c20a75834ad3fa6a9792df4d44a614d1bba6...69747d8f44403ac64c6f15bdb1429df8150de4f0",
+  "html_url": "https://github.com/Afloat16/lerobot/compare/7910c20a75834ad3fa6a9792df4d44a614d1bba6...69747d8f44403ac64c6f15bdb1429df8150de4f0",
+  "permalink_url": "https://github.com/Afloat16/lerobot/compare/Afloat16:7910c20...Afloat16:69747d8",
+  "diff_url": "https://github.com/Afloat16/lerobot/compare/7910c20a75834ad3fa6a9792df4d44a614d1bba6...69747d8f44403ac64c6f15bdb1429df8150de4f0.diff",
+  "patch_url": "https://github.com/Afloat16/lerobot/compare/7910c20a75834ad3fa6a9792df4d44a614d1bba6...69747d8f44403ac64c6f15bdb1429df8150de4f0.patch",
+  "base_commit": {
+    "sha": "7910c20a75834ad3fa6a9792df4d44a614d1bba6",
+    "node_id": "C_kwDOU4hXMNoAKDc5MTBjMjBhNzU4MzRhZDNmYTZhOTc5MmRmNGQ0NGE2MTRkMWJiYTY",
+    "commit": {
+      "author": {
+        "name": "hzhang86",
+        "email": "hui@runwayml.com",
+        "date": "2026-11-16T17:47:55Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2026-11-16T17:47:55Z"
+      },
+      "message": "fix(praxis): backward numerics, padded-chunk frame stacks, merged device, raw bimanual gripper (#5328)\n\nFour fixes to the Praxis-1 policy from a review of #5321, each with a test that fails on main.\n\n- Training backward under the praxis numerics. `forward` pins float32 matmuls without TF32 (the\n  MoE router scores in float32), but the backward ran later under the host's flags, and\n  `lerobot-train` turns TF32 on by default: the router's float32 backward GEMMs and the\n  activation-checkpoint recompute of each block (which recomputes the router logits, so a\n  near-tied expert choice can flip, silently, since the dispatch keeps its shapes) ran in TF32.\n  A hook on the loss now runs the whole backward under the same guard and restores the host\n  flags at its end. The gradients no longer depend on `--tf32`.\n- Frame stacks after a padded chunk. The first chunk of a context window has 21 real commands,\n  padded to 24 with the last one. A caller that executed all 24 rows and handed over the 24\n  frames shifted the next chunk's context by 3 frames (the session reads the last 21 executed\n  frames). The frames of the padded rows are now dropped, so the next chunk is the one of a\n  caller that executed the 21 real commands.\n- The merge tool keeps the base config's device. It loads the base on `--device` (default\n  `cpu`) and saved that device into the merged checkpoint, so loading it later without\n  `--policy.device` put the 27B model on the CPU.\n- The bimanual proprio keeps the raw gripper value, as its training data and the praxis\n  session do; the single-arm rig keeps clipping it to [0, 1] like the DROID data code. A YAM\n  reading slightly outside [0, 1] gave different commands from the praxis session.\n\nCo-authored-by: Steven Palma <imstevenpmwork@ieee.org>",
+      "tree": {
+        "sha": "00163e3663cad7b8ef0273aafd9c6c30d6601358",
+        "url": "https://api.github.com/repos/Afloat16/lerobot/git/trees/00163e3663cad7b8ef0273aafd9c6c30d6601358"
+      },
+      "url": "https://api.github.com/repos/Afloat16/lerobot/git/commits/7910c20a75834ad3fa6a9792df4d44a614d1bba6",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJq+0HLCRC1aQ7uu5UhlAAA05gQAKLkNljuyTGhuMNA8+hILxSE\n7inm8myAar1PBTMaytM9bNSiGAAkg4TQlmK7GDA/FavQ6yHW3PIjPlqg7ASf7T13\nCYvPA6o4s3vPNFrcFAe2viRE2NDg+cAYKoO+UTHOE42Eq0CGvoZ5hQPQeWMKMJt1\nM5okDZnOnFkVbKsN+tAQHXxhUU/mJLl6gg8sG+lnRLT1KZdEwJIFmyZvSauJbdDL\nHVIW8ZKQod1v+86ljKg0rNTQiiFkZ/7BjOIXxRhoxQgzwSxD5AsfyP3H2oB38v79\nTbGsSPj6Ngm7YWU7+KWgLq+ZOpy9LB5jPZuVThBLMEp5gXWaLKhDTvotAwrM+wc5\nCOMUKiUj1TaibFBgqHgM0502F0XgMc+qLSFlMOMbeKN+qRetva64Z6YHYd+wmI9a\neApCCcTq+z8liq+guEryX6wT82GVt7usHsdaUZL70qX/yAEC289Zl7KkwgJjbWo1\nm+RK/qT1kaUUVLBakq4mrLFCDRDZcgoTazhdo9n3sKkFrw3m+p8jm1fEEfI2rj9e\nWz1eHgHq7lSHTwx0sSel/ASFKBgWcQ5sF0c3krdIfYZfxvPBZA9K+6Df7CHY6oI+\nl/usfuKjzX07OWoz/ceBttlvGfLgwjZ9AS0DeSwZqdK79I04umHGXRuCQKCrjG9N\nZa+tyP3mOfh0eSGEGb8s\n=7TJN\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 00163e3663cad7b8ef0273aafd9c6c30d6601358\nparent 781d3daccc64e8ce3e3d0910e64b2b0180551059\nauthor hzhang86 <hui@runwayml.com> 1794851275 -0800\ncommitter GitHub <noreply@github.com> 1794851275 -0600\n\nfix(praxis): backward numerics, padded-chunk frame stacks, merged device, raw bimanual gripper (#5328)\n\nFour fixes to the Praxis-1 policy from a review of #5321, each with a test that fails on main.\n\n- Training backward under the praxis numerics. `forward` pins float32 matmuls without TF32 (the\n  MoE router scores in float32), but the backward ran later under the host's flags, and\n  `lerobot-train` turns TF32 on by default: the router's float32 backward GEMMs and the\n  activation-checkpoint recompute of each block (which recomputes the router logits, so a\n  near-tied expert choice can flip, silently, since the dispatch keeps its shapes) ran in TF32.\n  A hook on the loss now runs the whole backward under the same guard and restores the host\n  flags at its end. The gradients no longer depend on `--tf32`.\n- Frame stacks after a padded chunk. The first chunk of a context window has 21 real commands,\n  padded to 24 with the last one. A caller that executed all 24 rows and handed over the 24\n  frames shifted the next chunk's context by 3 frames (the session reads the last 21 executed\n  frames). The frames of the padded rows are now dropped, so the next chunk is the one of a\n  caller that executed the 21 real commands.\n- The merge tool keeps the base config's device. It loads the base on `--device` (default\n  `cpu`) and saved that device into the merged checkpoint, so loading it later without\n  `--policy.device` put the 27B model on the CPU.\n- The bimanual proprio keeps the raw gripper value, as its training data and the praxis\n  session do; the single-arm rig keeps clipping it to [0, 1] like the DROID data code. A YAM\n  reading slightly outside [0, 1] gave different commands from the praxis session.\n\nCo-authored-by: Steven Palma <imstevenpmwork@ieee.org>",
+        "verified_at": "2026-11-16T17:47:56Z"
+      }
+    },
+    "url": "https://api.github.com/repos/Afloat16/lerobot/commits/7910c20a75834ad3fa6a9792df4d44a614d1bba6",
+    "html_url": "https://github.com/Afloat16/lerobot/commit/7910c20a75834ad3fa6a9792df4d44a614d1bba6",
+    "comments_url": "https://api.github.com/repos/Afloat16/lerobot/commits/7910c20a75834ad3fa6a9792df4d44a614d1bba6/comments",
+    "author": {
+      "login": "hzhang86",
+      "id": 11545281,
+      "node_id": "MDQ6VXNlcjExNTQ1Mjgx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11545281?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hzhang86",
+      "html_url": "https://github.com/hzhang86",
+      "followers_url": "https://api.github.com/users/hzhang86/followers",
+      "following_url": "https://api.github.com/users/hzhang86/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hzhang86/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hzhang86/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hzhang86/subscriptions",
+      "organizations_url": "https://api.github.com/users/hzhang86/orgs",
+      "repos_url": "https://api.github.com/users/hzhang86/repos",
+      "events_url": "https://api.github.com/users/hzhang86/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hzhang86/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "781d3daccc64e8ce3e3d0910e64b2b0180551059",
+        "url": "https://api.github.com/repos/Afloat16/lerobot/commits/781d3daccc64e8ce3e3d0910e64b2b0180551059",
+        "html_url": "https://github.com/Afloat16/lerobot/commit/781d3daccc64e8ce3e3d0910e64b2b0180551059"
+      }
+    ]
+  },
+  "merge_base_commit": {
+    "sha": "7910c20a75834ad3fa6a9792df4d44a614d1bba6",
+    "node_id": "C_kwDOU4hXMNoAKDc5MTBjMjBhNzU4MzRhZDNmYTZhOTc5MmRmNGQ0NGE2MTRkMWJiYTY",
+    "commit": {
+      "author": {
+        "name": "hzhang86",
+        "email": "hui@runwayml.com",
+        "date": "2026-11-16T17:47:55Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2026-11-16T17:47:55Z"
+      },
+      "message": "fix(praxis): backward numerics, padded-chunk frame stacks, merged device, raw bimanual gripper (#5328)\n\nFour fixes to the Praxis-1 policy from a review of #5321, each with a test that fails on main.\n\n- Training backward under the praxis numerics. `forward` pins float32 matmuls without TF32 (the\n  MoE router scores in float32), but the backward ran later under the host's flags, and\n  `lerobot-train` turns TF32 on by default: the router's float32 backward GEMMs and the\n  activation-checkpoint recompute of each block (which recomputes the router logits, so a\n  near-tied expert choice can flip, silently, since the dispatch keeps its shapes) ran in TF32.\n  A hook on the loss now runs the whole backward under the same guard and restores the host\n  flags at its end. The gradients no longer depend on `--tf32`.\n- Frame stacks after a padded chunk. The first chunk of a context window has 21 real commands,\n  padded to 24 with the last one. A caller that executed all 24 rows and handed over the 24\n  frames shifted the next chunk's context by 3 frames (the session reads the last 21 executed\n  frames). The frames of the padded rows are now dropped, so the next chunk is the one of a\n  caller that executed the 21 real commands.\n- The merge tool keeps the base config's device. It loads the base on `--device` (default\n  `cpu`) and saved that device into the merged checkpoint, so loading it later without\n  `--policy.device` put the 27B model on the CPU.\n- The bimanual proprio keeps the raw gripper value, as its training data and the praxis\n  session do; the single-arm rig keeps clipping it to [0, 1] like the DROID data code. A YAM\n  reading slightly outside [0, 1] gave different commands from the praxis session.\n\nCo-authored-by: Steven Palma <imstevenpmwork@ieee.org>",
+      "tree": {
+        "sha": "00163e3663cad7b8ef0273aafd9c6c30d6601358",
+        "url": "https://api.github.com/repos/Afloat16/lerobot/git/trees/00163e3663cad7b8ef0273aafd9c6c30d6601358"
+      },
+      "url": "https://api.github.com/repos/Afloat16/lerobot/git/commits/7910c20a75834ad3fa6a9792df4d44a614d1bba6",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJq+0HLCRC1aQ7uu5UhlAAA05gQAKLkNljuyTGhuMNA8+hILxSE\n7inm8myAar1PBTMaytM9bNSiGAAkg4TQlmK7GDA/FavQ6yHW3PIjPlqg7ASf7T13\nCYvPA6o4s3vPNFrcFAe2viRE2NDg+cAYKoO+UTHOE42Eq0CGvoZ5hQPQeWMKMJt1\nM5okDZnOnFkVbKsN+tAQHXxhUU/mJLl6gg8sG+lnRLT1KZdEwJIFmyZvSauJbdDL\nHVIW8ZKQod1v+86ljKg0rNTQiiFkZ/7BjOIXxRhoxQgzwSxD5AsfyP3H2oB38v79\nTbGsSPj6Ngm7YWU7+KWgLq+ZOpy9LB5jPZuVThBLMEp5gXWaLKhDTvotAwrM+wc5\nCOMUKiUj1TaibFBgqHgM0502F0XgMc+qLSFlMOMbeKN+qRetva64Z6YHYd+wmI9a\neApCCcTq+z8liq+guEryX6wT82GVt7usHsdaUZL70qX/yAEC289Zl7KkwgJjbWo1\nm+RK/qT1kaUUVLBakq4mrLFCDRDZcgoTazhdo9n3sKkFrw3m+p8jm1fEEfI2rj9e\nWz1eHgHq7lSHTwx0sSel/ASFKBgWcQ5sF0c3krdIfYZfxvPBZA9K+6Df7CHY6oI+\nl/usfuKjzX07OWoz/ceBttlvGfLgwjZ9AS0DeSwZqdK79I04umHGXRuCQKCrjG9N\nZa+tyP3mOfh0eSGEGb8s\n=7TJN\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 00163e3663cad7b8ef0273aafd9c6c30d6601358\nparent 781d3daccc64e8ce3e3d0910e64b2b0180551059\nauthor hzhang86 <hui@runwayml.com> 1794851275 -0800\ncommitter GitHub <noreply@github.com> 1794851275 -0600\n\nfix(praxis): backward numerics, padded-chunk frame stacks, merged device, raw bimanual gripper (#5328)\n\nFour fixes to the Praxis-1 policy from a review of #5321, each with a test that fails on main.\n\n- Training backward under the praxis numerics. `forward` pins float32 matmuls without TF32 (the\n  MoE router scores in float32), but the backward ran later under the host's flags, and\n  `lerobot-train` turns TF32 on by default: the router's float32 backward GEMMs and the\n  activation-checkpoint recompute of each block (which recomputes the router logits, so a\n  near-tied expert choice can flip, silently, since the dispatch keeps its shapes) ran in TF32.\n  A hook on the loss now runs the whole backward under the same guard and restores the host\n  flags at its end. The gradients no longer depend on `--tf32`.\n- Frame stacks after a padded chunk. The first chunk of a context window has 21 real commands,\n  padded to 24 with the last one. A caller that executed all 24 rows and handed over the 24\n  frames shifted the next chunk's context by 3 frames (the session reads the last 21 executed\n  frames). The frames of the padded rows are now dropped, so the next chunk is the one of a\n  caller that executed the 21 real commands.\n- The merge tool keeps the base config's device. It loads the base on `--device` (default\n  `cpu`) and saved that device into the merged checkpoint, so loading it later without\n  `--policy.device` put the 27B model on the CPU.\n- The bimanual proprio keeps the raw gripper value, as its training data and the praxis\n  session do; the single-arm rig keeps clipping it to [0, 1] like the DROID data code. A YAM\n  reading slightly outside [0, 1] gave different commands from the praxis session.\n\nCo-authored-by: Steven Palma <imstevenpmwork@ieee.org>",
+        "verified_at": "2026-11-16T17:47:56Z"
+      }
+    },
+    "url": "https://api.github.com/repos/Afloat16/lerobot/commits/7910c20a75834ad3fa6a9792df4d44a614d1bba6",
+    "html_url": "https://github.com/Afloat16/lerobot/commit/7910c20a75834ad3fa6a9792df4d44a614d1bba6",
+    "comments_url": "https://api.github.com/repos/Afloat16/lerobot/commits/7910c20a75834ad3fa6a9792df4d44a614d1bba6/comments",
+    "author": {
+      "login": "hzhang86",
+      "id": 11545281,
+      "node_id": "MDQ6VXNlcjExNTQ1Mjgx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11545281?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hzhang86",
+      "html_url": "https://github.com/hzhang86",
+      "followers_url": "https://api.github.com/users/hzhang86/followers",
+      "following_url": "https://api.github.com/users/hzhang86/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hzhang86/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hzhang86/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hzhang86/subscriptions",
+      "organizations_url": "https://api.github.com/users/hzhang86/orgs",
+      "repos_url": "https://api.github.com/users/hzhang86/repos",
+      "events_url": "https://api.github.com/users/hzhang86/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hzhang86/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "781d3daccc64e8ce3e3d0910e64b2b0180551059",
+        "url": "https://api.github.com/repos/Afloat16/lerobot/commits/781d3daccc64e8ce3e3d0910e64b2b0180551059",
+        "html_url": "https://github.com/Afloat16/lerobot/commit/781d3daccc64e8ce3e3d0910e64b2b0180551059"
+      }
+    ]
+  },
+  "status": "ahead",
+  "ahead_by": 1,
+  "behind_by": 0,
+  "total_commits": 1,
+  "commits": [
+    {
+      "sha": "69747d8f44403ac64c6f15bdb1429df8150de4f0",
+      "node_id": "C_kwDOU4hXMNoAKDY5NzQ3ZDhmNDQ0MDNhYzY0YzZmMTViZGIxNDI5ZGY4MTUwZGU0ZjA",
+      "commit": {
+        "author": {
+          "name": "Afloat",
+          "email": "ShuffleMonkey@163.com",
+          "date": "2026-11-16T21:47:06Z"
+        },
+        "committer": {
+          "name": "Afloat",
+          "email": "ShuffleMonkey@163.com",
+          "date": "2026-11-16T21:47:06Z"
+        },
+        "message": "fix(tdmpc): advance CEM warm starts by the executed action chunk",
+        "tree": {
+          "sha": "0bb0a1c064e49c0f65bef4f15d263c6cc96863cb",
+          "url": "https://api.github.com/repos/Afloat16/lerobot/git/trees/0bb0a1c064e49c0f65bef4f15d263c6cc96863cb"
+        },
+        "url": "https://api.github.com/repos/Afloat16/lerobot/git/commits/69747d8f44403ac64c6f15bdb1429df8150de4f0",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/Afloat16/lerobot/commits/69747d8f44403ac64c6f15bdb1429df8150de4f0",
+      "html_url": "https://github.com/Afloat16/lerobot/commit/69747d8f44403ac64c6f15bdb1429df8150de4f0",
+      "comments_url": "https://api.github.com/repos/Afloat16/lerobot/commits/69747d8f44403ac64c6f15bdb1429df8150de4f0/comments",
+      "author": {
+        "login": "Afloat16",
+        "id": 132809511,
+        "node_id": "U_kgDOB-qDJw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/132809511?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Afloat16",
+        "html_url": "https://github.com/Afloat16",
+        "followers_url": "https://api.github.com/users/Afloat16/followers",
+        "following_url": "https://api.github.com/users/Afloat16/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Afloat16/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Afloat16/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Afloat16/subscriptions",
+        "organizations_url": "https://api.github.com/users/Afloat16/orgs",
+        "repos_url": "https://api.github.com/users/Afloat16/repos",
+        "events_url": "https://api.github.com/users/Afloat16/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Afloat16/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "Afloat16",
+        "id": 132809511,
+        "node_id": "U_kgDOB-qDJw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/132809511?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Afloat16",
+        "html_url": "https://github.com/Afloat16",
+        "followers_url": "https://api.github.com/users/Afloat16/followers",
+        "following_url": "https://api.github.com/users/Afloat16/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Afloat16/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Afloat16/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Afloat16/subscriptions",
+        "organizations_url": "https://api.github.com/users/Afloat16/orgs",
+        "repos_url": "https://api.github.com/users/Afloat16/repos",
+        "events_url": "https://api.github.com/users/Afloat16/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Afloat16/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "7910c20a75834ad3fa6a9792df4d44a614d1bba6",
+          "url": "https://api.github.com/repos/Afloat16/lerobot/commits/7910c20a75834ad3fa6a9792df4d44a614d1bba6",
+          "html_url": "https://github.com/Afloat16/lerobot/commit/7910c20a75834ad3fa6a9792df4d44a614d1bba6"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "1dc84b7445018694ba77cd70c2930e00d47762ad",
+      "filename": "src/lerobot/policies/tdmpc/modeling_tdmpc.py",
+      "status": "modified",
+      "additions": 3,
+      "deletions": 2,
+      "changes": 5,
+      "blob_url": "https://github.com/Afloat16/lerobot/blob/69747d8f44403ac64c6f15bdb1429df8150de4f0/src%2Flerobot%2Fpolicies%2Ftdmpc%2Fmodeling_tdmpc.py",
+      "raw_url": "https://github.com/Afloat16/lerobot/raw/69747d8f44403ac64c6f15bdb1429df8150de4f0/src%2Flerobot%2Fpolicies%2Ftdmpc%2Fmodeling_tdmpc.py",
+      "contents_url": "https://api.github.com/repos/Afloat16/lerobot/contents/src%2Flerobot%2Fpolicies%2Ftdmpc%2Fmodeling_tdmpc.py?ref=69747d8f44403ac64c6f15bdb1429df8150de4f0",
+      "patch": "@@ -204,9 +204,10 @@ def plan(self, z: Tensor) -> Tensor:\n         # algorithm.\n         # The initial mean and standard deviation for the cross-entropy method (CEM).\n         mean = torch.zeros(self.config.horizon, batch_size, action_dim, device=device)\n-        # Maybe warm start CEM with the mean from the previous step.\n+        # Warm start from the unexecuted part of the previous plan.\n         if self._prev_mean is not None:\n-            mean[:-1] = self._prev_mean[1:]\n+            n_action_steps = self.config.n_action_steps\n+            mean[:-n_action_steps] = self._prev_mean[n_action_steps:]\n         std = self.config.max_std * torch.ones_like(mean)\n \n         for _ in range(self.config.cem_iterations):"
+    },
+    {
+      "sha": "91ce7134d4f1675d36c24a313f7b1b0bf8a6d845",
+      "filename": "tests/policies/tdmpc/test_warm_start.py",
+      "status": "added",
+      "additions": 127,
+      "deletions": 0,
+      "changes": 127,
+      "blob_url": "https://github.com/Afloat16/lerobot/blob/69747d8f44403ac64c6f15bdb1429df8150de4f0/tests%2Fpolicies%2Ftdmpc%2Ftest_warm_start.py",
+      "raw_url": "https://github.com/Afloat16/lerobot/raw/69747d8f44403ac64c6f15bdb1429df8150de4f0/tests%2Fpolicies%2Ftdmpc%2Ftest_warm_start.py",
+      "contents_url": "https://api.github.com/repos/Afloat16/lerobot/contents/tests%2Fpolicies%2Ftdmpc%2Ftest_warm_start.py?ref=69747d8f44403ac64c6f15bdb1429df8150de4f0",
+      "patch": "@@ -0,0 +1,127 @@\n+#!/usr/bin/env python\n+\n+# Copyright 2026 The HuggingFace Inc. team. All rights reserved.\n+#\n+# Licensed under the Apache License, Version 2.0 (the \"License\");\n+# you may not use this file except in compliance with the License.\n+# You may obtain a copy of the License at\n+#\n+#     http://www.apache.org/licenses/LICENSE-2.0\n+#\n+# Unless required by applicable law or agreed to in writing, software\n+# distributed under the License is distributed on an \"AS IS\" BASIS,\n+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n+# See the License for the specific language governing permissions and\n+# limitations under the License.\n+\n+\"\"\"Exercise warm starts through the public action queue on CPU.\"\"\"\n+\n+from collections.abc import Callable\n+\n+import pytest\n+import torch\n+\n+from lerobot.configs.types import FeatureType, PolicyFeature\n+from lerobot.policies.tdmpc.configuration_tdmpc import TDMPCConfig\n+from lerobot.policies.tdmpc.modeling_tdmpc import TDMPCPolicy\n+from lerobot.utils.constants import ACTION, OBS_STATE\n+\n+\n+def make_policy(n_action_steps: int, n_action_repeats: int, horizon: int = 5) -> TDMPCPolicy:\n+    config = TDMPCConfig(\n+        device=\"cpu\",\n+        input_features={OBS_STATE: PolicyFeature(type=FeatureType.STATE, shape=(3,))},\n+        output_features={ACTION: PolicyFeature(type=FeatureType.ACTION, shape=(2,))},\n+        n_action_steps=n_action_steps,\n+        n_action_repeats=n_action_repeats,\n+        horizon=horizon,\n+        state_encoder_hidden_dim=8,\n+        latent_dim=4,\n+        mlp_dim=8,\n+        q_ensemble_size=2,\n+        n_gaussian_samples=4,\n+        n_pi_samples=0,\n+        n_elites=2,\n+        cem_iterations=1,\n+    )\n+    return TDMPCPolicy(config).eval()\n+\n+\n+def controlled_proposals(\n+    monkeypatch: pytest.MonkeyPatch, policy: TDMPCPolicy, batch_size: int\n+) -> tuple[torch.Tensor, Callable[[], int]]:\n+    # All proposals have the same first trajectory. Subsequent zero-noise proposals expose the\n+    # next warm start through the actual CEM loop, dynamics/value networks and selected action.\n+    # No planner, action queue, learned model, or previous-mean state is replaced.\n+    initial_plan = torch.linspace(0.05, 0.75, policy.config.horizon * batch_size * 2).reshape(\n+        policy.config.horizon, batch_size, 2\n+    )\n+    calls = 0\n+\n+    def sample_proposals(*shape: int, device: torch.device) -> torch.Tensor:\n+        nonlocal calls\n+        assert shape == (policy.config.horizon, policy.config.n_gaussian_samples, batch_size, 2)\n+        if calls == 0:\n+            result = initial_plan.unsqueeze(1).expand(shape).clone() / policy.config.max_std\n+        else:\n+            result = torch.zeros(shape)\n+        calls += 1\n+        return result.to(device=device)\n+\n+    monkeypatch.setattr(torch, \"randn\", sample_proposals)\n+    return initial_plan, lambda: calls\n+\n+\n+@pytest.mark.parametrize(\"batch_size\", [1, 2])\n+@pytest.mark.parametrize(\n+    \"horizon,n_action_steps,n_action_repeats\",\n+    [(5, 1, 1), (5, 1, 2), (5, 2, 1), (5, 3, 1), (5, 5, 1), (1, 1, 1), (1, 1, 2)],\n+)\n+def test_warm_start_advances_past_executed_actions(\n+    monkeypatch: pytest.MonkeyPatch,\n+    batch_size: int,\n+    horizon: int,\n+    n_action_steps: int,\n+    n_action_repeats: int,\n+) -> None:\n+    policy = make_policy(n_action_steps, n_action_repeats, horizon)\n+    initial_plan, proposal_calls = controlled_proposals(monkeypatch, policy, batch_size)\n+    observation = {OBS_STATE: torch.zeros(batch_size, 3)}\n+    selected_actions = max(n_action_steps, n_action_repeats)\n+\n+    for index in range(selected_actions):\n+        action = policy.select_action(dict(observation))\n+        planned_index = 0 if n_action_repeats > 1 else index\n+        torch.testing.assert_close(action, initial_plan[planned_index])\n+        assert proposal_calls() == 1, \"Planning must wait until the existing action queue is consumed.\"\n+\n+    previous_mean = policy._prev_mean.clone()\n+    # Repeats execute one planned action several times; they must keep the existing one-step\n+    # warm start. Chunked execution consumes n_action_steps distinct entries of the old plan.\n+    remaining = previous_mean[n_action_steps:]\n+    expected = torch.cat((remaining, torch.zeros(n_action_steps, batch_size, 2)), dim=0)\n+\n+    next_action = policy.select_action(dict(observation))\n+    assert proposal_calls() == 2\n+    torch.testing.assert_close(next_action, expected[0])\n+    torch.testing.assert_close(policy._prev_mean, expected)\n+\n+\n+@pytest.mark.parametrize(\"batch_size\", [1, 2])\n+def test_reset_clears_queued_actions_and_the_warm_start(\n+    monkeypatch: pytest.MonkeyPatch, batch_size: int\n+) -> None:\n+    policy = make_policy(n_action_steps=3, n_action_repeats=1)\n+    initial_plan, proposal_calls = controlled_proposals(monkeypatch, policy, batch_size)\n+    observation = {OBS_STATE: torch.zeros(batch_size, 3)}\n+\n+    torch.testing.assert_close(policy.select_action(dict(observation)), initial_plan[0])\n+    assert len(policy._queues[ACTION]) == 2\n+    policy.reset()\n+    assert policy._prev_mean is None\n+    assert len(policy._queues[ACTION]) == 0\n+\n+    # The second real plan has zero noise. Any retained queue/mean would yield a nonzero action.\n+    torch.testing.assert_close(policy.select_action(dict(observation)), torch.zeros(batch_size, 2))\n+    torch.testing.assert_close(policy._prev_mean, torch.zeros(5, batch_size, 2))\n+    assert proposal_calls() == 2"
+    }
+  ]
+}

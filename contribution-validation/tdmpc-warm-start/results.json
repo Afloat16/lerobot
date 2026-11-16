@@ -1,74 +1,109 @@
 {
-  "baseline": {
-    "head": "d3cc74a5a95e39beac7baa8411050e3c2395e0ed",
-    "run": 43961818735,
-    "job": 133630905905,
-    "url": "https://github.com/Afloat16/lerobot/actions/runs/43961818735",
-    "new_cases": {
+  "status": "code_verified_prepared_community_review_submission_blocked",
+  "head": "69747d8f44403ac64c6f15bdb1429df8150de4f0",
+  "validation": {
+    "baseline_run": 43961818735,
+    "baseline_head": "d3cc74a5a95e39beac7baa8411050e3c2395e0ed",
+    "regression_before": {
       "failed": 6,
       "passed": 10
     },
-    "base_suite": {
-      "failed": 6,
-      "passed": 2580,
-      "skipped": 540,
-      "deselected": 64
+    "regression_after": {
+      "failed": 0,
+      "passed": 16
     },
-    "failure_scope": "Only the six newly added multi-action warm-start cases failed. Existing tests and all single-step, repeated-single-action and reset controls passed.",
-    "source": "unmodified upstream 7910c20a75834ad3fa6a9792df4d44a614d1bba6",
-    "log_files": [
-      "baseline-fast-tests-part-1.log",
-      "baseline-fast-tests-part-2.log",
-      "baseline-fast-tests-part-3.log"
-    ],
-    "raw_log_characters": 1346909
+    "production_fast_tests_run": 43963629106,
+    "production_fast_tests_job": 133637209326,
+    "production_fast_tests_conclusion": "success",
+    "quality_run": 43963629165,
+    "quality_attempt": 2,
+    "quality_conclusion": "success",
+    "tiers": {
+      "base": {
+        "passed": 2585,
+        "skipped": 540,
+        "deselected": 64
+      },
+      "dataset": {
+        "passed": 1757,
+        "skipped": 132,
+        "deselected": 2972
+      },
+      "hardware": {
+        "passed": 7,
+        "skipped": 72,
+        "deselected": 4788
+      },
+      "visualization": {
+        "passed": 9,
+        "skipped": 151,
+        "deselected": 3052
+      }
+    },
+    "environment": {
+      "python": "3.12.13",
+      "torch": "2.15.0",
+      "device": "CPU"
+    },
+    "local_tests_executed": false,
+    "upstream_ci_status": "no_upstream_pr"
   },
-  "history": {
-    "complete": true,
-    "ref_counts": {
-      "all_references": 4330,
-      "fork_heads": 262,
-      "upstream_pr_heads": 3800
-    },
+  "novelty": {
+    "baseline_refs": 4330,
+    "upstream_pr_heads": 3800,
+    "original_fork_branches": 261,
     "reachable_commits": 27867,
-    "source_paths": [
-      "contribution-validation/tdmpc-warm-start/audit_history.py",
-      "lerobot/common/policies/tdmpc.py",
-      "lerobot/common/policies/tdmpc/__init__.py",
-      "lerobot/common/policies/tdmpc/configuration_tdmpc.py",
-      "lerobot/common/policies/tdmpc/helper.py",
-      "lerobot/common/policies/tdmpc/modeling_tdmpc.py",
-      "lerobot/common/policies/tdmpc/policy.py",
-      "lerobot/common/policies/tdmpc2/configuration_tdmpc2.py",
-      "lerobot/common/policies/tdmpc2/modeling_tdmpc2.py",
-      "lerobot/common/policies/tdmpc2/tdmpc2_utils.py",
-      "lerobot/common/policies/tdmpc_helper.py",
-      "lerobot/common/tdmpc.py",
-      "lerobot/common/tdmpc_helper.py",
-      "src/lerobot/policies/tdmpc/__init__.py",
-      "src/lerobot/policies/tdmpc/configuration_tdmpc.py",
-      "src/lerobot/policies/tdmpc/modeling_tdmpc.py",
-      "src/lerobot/policies/tdmpc/processor_tdmpc.py",
-      "tests/policies/tdmpc/test_000_history_audit.py",
-      "tests/policies/tdmpc/test_tdmpc.py",
-      "tests/policies/tdmpc/test_warm_start.py",
-      "tests/processor/test_tdmpc_processor.py"
-    ],
-    "source_blobs": 294,
-    "production_function_variants": 47,
-    "parse_failures": [],
-    "finding": "Every extracted prior planner uses a one-step shift. No equivalent correction found. A follow-up extraction includes select_action/predict_action_chunk variants before final novelty conclusion.",
-    "data_file": "history-baseline.json"
+    "source_blobs_initial": 294,
+    "prior_planner_state_variants": 47,
+    "additional_consumption_variants": 48,
+    "old_equivalent_fix_found": false,
+    "issue_search": {
+      "query": "repo:huggingface/lerobot is:issue tdmpc",
+      "total": 20,
+      "incomplete_results": false,
+      "equivalent_warm_start_issue_found": false
+    },
+    "related_prs_read_in_full": [
+      4776,
+      4872
+    ]
   },
-  "candidate": {
-    "head": "fa256b84578785422072af1ec28df066038f35a5",
-    "status": "pushed_validation_not_yet_verified",
-    "production_change": "Warm start advances by n_action_steps instead of one."
+  "community_review": {
+    "pull_request": "https://github.com/huggingface/lerobot/pull/4692",
+    "reviewed_head": "7d7dad58f3aca5a4ad8a085c2bcbe65242660327",
+    "submission_status": "not_posted",
+    "single_attempt_result": "403 Resource not accessible by integration",
+    "draft_path": "contribution-validation/tdmpc-warm-start/community-review-4692.md",
+    "steps_path": "contribution-validation/tdmpc-warm-start/community-review-steps.md",
+    "policy_fulfilled": false,
+    "verified_prefilled_review_form_available": false
   },
-  "quality_baseline": {
-    "run": 43961818791,
-    "precommit": "failed: formatting in new test/audit and three B607 findings in validation-only git executable lookup",
-    "doctests": "success",
-    "candidate_changes": "Apply actual formatter patch; resolve the git executable with shutil.which in validation-only audit. No ignores or security setting changes."
+  "discarded_state_only_candidate": {
+    "candidate": "TDMPC state-only training",
+    "status": "discarded_duplicate_proposal",
+    "existing_issue": "https://github.com/huggingface/lerobot/issues/1090",
+    "reason": "The existing issue explicitly identifies the same horizon-selection failure and proposes the state-only fallback. An alternative implementation is not a new contribution.",
+    "production_source_changed": false,
+    "new_upstream_pr_count": 0,
+    "baseline": {
+      "head": "5b964c0c78d6da803e0b5e31d83a59d81c8883b0",
+      "run": 43963992422,
+      "job": 133638481528,
+      "focused": {
+        "failed": 2,
+        "passed": 4
+      },
+      "base": {
+        "failed": 2,
+        "passed": 2574,
+        "skipped": 540,
+        "deselected": 64
+      }
+    },
+    "internal_pr": {
+      "url": "https://github.com/Afloat16/lerobot/pull/3",
+      "state": "closed",
+      "merged": false
+    }
   }
 }

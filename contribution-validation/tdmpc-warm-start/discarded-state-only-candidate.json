@@ -1,0 +1,28 @@
+{
+  "candidate": "TDMPC state-only training",
+  "status": "discarded_duplicate_proposal",
+  "existing_issue": "https://github.com/huggingface/lerobot/issues/1090",
+  "reason": "The existing issue explicitly identifies the same horizon-selection failure and proposes the state-only fallback. An alternative implementation is not a new contribution.",
+  "production_source_changed": false,
+  "new_upstream_pr_count": 0,
+  "baseline": {
+    "head": "5b964c0c78d6da803e0b5e31d83a59d81c8883b0",
+    "run": 43963992422,
+    "job": 133638481528,
+    "focused": {
+      "failed": 2,
+      "passed": 4
+    },
+    "base": {
+      "failed": 2,
+      "passed": 2574,
+      "skipped": 540,
+      "deselected": 64
+    }
+  },
+  "internal_pr": {
+    "url": "https://github.com/Afloat16/lerobot/pull/3",
+    "state": "closed",
+    "merged": false
+  }
+}

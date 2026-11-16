@@ -1,0 +1,213 @@
+{
+  "total_count": 2,
+  "jobs": [
+    {
+      "id": 133639011033,
+      "run_id": 43963629165,
+      "workflow_name": "Quality",
+      "head_branch": "fix/tdmpc-action-chunk-warm-start-20261116",
+      "run_url": "https://api.github.com/repos/Afloat16/lerobot/actions/runs/43963629165",
+      "run_attempt": 2,
+      "node_id": "CR_kwDOU4hXMM8AAAAfHYF62Q",
+      "head_sha": "69747d8f44403ac64c6f15bdb1429df8150de4f0",
+      "url": "https://api.github.com/repos/Afloat16/lerobot/actions/jobs/133639011033",
+      "html_url": "https://github.com/Afloat16/lerobot/actions/runs/43963629165/job/133639011033",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-16T21:50:39Z",
+      "started_at": "2026-11-16T21:50:41Z",
+      "completed_at": "2026-11-16T21:52:58Z",
+      "name": "Run Pre-commit Hooks (Lint, Format & Static Analysis)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-16T21:50:42Z",
+          "completed_at": "2026-11-16T21:50:42Z"
+        },
+        {
+          "name": "Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-16T21:50:42Z",
+          "completed_at": "2026-11-16T21:50:45Z"
+        },
+        {
+          "name": "Set up Python",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-16T21:50:45Z",
+          "completed_at": "2026-11-16T21:50:45Z"
+        },
+        {
+          "name": "Run pre-commit hooks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-16T21:50:45Z",
+          "completed_at": "2026-11-16T21:52:53Z"
+        },
+        {
+          "name": "Post Run pre-commit hooks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-16T21:52:53Z",
+          "completed_at": "2026-11-16T21:52:57Z"
+        },
+        {
+          "name": "Post Set up Python",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-16T21:52:57Z",
+          "completed_at": "2026-11-16T21:52:57Z"
+        },
+        {
+          "name": "Post Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-16T21:52:57Z",
+          "completed_at": "2026-11-16T21:52:57Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-16T21:52:57Z",
+          "completed_at": "2026-11-16T21:52:57Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Afloat16/lerobot/check-runs/133639011033",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010615,
+      "runner_name": "GitHub Actions 1000010615",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 133639014606,
+      "run_id": 43963629165,
+      "workflow_name": "Quality",
+      "head_branch": "fix/tdmpc-action-chunk-warm-start-20261116",
+      "run_url": "https://api.github.com/repos/Afloat16/lerobot/actions/runs/43963629165",
+      "run_attempt": 2,
+      "node_id": "CR_kwDOU4hXMM8AAAAfHYGIzg",
+      "head_sha": "69747d8f44403ac64c6f15bdb1429df8150de4f0",
+      "url": "https://api.github.com/repos/Afloat16/lerobot/actions/jobs/133639014606",
+      "html_url": "https://github.com/Afloat16/lerobot/actions/runs/43963629165/job/133639014606",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-16T21:50:39Z",
+      "started_at": "2026-11-16T21:47:31Z",
+      "completed_at": "2026-11-16T21:48:20Z",
+      "name": "Run Documentation Checks (Doctests)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-16T21:47:32Z",
+          "completed_at": "2026-11-16T21:47:33Z"
+        },
+        {
+          "name": "Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-16T21:47:33Z",
+          "completed_at": "2026-11-16T21:47:35Z"
+        },
+        {
+          "name": "Setup uv and Python",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-16T21:47:35Z",
+          "completed_at": "2026-11-16T21:47:36Z"
+        },
+        {
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-16T21:47:36Z",
+          "completed_at": "2026-11-16T21:48:01Z"
+        },
+        {
+          "name": "Check the doctest list is sorted and its paths exist",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-16T21:48:01Z",
+          "completed_at": "2026-11-16T21:48:01Z"
+        },
+        {
+          "name": "Check documented arguments match their signatures",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-16T21:48:01Z",
+          "completed_at": "2026-11-16T21:48:14Z"
+        },
+        {
+          "name": "Check docstring coverage has not regressed",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-16T21:48:14Z",
+          "completed_at": "2026-11-16T21:48:16Z"
+        },
+        {
+          "name": "Run doctests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-16T21:48:16Z",
+          "completed_at": "2026-11-16T21:48:17Z"
+        },
+        {
+          "name": "Post Setup uv and Python",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-16T21:48:17Z",
+          "completed_at": "2026-11-16T21:48:18Z"
+        },
+        {
+          "name": "Post Checkout code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-16T21:48:18Z",
+          "completed_at": "2026-11-16T21:48:18Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-16T21:48:18Z",
+          "completed_at": "2026-11-16T21:48:19Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Afloat16/lerobot/check-runs/133639014606",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010605,
+      "runner_name": "GitHub Actions 1000010605",
+      "runner_group_id": null,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}
